@@ -1,2 +1,2 @@
-# Resta-Pick
+# P1cky
 This is a web application that will pick a restaurant for users based on their requirements such as location, prices, food type, the number of reviews and the ratings. We will use Google Maps API and Yelp API to provide more information about the restaurants, such as reviews or ratings. Furthermore, each user has their own user profile recording the history of what they pick and eat. Therefore, users could easily decide their meal by the application based on their food habits, requirements and even their friends' experiences. For the technologies, we adopt NodeJS + Express.js as our back-end framework and would use Google Firebase Realtime Database to organize our data. As for the front-end framework, we will use React and Vue.js.
