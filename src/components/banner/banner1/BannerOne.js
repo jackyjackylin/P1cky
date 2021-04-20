@@ -4,6 +4,8 @@ import BannerOneSearchInput from './BannerOneSearchInput'
 import BannerOneCategories from './BannerOneCategories'
 import sectiondata from "../../../store/store";
 
+
+
 export default function BannerOne() {
     return (
         <>
@@ -19,15 +21,16 @@ export default function BannerOne() {
                                 content={sectiondata.herobanners.banner1.content}
                                 titleHighlight={sectiondata.herobanners.banner1.titleHighlight} />
 
-                            {/* Banner One Search Input */}
-                            <BannerOneSearchInput />
-
                             {/* Banner One Categories */}
                             <BannerOneCategories
                                 title={sectiondata.categories.featuredcategories.title}
                                 items={sectiondata.categories.featuredcategories.items}
                                 connector={sectiondata.categories.featuredcategories.connector}
                             />
+
+                            {/* Banner One Search Input */}
+                            <BannerOneSearchInput />
+
 
                         </div>
                     </div>

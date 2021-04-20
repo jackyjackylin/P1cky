@@ -4,7 +4,7 @@ export default function BannerOneCategories({connector, title, items}) {
     return (
         <>
             <div className="highlighted-categories">
-                <h4 className="highlighted-element">{connector}</h4>
+                {/* <h4 className="highlighted-element">{connector}</h4> */}
                 <h5 className="highlighted__title">
                     {title}
                 </h5>

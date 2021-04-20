@@ -12,7 +12,6 @@ function FooterLeftWidget({footerleftcnts}) {
                         <p className="footer__desc">
                             {footerleftcnts.footerdesc}
                         </p>
-                        <SocialProfile socials={footerleftcnts.sociallinks} />
                     </div>
                 </div>
             </div>

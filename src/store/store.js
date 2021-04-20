@@ -100,168 +100,7 @@ import mainimage from "../assets/images/video-img.jpg"; // 750*500
 
 const sectiondata = {
     headermenu: [
-        {
-            title: 'Home',
-            path: '/',
-            dropdown: [
-                {
-                    title: 'Home One',
-                    path: '/'
-                },
-                {
-                    title: 'Home Two',
-                    path: '/index2'
-                },
-                {
-                    title: 'Home Three',
-                    path: '/index3'
-                },
-                {
-                    title: 'Home Four',
-                    path: '/index4'
-                },
-                {
-                    title: 'Home Five',
-                    path: '/index5'
-                }
-            ]
-        },
-        {
-            title: 'categories',
-            path: '/all-categories',
-            dropdown: [
-                {
-                    title: 'all categories',
-                    path: '/all-categories'
-                },
-                {
-                    title: 'all locations',
-                    path: '/all-locations'
-                },
-                {
-                    title: 'top places',
-                    path: '/top-place'
-                }
-            ]
-        },
-        {
-            title: 'listings',
-            path: '/listing-grid',
-            dropdown: [
-                {
-                    title: 'listing grid',
-                    path: '/listing-grid'
-                },
-                {
-                    title: 'map view',
-                    path: '/list-map-view'
-                },
-                {
-                    title: 'map view 2',
-                    path: '/list-map-view2'
-                },
-                {
-                    title: 'listing list',
-                    path: '/listing-list'
-                },
-                {
-                    title: 'left sidebar',
-                    path: '/list-left-sidebar'
-                },
-                {
-                    title: 'right sidebar',
-                    path: '/list-right-sidebar'
-                },
-                {
-                    title: 'listing details',
-                    path: '/listing-details'
-                },
-                {
-                    title: 'add listing',
-                    path: '/add-listing/new'
-                }
-            ]
-        },
-        {
-            title: 'pages',
-            path: '/user-profile',
-            dropdown: [
-                {
-                    title: 'user profile',
-                    path: '/user-profile'
-                },
-                {
-                    title: 'top authors',
-                    path: '/top-author'
-                },
-                {
-                    title: 'dashboard',
-                    path: '/dashboard'
-                },
-                {
-                    title: 'booking',
-                    path: '/booking'
-                },
-                {
-                    title: 'booking confirmation',
-                    path: '/booking-confirmation'
-                },
-                {
-                    title: 'invoice',
-                    path: '/invoice'
-                },
-                {
-                    title: 'pricing',
-                    path: '/pricing'
-                },
-                {
-                    title: 'about',
-                    path: '/about'
-                },
-                {
-                    title: 'faq',
-                    path: '/faq'
-                },
-                {
-                    title: 'contact',
-                    path: '/contact'
-                },
-                {
-                    title: '404 page',
-                    path: '/page-404'
-                },
-                {
-                    title: 'recover pass',
-                    path: '/recover'
-                }
-            ]
-        },
-        {
-            title: 'blog',
-            path: '/blog-full-width',
-            dropdown: [
-                {
-                    title: 'full width',
-                    path: '/blog-full-width'
-                },
-                {
-                    title: 'blog grid',
-                    path: '/blog-grid'
-                },
-                {
-                    title: 'left sidebar',
-                    path: '/blog-left-sidebar'
-                },
-                {
-                    title: 'right sidebar',
-                    path: '/blog-right-sidebar'
-                },
-                {
-                    title: 'blog detail',
-                    path: '/blog-single'
-                }
-            ]
-        },
+
     ],
     herobanners: {
         banner1: {
@@ -279,26 +118,6 @@ const sectiondata = {
                     active: false,
                     text: 'Shops'
                 },
-                {
-                    active: false,
-                    text: 'Salons'
-                },
-                {
-                    active: false,
-                    text: 'Apartments'
-                },
-                {
-                    active: false,
-                    text: 'Travels'
-                },
-                {
-                    active: false,
-                    text: 'Business'
-                },
-                {
-                    active: false,
-                    text: 'Fitness'
-                }
             ],
             content: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
             bgimage: bannerbg1,
@@ -353,7 +172,7 @@ const sectiondata = {
     },
     categories: {
         featuredcategories: {
-            connector: 'or',
+            connector: ' ',
             title: 'browse featured categories:',
             items: [
                 {
@@ -370,21 +189,6 @@ const sectiondata = {
                     path: "#",
                     title: "Travel",
                     icon: <RiPlaneLine />
-                },
-                {
-                    path: "#",
-                    title: "Events",
-                    icon: <BsMusicNoteBeamed />
-                },
-                {
-                    path: "#",
-                    title: "Fitness",
-                    icon: <MdFitnessCenter />
-                },
-                {
-                    path: "#",
-                    title: "Hotels",
-                    icon: <RiHotelBedLine />
                 }
             ]
         },
@@ -3871,10 +3675,6 @@ const sectiondata = {
             title: 'Quick Links',
             links: [
                 {
-                    path: '/about',
-                    text: 'about us'
-                },
-                {
                     path: '/sign-up',
                     text: 'sign up'
                 },
@@ -3885,14 +3685,6 @@ const sectiondata = {
                 {
                     path: '/add-listing/new',
                     text: 'add listing'
-                },
-                {
-                    path: '/contact',
-                    text: 'contact us'
-                },
-                {
-                    path: '/pricing',
-                    text: 'pricing'
                 }
             ]
         },

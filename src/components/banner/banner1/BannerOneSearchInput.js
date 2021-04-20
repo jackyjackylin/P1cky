@@ -2,7 +2,7 @@ import React from 'react'
 import  { FiSearch } from 'react-icons/fi'
 import SelectCountry from "../../common/SelectCountry";
 import Select from "react-select";
-
+import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
 
 const state = {
     selectedCatOp: null,
@@ -66,7 +66,7 @@ export default function BannerOneSearchInput() {
                                 <FiSearch/>
                             </span>
                                 <input className="form-control" type="text"
-                                       placeholder="What are you looking for?"/>
+                                       placeholder="Where are you?"/>
                             </div>
                         </form>
                     </div>

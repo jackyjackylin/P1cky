@@ -963,7 +963,7 @@ class SelectCountry extends Component {
         return (
             <>
                 <Select
-                    placeholder="Select a Location"
+                    placeholder="Select your type of food"
                     options={state.countries}
                 />
             </>
