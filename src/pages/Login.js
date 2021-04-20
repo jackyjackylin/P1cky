@@ -4,7 +4,7 @@ import Breadcrumb from "../components/common/Breadcrumb";
 import LoginBox from "../components/other/account/LoginBox";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
-import breadcrumbimg from '../assets/images/bread-bg.jpg'
+import breadcrumbimg from '../assets/images/mountain.jpg'
 
 const state = {
     breadcrumbimg: breadcrumbimg,

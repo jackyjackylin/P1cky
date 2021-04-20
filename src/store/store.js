@@ -15,7 +15,9 @@ import {
 import {MdClose, MdFitnessCenter, MdStar, MdStarBorder, MdStarHalf} from 'react-icons/md';
 import bannerbg1 from '../assets/images/mountain.jpg';
 import img1 from "../assets/images/img1.jpg"; // 263*175
-import img2 from "../assets/images/img7.jpg"; // 362*242
+import img2 from "../assets/images/img2.jpg"; // 362*242
+import img3 from "../assets/images/img3.jpg"; // 263*175
+import img4 from "../assets/images/img4.jpg"; // 362*242
 import authorimg from "../assets/images/small-team1.jpg"; // 67*60
 import symble1 from "../assets/images/symble1.png";
 import symble2 from "../assets/images/symble2.png";
@@ -104,22 +106,30 @@ const sectiondata = {
     ],
     herobanners: {
         banner1: {
-            title: 'What are you interested in ',
+            title: 'What do you want to eat ? ',
             titleHighlight: [
                 {
                     active: true,
-                    text: 'Hotels'
+                    text: 'Sushi'
                 },
                 {
                     active: false,
-                    text: 'Restaurants'
+                    text: 'Ramen'
                 },
                 {
                     active: false,
-                    text: 'Shops'
+                    text: 'Boba Tea'
+                },
+                {
+                    active: false,
+                    text: 'Beef Noodle'
+                },
+                {
+                    active: false,
+                    text: 'Hamburger'
                 },
             ],
-            content: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
+            content: 'Discover the best Restaurant to stay, eat & Grab food nearest to you.',
             bgimage: bannerbg1,
         },
         banner2: {
@@ -173,22 +183,22 @@ const sectiondata = {
     categories: {
         featuredcategories: {
             connector: ' ',
-            title: 'browse featured categories:',
+            title: ' ',
             items: [
                 {
                     path: "#",
-                    title: "Apartments",
-                    icon: <RiBuilding4Line />
-                },
-                {
-                    path: "#",
-                    title: "Restaurants",
+                    title: "Pick by Filter",
                     icon: <GiChickenOven />
                 },
                 {
                     path: "#",
-                    title: "Travel",
-                    icon: <RiPlaneLine />
+                    title: "Pick from My List",
+                    icon: <GiChickenOven />
+                },
+                {
+                    path: "#",
+                    title: "Pick with Friends",
+                    icon: <GiChickenOven />
                 }
             ]
         },
@@ -388,7 +398,7 @@ const sectiondata = {
     },
     popularcategories: {
         sectitle: 'Most Popular Categories',
-        seccontent: 'Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortors.',
+        seccontent: '',
         categories: [
             {
                 icon: <GiChickenOven />,
@@ -2406,23 +2416,23 @@ const sectiondata = {
         }
     },
     mostvisitedplaces: {
-        sectitle: 'Most Visited Places',
-        seccontent: 'Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortors.',
+        sectitle: 'What is Nearby You',
+        seccontent: 'Is there already one restaurant nearby we recommend that you like?',
         places: [
             {
                 bedge: 'New Open',
-                title: 'Hotel Govendor',
+                title: 'Ton Kotsu Ramen',
                 titleIcon: <IoIosCheckmarkCircle />,
                 titleUrl: '/listing-details',
                 stitle: 'Bishop Avenue, New York',
                 image: img1,
-                cardType: 'Hotel',
-                cardTypeIcon: <RiHotelBedLine />,
+                cardType: 'Restaurant',
+                cardTypeIcon: <GiChickenOven />,
                 author: authorimg,
                 authorUrl: '#',
                 number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
-                websiteUrl: 'https://example.com',
+                website: 'www.Ton Kotsu Ramen.com',
+                websiteUrl: 'https://Ton_Kotsu_Ramen.com',
                 date: 'Posted 1 month ago',
                 view: '204',
                 ratings: [
@@ -2436,7 +2446,7 @@ const sectiondata = {
             },
             {
                 bedge: 'New Open',
-                title: 'Favorite Place Food Bank',
+                title: 'Chipotle',
                 titleIcon: <IoIosCheckmarkCircle />,
                 titleUrl: '/listing-details',
                 stitle: 'Bishop Avenue, New York',
@@ -2459,66 +2469,18 @@ const sectiondata = {
                 ratingNum: '4.5'
             },
             {
-                bedge: 'Closed',
-                title: 'beach blue boardwalk',
-                titleIcon: '',
+                bedge: 'New Open',
+                title: 'In-N-Out',
+                titleIcon: <GiChickenOven />,
                 titleUrl: '/listing-details',
                 stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Travel',
+                image: img3,
+                cardType: 'Restaurant',
                 cardTypeIcon: <GiChickenOven />,
                 author: authorimg,
                 authorUrl: '#',
                 number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
-                date: 'Posted 1 month ago',
-                view: '248',
-                ratings: [
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStarHalf />,
-                    <IoMdStar className="last-star" />,
-                ],
-                ratingNum: '4.6'
-            },
-            {
-                bedge: 'New Open',
-                title: 'Hotel Govendor',
-                titleIcon: <IoIosCheckmarkCircle />,
-                titleUrl: '/listing-details',
-                stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Hotel',
-                cardTypeIcon: <RiHotelBedLine />,
-                author: authorimg,
-                authorUrl: '#',
-                number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
-                date: 'Posted 1 month ago',
-                view: '248',
-                ratings: [
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStarHalf />,
-                    <IoMdStar className="last-star" />,
-                ],
-                ratingNum: '4.6'
-            },
-            {
-                bedge: 'New Open',
-                title: 'sticky band party',
-                titleIcon: <IoIosCheckmarkCircle />,
-                titleUrl: '/listing-details',
-                stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Event',
-                cardTypeIcon: <IoMdMusicalNotes />,
-                author: authorimg,
-                authorUrl: '#',
-                number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
+                website: 'www.Innout.com',
                 date: 'Posted 1 month ago',
                 view: '248',
                 ratings: [
@@ -2532,17 +2494,17 @@ const sectiondata = {
             },
             {
                 bedge: 'Closed',
-                title: 'Sena Clothing Shopping Mall',
+                title: 'Chick-Fil-A',
                 titleIcon: '',
                 titleUrl: '/listing-details',
                 stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Shop',
+                image: img4,
+                cardType: 'Restaurant',
                 cardTypeIcon: <GiChickenOven />,
                 author: authorimg,
                 authorUrl: '#',
                 number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
+                website: 'www.Chick-Fil-A.com',
                 date: 'Posted 1 month ago',
                 view: '248',
                 ratings: [
@@ -2553,54 +2515,6 @@ const sectiondata = {
                     <IoMdStar className="last-star" />,
                 ],
                 ratingNum: '4.6'
-            },
-            {
-                bedge: 'New Open',
-                title: 'Hotel Govendor',
-                titleIcon: <IoIosCheckmarkCircle />,
-                titleUrl: '/listing-details',
-                stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Hotel',
-                cardTypeIcon: <RiHotelBedLine />,
-                author: authorimg,
-                authorUrl: '#',
-                number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
-                date: 'Posted 1 month ago',
-                view: '204',
-                ratings: [
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStarHalf />,
-                    <IoMdStar className="last-star" />,
-                ],
-                ratingNum: '4.7'
-            },
-            {
-                bedge: 'New Open',
-                title: 'Favorite Place Food Bank',
-                titleIcon: <IoIosCheckmarkCircle />,
-                titleUrl: '/listing-details',
-                stitle: 'Bishop Avenue, New York',
-                image: img2,
-                cardType: 'Restaurant',
-                cardTypeIcon: <GiChickenOven />,
-                author: authorimg,
-                authorUrl: '#',
-                number: '(492) 492-4828',
-                website: 'www.mysitelink.com',
-                date: 'Posted 1 month ago',
-                view: '204',
-                ratings: [
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStar />,
-                    <IoMdStarHalf />,
-                    <IoMdStar className="last-star" />,
-                ],
-                ratingNum: '4.5'
             }
         ]
     },
@@ -3648,7 +3562,7 @@ const sectiondata = {
     ],
     footerdata: {
         footerlogo: darklogo,
-        footerdesc: 'Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros',
+        footerdesc: 'This is a web application that will pick a restaurant for users based on their requirements such as location, prices, food type, the number of reviews and the ratings.',
         sociallinks: [
             {
                 icon: <FaFacebookF />,
@@ -3722,15 +3636,15 @@ const sectiondata = {
             lists: [
                 {
                     icon: <AiOutlineHome />,
-                    text: '12345 Little Baker St, Melbourne'
+                    text: 'Irvine, CA 92697'
                 },
                 {
                     icon: <FiHeadphones />,
-                    text: '+ 61 23 8093 3400'
+                    text: '(949) 824-5011'
                 },
                 {
                     icon: <FaRegEnvelope />,
-                    text: 'dirto@gmail.com'
+                    text: 'P1cky@gmail.com'
                 }
             ]
         },

@@ -20,6 +20,7 @@ function Home() {
             {/* Most Visited Place */}
             <section className="card-area text-center padding-bottom-100px">
                 <div className="container">
+                    <br></br>
                     <div className="row section-title-width text-center">
                         <SectionsHeading title={sectiondata.mostvisitedplaces.sectitle} desc={sectiondata.mostvisitedplaces.seccontent} />
                     </div>

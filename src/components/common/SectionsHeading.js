@@ -5,7 +5,7 @@ export default function SectionsHeading({ children, title, desc, titleClass, des
         <>
             <div className="section-heading">
                 {
-                    title ? (<h2 className={'sec__title '+titleClass}>{title}</h2>) : ' '
+                    title ? (<h2 className={titleClass}>{title}</h2>) : ' '
                 }
                 {
                     desc ? (<p className={'sec__desc '+descClass}>{desc}</p>) : ' '
