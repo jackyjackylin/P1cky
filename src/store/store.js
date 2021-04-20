@@ -13,7 +13,7 @@ import {
     BsPencil
 } from 'react-icons/bs';
 import {MdClose, MdFitnessCenter, MdStar, MdStarBorder, MdStarHalf} from 'react-icons/md';
-import bannerbg1 from '../assets/images/hero-bg.jpg';
+import bannerbg1 from '../assets/images/mountain.jpg';
 import img1 from "../assets/images/img1.jpg"; // 263*175
 import img2 from "../assets/images/img7.jpg"; // 362*242
 import authorimg from "../assets/images/small-team1.jpg"; // 67*60
@@ -90,7 +90,7 @@ import flag19 from "../assets/images/flag19.png";
 import flag20 from "../assets/images/flag20.png";
 import listingdetailsvideoimg from "../assets/images/img4.jpg";
 import similarimg from "../assets/images/img8.jpg"; // 90*90
-import breadcrumbimg from "../assets/images/bread-bg.jpg"; //1920*838
+import breadcrumbimg from "../assets/images/mountain.jpg"; //1920*838
 import userimage from "../assets/images/team1.jpg"; // 368*331
 import imgboximg from "../assets/images/img10.jpg"; // 570*345
 import about2img from "../assets/images/img2.jpg"; //389*259
