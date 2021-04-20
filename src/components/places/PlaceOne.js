@@ -76,9 +76,6 @@ function PlaceOne({places}) {
                                                 {item.stitle}
                                             </p>
                                         </a>
-                                        <a href={item.authorUrl} className="author-img">
-                                            <img src={item.author} alt="author-img" />
-                                        </a>
                                         <ul className="info-list padding-top-20px">
                                             <li><span className="la d-inline-block"><FiPhone /></span> {item.number}</li>
                                             <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={item.websiteUrl}>

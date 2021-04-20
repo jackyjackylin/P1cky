@@ -3430,7 +3430,7 @@ body {
   z-index: 1;
   color: #fff;
   text-align: center;
-  padding-top: 280px;
+  padding-top: 100px;
   padding-bottom: 240px; }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
     .hero-wrapper {
