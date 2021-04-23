@@ -8,12 +8,12 @@ export default function SelectFood ({foodType,setFoodType}){
             selectedOption: null,
             foods: [
                 {
-                    value: 'Japanese',
-                    label: 'Japanese'
+                    value: 'coffee',
+                    label: 'coffee'
                 },
                 {
-                    value: 'Mexican',
-                    label: 'Mexican'
+                    value: 'cupcakes',
+                    label: 'cupcakes'
                 },
             ]
     }
