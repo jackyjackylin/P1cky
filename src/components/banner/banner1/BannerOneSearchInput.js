@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import  { FiSearch } from 'react-icons/fi'
 import SelectCountry from "../../common/SelectCountry";
 import SelectFood from "../../common/SelectFood";
@@ -6,56 +6,29 @@ import SelectRating from "../../common/SelectRating";
 import Select from "react-select";
 import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
 
-const state = {
-    selectedCatOp: null,
-    categories: [
-        {
-            value: 0,
-            label: 'Select a category'
-        },
-        {
-            value: 1,
-            label: 'All Category'
-        },
-        {
-            value: 2,
-            label: 'Shops'
-        },
-        {
-            value: 3,
-            label: 'Hotels'
-        },
-        {
-            value: 4,
-            label: 'Foods & Restaurants'
-        },
-        {
-            value: 5,
-            label: 'Fitness'
-        },
-        {
-            value: 6,
-            label: 'Travel'
-        },
-        {
-            value: 7,
-            label: 'Salons'
-        },
-        {
-            value: 8,
-            label: 'Event'
-        },
-        {
-            value: 9,
-            label: 'Business'
-        },
-        {
-            value: 10,
-            label: 'Jobs'
-        }
-    ]
-}
+
+// this.handleChange = this.handleChange.bind(this);
+// this.handleSubmit = this.handleSubmit.bind(this);
+
+
 export default function BannerOneSearchInput() {
+    const [keyword, setKeyword] = useState("");
+    const [foodType, setFoodType] = useState("");
+    const [rating, setRating] = useState(1);
+    const _setFoodType = (ft) => {
+        setFoodType(ft)
+      }
+    const _setRating = (ft) => {
+        setFoodType(ft)
+      }
+    function kw_handleChange(evt){
+        const value = evt.target.value;
+        setKeyword(value);
+    }
+    function handleSubmit(event){
+        alert('Keyword was submitted: ' + keyword + " ," + foodType + " ," + rating);
+        event.preventDefault();
+    }
     return (
         <>
             <div className="main-search-input">
@@ -67,23 +40,24 @@ export default function BannerOneSearchInput() {
                             <span className="form-icon">
                                 <FiSearch/>
                             </span>
-                                <input className="form-control" type="text"
-                                       placeholder="Where are you?"/>
+                                <input className="form-control" type="text" name="keywords"
+                                        onChange={kw_handleChange}
+                                       placeholder="What food?"/>
                             </div>
                         </form>
                     </div>
                 </div>
 
                 <div className="main-search-input-item location">
-                    <SelectFood />
+                    <SelectFood foodType={foodType} setFoodType={setFoodType}/>
                 </div>
                 <div className="main-search-input-item location">
-                    <SelectRating />
+                    <SelectRating rating={rating} setRating={setRating}/>
                 </div>
 
 
                 <div className="main-search-input-btn">
-                    <button className="button theme-btn" type="submit">Search</button>
+                    <button className="button theme-btn" type="submit" onClick={handleSubmit}>Search</button>
                 </div>
 
             </div>
