@@ -3,8 +3,11 @@ import  { FiSearch } from 'react-icons/fi'
 import SelectCountry from "../../common/SelectCountry";
 import SelectFood from "../../common/SelectFood";
 import SelectRating from "../../common/SelectRating";
+import SelectPrice from "../../common/SelectPrice";
 import Select from "react-select";
 import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
+import App from '../../common/GetRestaurantsFromApi';
+import GetRestaurantsFromApi from '../../common/GetRestaurantsFromApi';
 
 const state = {
     selectedCatOp: null,
@@ -80,10 +83,13 @@ export default function BannerOneSearchInput() {
                 <div className="main-search-input-item location">
                     <SelectRating />
                 </div>
+                <div className="main-search-input-item location">
+                    <SelectPrice />
+                </div>
 
 
                 <div className="main-search-input-btn">
-                    <button className="button theme-btn" type="submit">Search</button>
+                    <button className="button theme-btn" type="submit" onClick={GetRestaurantsFromApi}>Search</button>
                 </div>
 
             </div>
