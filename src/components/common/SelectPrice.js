@@ -7,19 +7,19 @@ export default function SelectPrice({price,setPrice}) {
         selectedOption: null,
         foods: [
             {
-                value: 1,
+                value: "1",
                 label: '$'
             },
             {
-                value: 2,
+                value: "2",
                 label: '$$'
             },
             {
-                value: 3,
+                value: "3",
                 label: '$$$'
             },
             {
-                value: 4,
+                value: "4",
                 label: '$$$$'
             }
         ]

@@ -26,7 +26,7 @@ import axios from 'axios';
 //     }
 // }
 
-export default function GetRestaurantsFromApi({keyword,foodType,rating}) {
+export default function GetRestaurantsFromApi({keyword,foodType,rating,price}) {
     return (
         axios.get(`${'https://corsanywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Irvine`, {
         headers: {
@@ -35,6 +35,7 @@ export default function GetRestaurantsFromApi({keyword,foodType,rating}) {
         params: {
             term: keyword,
             categories: foodType,
+            price: price
         }
         })
         .then((res) => {

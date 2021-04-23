@@ -64,7 +64,7 @@ export default function BannerOneSearchInput() {
 
 
                 <div className="main-search-input-btn">
-                    <button className="button theme-btn" type="submit" onClick={()=>GetRestaurantsFromApi({keyword,foodType,rating})}>
+                    <button className="button theme-btn" type="submit" onClick={()=>GetRestaurantsFromApi({keyword,foodType,rating,price})}>
                         Search</button>
 
                 </div>
