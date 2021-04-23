@@ -75,15 +75,8 @@ function PlaceOne({places}) {
                                         <a href="#">
                                             <h5 className="card-meta">
                                                 <span>{<GiChickenOven />}</span> 
-                                                <a key={1}>{item.categories[0].title.trim()}</a>
-                                                <a> &amp; </a>
-                                                <a key={3}>{item.categories[1].title.trim()}</a>
-                                                {/* 
-                                                {item.categories.slice(0, 2).map((element, index)=> {
-                                                    return (
-                                                        <a key={index}>{element.title.trim()}</a>
-                                                    ) 
-                                                })} */}
+                                                <i key={1}>{item.categories[0].title.trim()} &amp; </i>
+                                                <i key={2}>{item.categories[1].title.trim()}</i>
                                             </h5>
                                             <h4 className="card-title">{item.name}
                                                 <i>{item.titleIcon}</i>
