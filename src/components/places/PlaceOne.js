@@ -5,11 +5,24 @@ import { FiPhone, FiHeart } from 'react-icons/fi'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import Slider from "react-slick";
 import {GiChickenOven} from 'react-icons/gi';
-
-
+import {
+    IoMdStar,
+    IoMdStarHalf
+} from "react-icons/io";
 // Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const rating_to_star = [[],[ <IoMdStarHalf />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStarHalf />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStarHalf />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStarHalf />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar className="last-star" />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStarHalf />],
+[ <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar />, <IoMdStar />]];
 
 const responsive = [
     {
@@ -48,23 +61,17 @@ const responsive = [
 ]
 
 function PlaceOne({places}) {
-    console.log("enter place")
-    console.log(places)
-
     return (
         <div className="row mt-5">
             <div className="col-lg-12">
                 <Slider className="places-carousel" dots={true} infinite={true} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
                     {places.map((item, index) => {
-                        console.log("enter item")
-                        console.log(item)
-                        console.log(index)
                         return (
                             <div className="card-item" key={index}>
                                 <a href="#" className="card-image-wrap">
                                     <div className="card-image">
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
-                                        {/* <span className={item.titleIcon ? 'badge': 'badge badge-closed' }>{item.bedge}</span> */}
+                                        { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
                                         <span className="badge-toggle" data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             <FiHeart />
                                         </span>
@@ -82,7 +89,7 @@ function PlaceOne({places}) {
                                                 <i>{item.titleIcon}</i>
                                             </h4>
                                             <p className="card-sub">
-                                                
+                                                <i>{item.location.city}, {item.location.state} {item.location.zip_code}</i>
                                             </p>
                                         </a>
                                         <ul className="info-list padding-top-20px">
@@ -102,14 +109,10 @@ function PlaceOne({places}) {
                                         </ul>
                                     </div>
                                     <div className="rating-row">
-                                        {/* <div className="rating-rating">
-                                            {item.ratings.map((rating, index) => {
-                                                return (
-                                                    <span key={index}>{rating}</span>
-                                                )
-                                            })}
-                                            <span className="rating-count">{item.ratingNum}</span>
-                                        </div> */}
+                                        <div className="rating-rating">
+                                            <span>{rating_to_star[parseFloat(item.rating)/0.5]}</span>
+                                            <span className="rating-count">{parseFloat(item.rating)}</span>
+                                        </div> 
                                         <div className="listing-info">
                                             <ul>
                                                 <li><span className="info__count"><AiOutlineEye /></span> {item.review_count}</li>
