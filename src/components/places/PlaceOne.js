@@ -1,9 +1,10 @@
 import React from 'react';
 import {IoIosLink} from 'react-icons/io'
-import { AiOutlineEye } from 'react-icons/ai'
+import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart } from 'react-icons/fi'
-import { FaRegCalendarCheck } from 'react-icons/fa'
+import { FaMoneyBillWave } from 'react-icons/fa'
 import Slider from "react-slick";
+import {GiChickenOven} from 'react-icons/gi';
 
 
 // Import css files
@@ -47,17 +48,23 @@ const responsive = [
 ]
 
 function PlaceOne({places}) {
+    console.log("enter place")
+    console.log(places)
+
     return (
         <div className="row mt-5">
             <div className="col-lg-12">
                 <Slider className="places-carousel" dots={true} infinite={true} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
                     {places.map((item, index) => {
+                        console.log("enter item")
+                        console.log(item)
+                        console.log(index)
                         return (
                             <div className="card-item" key={index}>
-                                <a href={item.titleUrl} className="card-image-wrap">
+                                <a href="#" className="card-image-wrap">
                                     <div className="card-image">
-                                        <img src={item.image} className="card__img" alt="Place" />
-                                        <span className={item.titleIcon ? 'badge': 'badge badge-closed' }>{item.bedge}</span>
+                                        <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
+                                        {/* <span className={item.titleIcon ? 'badge': 'badge badge-closed' }>{item.bedge}</span> */}
                                         <span className="badge-toggle" data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             <FiHeart />
                                         </span>
@@ -65,40 +72,54 @@ function PlaceOne({places}) {
                                 </a>
                                 <div className="card-content-wrap">
                                     <div className="card-content">
-                                        <a href={item.titleUrl}>
+                                        <a href="#">
                                             <h5 className="card-meta">
-                                                <span>{item.cardTypeIcon}</span> {item.cardType}
+                                                <span>{<GiChickenOven />}</span> 
+                                                <a key={1}>{item.categories[0].title.trim()}</a>
+                                                <a> &amp; </a>
+                                                <a key={3}>{item.categories[1].title.trim()}</a>
+                                                {/* 
+                                                {item.categories.slice(0, 2).map((element, index)=> {
+                                                    return (
+                                                        <a key={index}>{element.title.trim()}</a>
+                                                    ) 
+                                                })} */}
                                             </h5>
-                                            <h4 className="card-title">{item.title}
+                                            <h4 className="card-title">{item.name}
                                                 <i>{item.titleIcon}</i>
                                             </h4>
                                             <p className="card-sub">
-                                                {item.stitle}
+                                                
                                             </p>
                                         </a>
                                         <ul className="info-list padding-top-20px">
-                                            <li><span className="la d-inline-block"><FiPhone /></span> {item.number}</li>
-                                            <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={item.websiteUrl}>
-                                                {item.website}
+                                            <li><span className="la d-inline-block"><FiPhone /></span> {item.display_phone}</li>
+                                            <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={item.url}>
+                                                Link to Yelp
                                             </a>
                                             </li>
                                             <li>
-                                                <span className="la d-inline-block"><FaRegCalendarCheck /></span> {item.date}
+                                                <span className="la d-inline-block"><FaMoneyBillWave />  </span> 
+                                                {String(item.price).split('').map(()=> {
+                                                    return (
+                                                        <a> <AiFillDollarCircle /> </a>
+                                                    )
+                                                })}                  
                                             </li>
                                         </ul>
                                     </div>
                                     <div className="rating-row">
-                                        <div className="rating-rating">
+                                        {/* <div className="rating-rating">
                                             {item.ratings.map((rating, index) => {
                                                 return (
                                                     <span key={index}>{rating}</span>
                                                 )
                                             })}
                                             <span className="rating-count">{item.ratingNum}</span>
-                                        </div>
+                                        </div> */}
                                         <div className="listing-info">
                                             <ul>
-                                                <li><span className="info__count"><AiOutlineEye /></span> {item.view}</li>
+                                                <li><span className="info__count"><AiOutlineEye /></span> {item.review_count}</li>
                                                 <li>
                                                     <span className="info__save" data-toggle="tooltip" data-placement="top" title="Bookmark">
                                                         <FiHeart />
