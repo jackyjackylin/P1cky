@@ -11,7 +11,12 @@ import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
 import App from '../../common/GetRestaurantsFromApi';
 import GetRestaurantsFromApi from '../../common/GetRestaurantsFromApi';
 
-export default function BannerOneSearchInput() {
+
+// this.handleChange = this.handleChange.bind(this);
+// this.handleSubmit = this.handleSubmit.bind(this);
+
+
+export default function BannerOneSearchInput({setShowPop}) {
     const [locationSearched, setLocation] = useState("");
     const [keyword, setKeyword] = useState("");
     const [foodType, setFoodType] = useState("");
@@ -83,7 +88,10 @@ export default function BannerOneSearchInput() {
 
 
                 <div className="main-search-input-btn">
-                    <button className="button theme-btn" type="submit" onClick={()=>GetRestaurantsFromApi({locationSearched,keyword,foodType,rating,price})}>
+                    <button className="button theme-btn" type="submit" onClick={()=>{
+                        GetRestaurantsFromApi({locationSearched,keyword,foodType,rating,price})
+                        setShowPop(true);
+                    }}>
                         Search</button>
 
                 </div>

@@ -7291,7 +7291,19 @@ body {
     transform: translateX(-50%) rotate(45deg);
     border-bottom: 1px solid rgba(128, 137, 150, 0.2);
     border-right: 1px solid rgba(128, 137, 150, 0.2); }
-
+.popup-window{
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.popup-window-content{
+  background-color: white;
+}
 .item-popup-box {
   display: block;
   width: 100%;
