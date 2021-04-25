@@ -14,17 +14,12 @@ import GetRestaurantsFromApi from '../../common/GetRestaurantsFromApi';
 // this.handleSubmit = this.handleSubmit.bind(this);
 
 
-export default function BannerOneSearchInput() {
+export default function BannerOneSearchInput({setShowPop}) {
     const [keyword, setKeyword] = useState("");
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState(1);
     const [price, setPrice] = useState(1);
-    const _setFoodType = (ft) => {
-        setFoodType(ft)
-      }
-    const _setRating = (ft) => {
-        setFoodType(ft)
-      }
+
     function kw_handleChange(evt){
         const value = evt.target.value;
         setKeyword(value);
@@ -64,7 +59,10 @@ export default function BannerOneSearchInput() {
 
 
                 <div className="main-search-input-btn">
-                    <button className="button theme-btn" type="submit" onClick={()=>GetRestaurantsFromApi({keyword,foodType,rating,price})}>
+                    <button className="button theme-btn" type="submit" onClick={()=>{
+                        GetRestaurantsFromApi({keyword,foodType,rating,price})
+                        setShowPop(true);
+                    }}>
                         Search</button>
 
                 </div>

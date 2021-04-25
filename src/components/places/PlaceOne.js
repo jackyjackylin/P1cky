@@ -1,7 +1,7 @@
 import React from 'react';
 import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
-import { FiPhone, FiHeart } from 'react-icons/fi'
+import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import Slider from "react-slick";
 import {GiChickenOven} from 'react-icons/gi';
@@ -60,7 +60,7 @@ const responsive = [
     }
 ]
 
-function PlaceOne({places}) {
+function PlaceOne({places,setShowPop,showPop=false}) {
     return (
         <div className="row mt-5">
             <div className="col-lg-12">
@@ -72,13 +72,16 @@ function PlaceOne({places}) {
                                     <div className="card-image">
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
-                                        <span className="badge-toggle" data-toggle="tooltip" data-placement="bottom" title="22 Likes">
-                                            <FiHeart />
-                                        </span>
+                                        <span className="badge-toggle" onClick={()=>setShowPop(false)} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
+                                            
+                                                {showPop ? <FiX/> : <FiHeart/>}
+                                        
+                                        </span>  
                                     </div>
                                 </a>
-                                <div className="card-content-wrap">
-                                    <div className="card-content">
+                                
+                                <div className="card-content-wrap popup-window-content">
+                                    <div className="card-content ">
                                         <a href="#">
                                             <h5 className="card-meta">
                                                 <span>{<GiChickenOven />}</span> 
