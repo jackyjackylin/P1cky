@@ -7,10 +7,29 @@ import SectionsHeading from "../../components/common/SectionsHeading";
 import PlaceOne from "../../components/places/PlaceOne";
 import sectiondata from "../../store/store";
 import {useBusinessSearch} from '../../components/api/useBusinessSearch';
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { useGoogleMapsApi } from "google-maps-api-loader";
+import usePlacesAutocomplete from "use-places-autocomplete"; 
+
 
 function Home() {
     const [businesses, searchParams, performSearch] = useBusinessSearch(undefined, undefined, 'Irvine', undefined, undefined, undefined, undefined);
     console.log(businesses)
+    const libraries = ["places"];
+    // const { init } = usePlacesAutocomplete({
+    //     initOnMount: false,
+    // });
+    const { isLoaded, loadError} = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        libraries,
+    });
+    // const [loading] = useGoogleMapsApi({
+    //     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    //     libraries,
+    //     onLoad: () => init(), // Lazily initializing the hook when the script is ready
+    // });
+    if (loadError) console.log("Error loading maps");
+    if (!isLoaded) console.log("Loading Maps");
 
     return (
         <main className="home-1">

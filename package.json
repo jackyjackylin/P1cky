@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/combobox": "^0.15.1",
+    "@react-google-maps/api": "^2.1.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "classnames": "^2.2.6",
     "google-map-react": "^2.1.9",
+    "google-maps-api-loader": "^1.1.1",
     "lodash": "^4.17.20",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-accessible-accordion": "^3.3.3",
     "react-bootstrap": "^1.4.0",
+    "react-cool-onclickoutside": "^1.6.1",
     "react-countup": "^4.3.3",
     "react-dom": "^16.13.1",
     "react-dropzone": "^11.2.4",
@@ -28,6 +32,7 @@
     "slick-carousel": "^1.8.1",
     "supercluster": "^7.1.0",
     "swr": "^0.3.9",
+    "use-places-autocomplete": "^1.9.1",
     "use-supercluster": "^0.2.9"
   },
   "scripts": {
