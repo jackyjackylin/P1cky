@@ -4,8 +4,9 @@ import usePlacesAutocomplete, {
   } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import React, {useState} from 'react'
+import Select from "react-select";
 
-export default function SelectLocation({}) {
+export default function SelectLocation() {
 //   const PlacesAutocomplete = () => {
     const {
       ready,
@@ -70,6 +71,7 @@ export default function SelectLocation({}) {
             />
             {/* We can use the "status" to decide whether we should display the dropdown or not */}
             {status === "OK" && <ul>{renderSuggestions()}</ul>}
+            
         </>
     )
 }
