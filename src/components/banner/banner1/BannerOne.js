@@ -6,7 +6,7 @@ import sectiondata from "../../../store/store";
 
 
 
-export default function BannerOne({setShowPop}) {
+export default function BannerOne({setShowPop,setPopItem}) {
     return (
         <>
             <section className="hero-wrapper" style={{backgroundImage: 'url('+sectiondata.herobanners.banner1.bgimage+')'}}>
@@ -29,7 +29,7 @@ export default function BannerOne({setShowPop}) {
                             />
 
                             {/* Banner One Search Input */}
-                            <BannerOneSearchInput setShowPop={setShowPop}/>
+                            <BannerOneSearchInput setShowPop={setShowPop} setPopItem={setPopItem}/>
 
 
                         </div>

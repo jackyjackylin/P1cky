@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
-import  { FiSearch } from 'react-icons/fi'
+import React, {useState} from 'react';
+import  { FiNavigation,  FiSearch} from 'react-icons/fi';
 import SelectCountry from "../../common/SelectCountry";
 import SelectFood from "../../common/SelectFood";
 import SelectRating from "../../common/SelectRating";
 import SelectPrice from "../../common/SelectPrice";
+import SelectLocation from "../../common/SelectLocation";
+import SelectLocation2 from "../../common/SelectLocation2";
 import Select from "react-select";
 import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
 import App from '../../common/GetRestaurantsFromApi';
@@ -14,12 +16,22 @@ import GetRestaurantsFromApi from '../../common/GetRestaurantsFromApi';
 // this.handleSubmit = this.handleSubmit.bind(this);
 
 
-export default function BannerOneSearchInput({setShowPop}) {
+export default function BannerOneSearchInput({setShowPop,setPopItem}) {
+    const [locationSearched, setLocation] = useState("");
     const [keyword, setKeyword] = useState("");
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState(1);
     const [price, setPrice] = useState(1);
-
+    const _setFoodType = (ft) => {
+        setFoodType(ft)
+    }
+    const _setRating = (ft) => {
+        setFoodType(ft)
+    }
+    function location_handleChange(evt){
+        const value = evt.target.value;
+        setLocation(value);
+    }
     function kw_handleChange(evt){
         const value = evt.target.value;
         setKeyword(value);
@@ -31,6 +43,23 @@ export default function BannerOneSearchInput({setShowPop}) {
     return (
         <>
             <div className="main-search-input">
+
+                <div className="main-search-input-item">
+                    <div className="contact-form-action">
+                        <form action="#">
+                            <div className="form-group mb-0">
+                            <span className="form-icon">
+                                <FiNavigation/>
+                            </span>
+                                {/* <input className="form-control" type="text" name="keywords"
+                                        onChange={location_handleChange}
+                                        placeholder="Where are you?"/> */}
+                                <SelectLocation />
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <div className="main-search-input-item">
                     <div className="contact-form-action">
@@ -60,7 +89,9 @@ export default function BannerOneSearchInput({setShowPop}) {
 
                 <div className="main-search-input-btn">
                     <button className="button theme-btn" type="submit" onClick={()=>{
-                        GetRestaurantsFromApi({keyword,foodType,rating,price})
+                        GetRestaurantsFromApi({locationSearched,keyword,foodType,rating,price})
+                        .then((res) => setPopItem(res.data.businesses[0]));
+                        
                         setShowPop(true);
                     }}>
                         Search</button>

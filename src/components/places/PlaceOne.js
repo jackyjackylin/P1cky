@@ -3,6 +3,7 @@ import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
 import { FaMoneyBillWave } from 'react-icons/fa'
+import { nanoid } from 'nanoid';
 import Slider from "react-slick";
 import {GiChickenOven} from 'react-icons/gi';
 import {
@@ -74,6 +75,7 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
                                         <span className="badge-toggle" onClick={()=>setShowPop(false)} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
+
                                         </span>  
                                     </div>
                                 </a>
@@ -83,8 +85,8 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                         <a href="#">
                                             <h5 className="card-meta">
                                                 <span>{<GiChickenOven />}</span> 
-                                                <i key={1}>{item.categories[0].title.trim()} &amp; </i>
-                                                <i key={2}>{item.categories[1].title.trim()}</i>
+                                                <i key={nanoid()}>{item.categories[0].title.trim()} &amp; </i>
+                                                <i key={nanoid()}>{item.categories[1].title.trim()}</i>
                                             </h5>
                                             <h4 className="card-title">{item.name}
                                                 <i>{item.titleIcon}</i>
@@ -103,15 +105,20 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                                 <span className="la d-inline-block"><FaMoneyBillWave />  </span> 
                                                 {String(item.price).split('').map(()=> {
                                                     return (
-                                                        <a> <AiFillDollarCircle /> </a>
+                                                        <a key={nanoid()}> <AiFillDollarCircle /> </a>
                                                     )
                                                 })}                  
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> 
                                     <div className="rating-row">
                                         <div className="rating-rating">
-                                            <span>{rating_to_star[parseFloat(item.rating)/0.5]}</span>
+                                            <span> {rating_to_star[parseFloat(item.rating)/0.5].map((rating, index) => {
+                                                 return (
+                                                     <span key={index}>{rating}</span>
+                                                 )
+                                             })}
+                                             </span>
                                             <span className="rating-count">{parseFloat(item.rating)}</span>
                                         </div> 
                                         <div className="listing-info">
@@ -125,7 +132,7 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         )
                     })}
