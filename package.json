@@ -11,7 +11,6 @@
     "google-map-react": "^2.1.9",
     "google-maps-api-loader": "^1.1.1",
     "lodash": "^4.17.20",
-    "nanoid": "^3.1.22",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-accessible-accordion": "^3.3.3",
@@ -37,7 +36,7 @@
     "use-supercluster": "^0.2.9"
   },
   "scripts": {
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
