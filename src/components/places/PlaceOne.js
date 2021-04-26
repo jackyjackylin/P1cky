@@ -65,7 +65,7 @@ function PlaceOne({places,setShowPop,showPop=false}) {
     return (
         <div className="row mt-5">
             <div className="col-lg-12">
-                <Slider className="places-carousel" dots={true} infinite={true} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
+                <Slider className="places-carousel" dots={true} infinite={false} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
                     {places.map((item, index) => {
                         return (
                             <div className="card-item" key={index}>
