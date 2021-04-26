@@ -73,9 +73,7 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
                                         <span className="badge-toggle" onClick={()=>setShowPop(false)} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
-                                            
-                                                {showPop ? <FiX/> : <FiHeart/>}
-                                        
+                                            {showPop ? <FiX/> : <FiHeart/>}
                                         </span>  
                                     </div>
                                 </a>

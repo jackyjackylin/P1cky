@@ -28,7 +28,7 @@ import axios from 'axios';
 
 export default function GetRestaurantsFromApi({keyword,foodType,rating,price}) {
     return (
-        axios.get(`${'https://corsanywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Irvine`, {
+        axios.get(`${'https://young-thicket-97536.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Irvine`, {
         headers: {
             Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
         },
