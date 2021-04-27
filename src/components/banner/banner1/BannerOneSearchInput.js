@@ -54,10 +54,9 @@ export default function BannerOneSearchInput({toggleShowPop,setPopItemList}) {
                                 {/* <input className="form-control" type="text" name="keywords"
                                         onChange={location_handleChange}
                                         placeholder="Where are you?"/> */}
-                                <SelectLocation />
-                                
                             </div>
                         </form>
+                        <SelectLocation />
                     </div>
                 </div>
 

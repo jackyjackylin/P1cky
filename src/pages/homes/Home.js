@@ -1,4 +1,4 @@
-import React, {useState}  from 'react'
+import React, {useState,useEffect}  from 'react'
 import GeneralHeader from '../../components/common/GeneralHeader'
 import BannerOne from '../../components/banner/banner1/BannerOne'
 import Footer from "../../components/common/footer/Footer";
@@ -10,7 +10,8 @@ import sectiondata from "../../store/store";
 import {useBusinessSearch} from '../../components/api/useBusinessSearch';
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { useGoogleMapsApi } from "google-maps-api-loader";
-import usePlacesAutocomplete from "use-places-autocomplete"; 
+import usePlacesAutocomplete from "use-places-autocomplete";
+import Script from 'react-load-script';
 
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
     const [popItemList, setPopItemList] = useState(null);
     const [popItemId, setPopItemId] = useState(-1);
     console.log(businesses)
+
     const libraries = ["places"];
     // const { init } = usePlacesAutocomplete({
     //     initOnMount: false,
@@ -52,14 +54,28 @@ function Home() {
         }
         
     }
+
+    const [loaded, setLoaded] = useState(false);
+    
+    useEffect(() => {
+        window.initMap = () => setLoaded(true)
+        const gmapScriptEl = document.createElement(`script`)
+        gmapScriptEl.src =`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&callback=initMap`
+        document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+    },[]);
+
+    console.log(businesses[0])
+
     return (
         <main className="home-1">
             {/* Header */}
             <GeneralHeader />
 
             {/* Hero Banner */}
+
             <BannerOne toggleShowPop={toggleShowPop} setPopItemList={setPopItemList}/>
             
+
             {/* Most Visited Place */}
             <section className="card-area text-center padding-bottom-100px">
                 <div className="container">

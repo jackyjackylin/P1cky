@@ -49,6 +49,7 @@ const App = () => {
   const childRef = useRef();
   let location = useLocation();
 
+  
   useEffect(() => {
     document.body.classList.add('is-loaded')
     childRef.current.init();
