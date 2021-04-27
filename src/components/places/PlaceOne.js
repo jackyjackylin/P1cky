@@ -61,11 +61,12 @@ const responsive = [
     }
 ]
 
-function PlaceOne({places,setShowPop,showPop=false}) {
+function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
+
     return (
         <div className="row mt-5">
             <div className="col-lg-12">
-                <Slider className="places-carousel" dots={true} infinite={false} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
+                <Slider className="places-carousel"  dots={true} infinite={false} slidesToScroll={2} arrows={false} slidesToShow={3} centerMode={false} centerPadding="50px" autoplay={true} responsive={responsive}>
                     {places.map((item, index) => {
                         return (
                             <div className="card-item" key={index}>
@@ -73,14 +74,14 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                     <div className="card-image">
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
-                                        <span className="badge-toggle" onClick={()=>setShowPop(false)} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
+                                        <span className="badge-toggle" onClick={toggleShowPop} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
 
                                         </span>  
                                     </div>
                                 </a>
                                 
-                                <div className="card-content-wrap popup-window-content">
+                                <div className={`card-content-wrap  ${showPop ? "popup-window-content": ""}`}>
                                     <div className="card-content ">
                                         <a href="#">
                                             <h5 className="card-meta">
@@ -107,7 +108,8 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                                     return (
                                                         <a key={nanoid()}> <AiFillDollarCircle /> </a>
                                                     )
-                                                })}                  
+                                                })}      
+                                                          
                                             </li>
                                         </ul>
                                     </div> 
@@ -132,11 +134,15 @@ function PlaceOne({places,setShowPop,showPop=false}) {
                                             </ul>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
+                                {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>: ""}
                             </div>
                         )
                     })}
+                    
+                    
                 </Slider>
+                
             </div>
         </div>
     );

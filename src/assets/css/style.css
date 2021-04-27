@@ -83,6 +83,23 @@
             - $small_mobile_five: '(max-width: 375px)';
             - $small_mobile_two: '(max-width: 320px)';
 -------------------------------------------------------------------*/
+/*======result page====================*/
+.popup-window{
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.popup-window-content{
+  background-color: white;
+}
+.card-item .POP{
+  height: 20%;
+}
 /*============== loader-ripple ==============*/
 @keyframes loader-ripple {
   0% {
@@ -1719,19 +1736,19 @@ body {
  ====================================================*/
 .contact-form-action .form-group {
   position: relative; }
-  .contact-form-action .form-group .form-icon {
-    position: absolute;
-    top: 11px;
-    left: 15px;
-    color: #808996;
-    font-size: 17px; }
-  .contact-form-action .form-group .submit-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    line-height: 35px;
-    padding-right: 15px;
-    padding-left: 15px; }
+.contact-form-action .form-group .form-icon {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  color: #808996;
+  font-size: 17px; }
+.contact-form-action .form-group .submit-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  line-height: 35px;
+  padding-right: 15px;
+  padding-left: 15px; }
 
 .contact-form-action .label-text {
   font-size: 14px;
@@ -6941,6 +6958,7 @@ body {
 .author-slider .slick-slide {
   padding: 0 15px;
 }
+                
 
 /*========= testimonial-item =========*/
 .testimonial-item {
@@ -7291,19 +7309,9 @@ body {
     transform: translateX(-50%) rotate(45deg);
     border-bottom: 1px solid rgba(128, 137, 150, 0.2);
     border-right: 1px solid rgba(128, 137, 150, 0.2); }
-.popup-window{
-  position: fixed;
-  z-index: 10000;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-}
-.popup-window-content{
-  background-color: white;
-}
+
+
+
 .item-popup-box {
   display: block;
   width: 100%;
