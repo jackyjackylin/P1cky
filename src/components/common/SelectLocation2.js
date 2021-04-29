@@ -9,9 +9,10 @@ import {
 } from "@reach/combobox";
 
 import "@reach/combobox/styles.css";
+import { set } from "lodash-es";
 
 
-export default function SelectLocation() {
+export default function SelectLocation({lat,setLat,lng,setLng}) {
     const {
       ready,
       value,
@@ -24,7 +25,7 @@ export default function SelectLocation() {
       setValue(e.target.value);
     };
   
-    const handleSelect = ({ val }) => () => {
+    const handleSelect = (val) => {
       setValue(val, false);
     };
 
@@ -33,9 +34,12 @@ export default function SelectLocation() {
         <>    
             {/* <Combobox onSelect={handleSelect} aria-labelledby="demo"> */}
             <Combobox onSelect={async (address) => {
+              setValue(address, false);
               try {
                 const results = await getGeocode({ address });
                 const { lat, lng } = await getLatLng(results[0]);
+                setLat(lat);
+                setLng(lng);
                 console.log(lat, lng);
                 
               } catch (error) {
@@ -43,7 +47,7 @@ export default function SelectLocation() {
               }
               console.log(address);
             }}>
-            <ComboboxInput value={value} onChange={(e) => { setValue(e.target.value); }} disabled={!ready} placeholder="Where are you?"/>
+            <ComboboxInput value={value} onChange={handleInput} disabled={!ready} placeholder="Where are you?"/>
             <ComboboxPopover>
             <ComboboxList>
                 {status === "OK" &&

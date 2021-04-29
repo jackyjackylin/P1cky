@@ -8,10 +8,6 @@ import PlaceOne from "../../components/places/PlaceOne";
 import PlacePop from "../../components/places/PlacePop";
 import sectiondata from "../../store/store";
 import {useBusinessSearch} from '../../components/api/useBusinessSearch';
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import { useGoogleMapsApi } from "google-maps-api-loader";
-import usePlacesAutocomplete from "use-places-autocomplete";
-import Script from 'react-load-script';
 
 
 function Home() {

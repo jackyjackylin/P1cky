@@ -22,6 +22,9 @@ export default function BannerOneSearchInput({setShowPop,setPopItem}) {
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState(1);
     const [price, setPrice] = useState(1);
+    const [lat, setLat] = useState(33.6846);
+    const [lng, setLng] = useState(-117.8265049);
+
     const _setFoodType = (ft) => {
         setFoodType(ft)
     }
@@ -48,15 +51,16 @@ export default function BannerOneSearchInput({setShowPop,setPopItem}) {
                     <div className="contact-form-action">
                         <form action="#">
                             <div className="form-group mb-0">
-                            <span className="form-icon">
+                            {/* <span className="form-icon">
                                 <FiNavigation/>
-                            </span>
+                            </span> */}
                                 {/* <input className="form-control" type="text" name="keywords"
                                         onChange={location_handleChange}
                                         placeholder="Where are you?"/> */}
+                                    <SelectLocation2 lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
                             </div>
                         </form>
-                        <SelectLocation />
+                        
                     </div>
                 </div>
 
@@ -88,9 +92,9 @@ export default function BannerOneSearchInput({setShowPop,setPopItem}) {
 
                 <div className="main-search-input-btn">
                     <button className="button theme-btn" type="submit" onClick={()=>{
-                        GetRestaurantsFromApi({locationSearched,keyword,foodType,rating,price})
+                        console.log("---->", lat,lng);
+                        GetRestaurantsFromApi({lat,lng,keyword,foodType,rating,price})
                         .then((res) => setPopItem(res.data.businesses[0]));
-                        
                         setShowPop(true);
                     }}>
                         Search</button>
