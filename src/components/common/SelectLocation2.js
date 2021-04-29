@@ -33,6 +33,7 @@ export default function SelectLocation({lat,setLat,lng,setLng}) {
     return (
         <>    
             {/* <Combobox onSelect={handleSelect} aria-labelledby="demo"> */}
+            
             <Combobox onSelect={async (address) => {
               setValue(address, false);
               try {
@@ -47,7 +48,10 @@ export default function SelectLocation({lat,setLat,lng,setLng}) {
               }
               console.log(address);
             }}>
-            <ComboboxInput value={value} onChange={handleInput} disabled={!ready} placeholder="Where are you?"/>
+            {/* <div className="auto-complete-search-bar"> */}
+
+            <ComboboxInput className='auto-complete-search-bar' value={value} onChange={handleInput} disabled={!ready} placeholder="Where are you?" />
+            {/* </div> */}
             <ComboboxPopover>
             <ComboboxList>
                 {status === "OK" &&
