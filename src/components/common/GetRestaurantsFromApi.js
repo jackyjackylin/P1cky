@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-export default function GetRestaurantsFromApi({lat,lng,keyword,foodType,rating,price}) {
+export default function GetRestaurantsFromApi({lat,lng,foodType,rating,price}) {
 //     this.state = {
 //         isLoading: true,
 //         markers: [],
@@ -37,7 +37,7 @@ export default function GetRestaurantsFromApi({lat,lng,keyword,foodType,rating,p
             Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
         },
         params: {
-            term: keyword,
+            //term: keyword,
             categories: foodType,
             price: price,
             latitude: lat, 
@@ -53,5 +53,3 @@ export default function GetRestaurantsFromApi({lat,lng,keyword,foodType,rating,p
         // })
     )
 }
-
-// export default GetRestaurantsFromApi;
