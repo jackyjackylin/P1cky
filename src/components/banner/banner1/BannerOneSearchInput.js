@@ -5,7 +5,6 @@ import SelectFood from "../../common/SelectFood";
 import SelectRating from "../../common/SelectRating";
 import SelectPrice from "../../common/SelectPrice";
 import SelectLocation from "../../common/SelectLocation";
-import SelectLocation2 from "../../common/SelectLocation2";
 import Select from "react-select";
 import WidgetFilterPrice from "../../sidebars/widgets/WidgetFilterPrice";
 import App from '../../common/GetRestaurantsFromApi';
@@ -57,7 +56,7 @@ export default function BannerOneSearchInput({setShowPop,setPopItem}) {
                                 {/* <input className="form-control" type="text" name="keywords"
                                         onChange={location_handleChange}
                                         placeholder="Where are you?"/> */}
-                                    <SelectLocation2 lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
+                                    <SelectLocation lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
                             </div>
                         </form>
                         
