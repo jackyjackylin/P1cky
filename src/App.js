@@ -26,8 +26,6 @@ import Booking from "./pages/dashboard/Booking";
 import BookingConfirmation from "./pages/dashboard/BookingConfirmation";
 import Invoice from "./pages/dashboard/Invoice";
 import PricingPlan from "./pages/PricingPlan";
-import About from "./pages/About";
-import Faq from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import RecoverPassword from "./pages/RecoverPassword";
 import BlogFullWidth from "./pages/blogs/BlogFullWidth";
@@ -76,8 +74,6 @@ const App = () => {
               <AppRoute path="/booking-confirmation" component={BookingConfirmation} />
               <AppRoute path="/invoice" component={Invoice} />
               <AppRoute path="/pricing" component={PricingPlan} />
-              <AppRoute path="/about" component={About} />
-              <AppRoute path="/faq" component={Faq} />
               <AppRoute path="/contact" component={Contact} />
               <AppRoute path="/recover" component={RecoverPassword} />
               <AppRoute path="/blog-full-width" component={BlogFullWidth} />
