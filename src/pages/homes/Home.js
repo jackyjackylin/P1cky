@@ -7,24 +7,46 @@ import SectionsHeading from "../../components/common/SectionsHeading";
 import PlaceOne from "../../components/places/PlaceOne";
 import PlacePop from "../../components/places/PlacePop";
 import sectiondata from "../../store/store";
-import {useBusinessSearch} from '../../components/api/useBusinessSearch';
-
+import GetRestaurantsFromApi from '../../components/common/GetRestaurantsFromApi';
 
 function Home() {
-    const [businesses, searchParams, performSearch] = useBusinessSearch(undefined, undefined, 'Irvine', undefined, undefined, undefined, undefined);
+    const [businesses, setBusinesses] = useState([]);
     const [showPop, setShowPop] = useState(false);
     const [popItem, setPopItem] = useState(null);
-    console.log(businesses)
     const [loaded, setLoaded] = useState(false);
-    
+    const [foodType, setFoodType] = useState("");
+    const [rating, setRating] = useState(1);
+    const [price, setPrice] = useState(1);
+    const [lat, setLat] = useState(33.6846);
+    const [lng, setLng] = useState(-117.8265049);
+    const [rloaded, setRloaded] = useState(false);
+
     useEffect(() => {
+        async function showPosition(position){
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude);
+        };
         window.initMap = () => setLoaded(true)
         const gmapScriptEl = document.createElement(`script`)
         gmapScriptEl.src =`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&callback=initMap`
         document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
     },[]);
 
-    console.log(businesses[0])
+    useEffect(() =>{
+        async function fetchData() {
+            const response = GetRestaurantsFromApi({lat,lng,foodType,rating,price}).then((res)=>{
+                setBusinesses(res.data.businesses)
+                if(businesses.length > 0 ) setRloaded(true);
+            });
+        }
+        fetchData();
+    },[lat, lng]);
+
     return (
         <main className="home-1">
             {/* Header */}
@@ -41,7 +63,7 @@ function Home() {
                     <div className="row section-title-width text-center">
                         <SectionsHeading title={sectiondata.mostvisitedplaces.sectitle} desc={sectiondata.mostvisitedplaces.seccontent} />
                     </div>
-                    <PlaceOne places={businesses} />
+                    {rloaded && (<PlaceOne places={businesses} />)}
                 </div>
             </section>
             
