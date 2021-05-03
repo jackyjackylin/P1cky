@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-export default function GetRestaurantsFromApi({locationSearched,keyword,foodType,rating,price}) {
+export default function GetRestaurantsFromApi({lat,lng,foodType,rating,price}) {
 //     this.state = {
 //         isLoading: true,
 //         markers: [],
@@ -31,17 +31,17 @@ export default function GetRestaurantsFromApi({locationSearched,keyword,foodType
 
     return (
 
-        axios.get(`${'https://young-thicket-97536.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?location=Irvine`, {
+        axios.get(`${'https://young-thicket-97536.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?`, {
 
         headers: {
             Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`
         },
         params: {
-            term: keyword,
+            //term: keyword,
             categories: foodType,
             price: price,
-            // latitude: 40.7050758, 
-            // longitude: -74.0091604
+            latitude: lat, 
+            longitude: lng,
         }
         })
         // axios.get(`${'https://corsanywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/search?`,this.config)
@@ -53,5 +53,3 @@ export default function GetRestaurantsFromApi({locationSearched,keyword,foodType
         // })
     )
 }
-
-// export default GetRestaurantsFromApi;
