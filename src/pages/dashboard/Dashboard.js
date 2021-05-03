@@ -86,7 +86,7 @@ function Dashboard() {
                                         </Tab>
                                         <Tab>
                                             <div className="nav-item nav-link theme-btn pt-0 pb-0 mr-1">
-                                                <span className="la"><BsBookmark /></span> Bookmark
+                                                <span className="la"><BsBookmark /></span> Friends
                                             </div>
                                         </Tab>
                                     </TabList>

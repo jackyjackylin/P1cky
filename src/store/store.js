@@ -18,6 +18,13 @@ import img1 from "../assets/images/img1.jpg"; // 263*175
 import img2 from "../assets/images/img2.jpg"; // 362*242
 import img3 from "../assets/images/img3.jpg"; // 263*175
 import img4 from "../assets/images/img4.jpg"; // 362*242
+import userimg1 from "../assets/images/userimg1.jpg"; // 362*242
+import userimg2 from "../assets/images/userimg2.jpg"; // 362*242
+import userimg3 from "../assets/images/userimg3.jpg"; // 362*242
+import userimg4 from "../assets/images/userimg4.jpg"; // 362*242
+import userimg5 from "../assets/images/userimg5.jpg"; // 362*242
+import userimg6 from "../assets/images/userimg6.jpg"; // 362*242
+
 import authorimg from "../assets/images/small-team1.jpg"; // 67*60
 import symble1 from "../assets/images/symble1.png";
 import symble2 from "../assets/images/symble2.png";
@@ -2044,7 +2051,7 @@ const sectiondata = {
         breadcrumbimg: breadcrumbimg,
         cards: [
             {
-                img: img2,
+                img: img4,
                 title: 'Favorite Irvine Restaurants',
                 subtitle: 'Good Irvine, Good Food',
                 editTxt: 'Edit',
@@ -2064,7 +2071,7 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
+                img: img4,
                 title: 'Yummy Burger Lists',
                 subtitle: 'Burger makes me happy',
                 editTxt: 'Edit',
@@ -2084,7 +2091,7 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
+                img: img4,
                 title: 'Junk Food List',
                 subtitle: 'Juck eats Junk Food',
                 editTxt: 'Edit',
@@ -2105,19 +2112,19 @@ const sectiondata = {
             }
         ],
         userImg: userimage,
-        userName: 'Mark Williamson',
+        userName: 'Jacky Lin',
         userbio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
-        address: '101 Parkview, New York',
-        phoneNum: '+7(111)123456789',
-        website: 'www.techydevs.com',
+        address: '926XX Irvine, California',
+        phoneNum: '+1(111)123456789',
+        website: 'www.jackylin.com',
     },
     dashboard1: {
         breadcrumbimg: breadcrumbimg,
         cards: [
             {
-                img: img2,
-                title: 'Favorite Irvine Restaurants',
-                subtitle: 'Good Irvine, Good Food',
+                img: userimg1,
+                title: 'Jacky Lin',
+                subtitle: 'Most Handsome Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2125,9 +2132,9 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
-                title: 'Favorite New York Restaurantsk',
-                subtitle: 'Dirty New York, But Good Food',
+                img: userimg2,
+                title: 'Tim Chen',
+                subtitle: 'Most Nice Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2135,9 +2142,9 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
-                title: 'Yummy Burger Lists',
-                subtitle: 'Burger makes me happy',
+                img: userimg3,
+                title: 'Kris Hung',
+                subtitle: 'Most Smart Girl in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2145,9 +2152,9 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
-                title: 'Drinks List',
-                subtitle: 'Drink water is bad',
+                img: userimg4,
+                title: 'Jacky Lin',
+                subtitle: 'Most Handsome Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2155,9 +2162,9 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
-                title: 'Junk Food List',
-                subtitle: 'Juck eats Junk Food',
+                img: userimg5,
+                title: 'Tim Chen',
+                subtitle: 'Most Nice Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2165,9 +2172,9 @@ const sectiondata = {
                 cardLink: '/listing-details'
             },
             {
-                img: img2,
-                title: 'Cheap Food List',
-                subtitle: 'Food for the End of month',
+                img: userimg6,
+                title: 'Kris Hung',
+                subtitle: 'Most Smart Girl in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
