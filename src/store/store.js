@@ -895,7 +895,7 @@ const sectiondata = {
     placesgrid: [
         {
             bedge: 'New Open',
-            title: 'Favorite Place Food Bank',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: <IoIosCheckmarkCircle />,
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -919,7 +919,7 @@ const sectiondata = {
         },
         {
             bedge: 'Closed',
-            title: 'beach blue boardwalk',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: '',
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -943,7 +943,7 @@ const sectiondata = {
         },
         {
             bedge: 'New Open',
-            title: 'Hotel Govendor',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: <IoIosCheckmarkCircle />,
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -967,7 +967,7 @@ const sectiondata = {
         },
         {
             bedge: 'New Open',
-            title: 'Favorite Place Food Bank',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: <IoIosCheckmarkCircle />,
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -991,7 +991,7 @@ const sectiondata = {
         },
         {
             bedge: 'Closed',
-            title: 'beach blue boardwalk',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: '',
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -1015,7 +1015,7 @@ const sectiondata = {
         },
         {
             bedge: 'New Open',
-            title: 'Hotel Govendor',
+            title: 'Favorite Irvine Restaurants',
             titleIcon: <IoIosCheckmarkCircle />,
             titleUrl: '/listing-details',
             stitle: 'Bishop Avenue, New York',
@@ -2045,8 +2045,8 @@ const sectiondata = {
         cards: [
             {
                 img: img2,
-                title: 'Favorite Place Food Bank',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Favorite Irvine Restaurants',
+                subtitle: 'Good Irvine, Good Food',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2055,8 +2055,8 @@ const sectiondata = {
             },
             {
                 img: img2,
-                title: 'Beach Blue Boardwalk',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Favorite New York Restaurantsk',
+                subtitle: 'Dirty New York, But Good Food',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2065,8 +2065,8 @@ const sectiondata = {
             },
             {
                 img: img2,
-                title: 'Hotel Govendor',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Yummy Burger Lists',
+                subtitle: 'Burger makes me happy',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2075,8 +2075,8 @@ const sectiondata = {
             },
             {
                 img: img2,
-                title: 'Favorite Place Food Bank',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Drinks List',
+                subtitle: 'Drink water is bad',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2085,8 +2085,8 @@ const sectiondata = {
             },
             {
                 img: img2,
-                title: 'Beach Blue Boardwalk',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Junk Food List',
+                subtitle: 'Juck eats Junk Food',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2095,8 +2095,8 @@ const sectiondata = {
             },
             {
                 img: img2,
-                title: 'Hotel Govendor',
-                subtitle: 'Bishop Avenue, New York',
+                title: 'Cheap Food List',
+                subtitle: 'Food for the End of month',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
