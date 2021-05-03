@@ -86,8 +86,8 @@ function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
                                         <a href="#">
                                             <h5 className="card-meta">
                                                 <span>{<GiChickenOven />}</span> 
-                                                <i key={nanoid()}>{item.categories[0].title.trim()} &amp; </i>
-                                                <i key={nanoid()}>{item.categories[1].title.trim()}</i>
+                                                <i key={nanoid()}>{item.categories[0].title.trim()}</i>
+                                                {(item.categories.length>1) && <i key={nanoid()}> &amp; {item.categories[1].title.trim()}</i>}
                                             </h5>
                                             <h4 className="card-title">{item.name}
                                                 <i>{item.titleIcon}</i>

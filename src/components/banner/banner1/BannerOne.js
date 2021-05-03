@@ -31,7 +31,6 @@ export default function BannerOne({toggleShowPop,setPopItemList}) {
                             {/* Banner One Search Input */}
                             <BannerOneSearchInput toggleShowPop={toggleShowPop} setPopItemList={setPopItemList}/>
 
-
                         </div>
                     </div>
                 </div>

@@ -131,6 +131,21 @@ dl, ol, ul {
     background: #808996;
 }
 
+.auto-complete-search-bar {
+    flex: 2;
+    color: #999;
+    margin-right: 6px;
+    text-align: left;
+    z-index: 99;
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid rgba(128, 137, 150, 0.3);
+    border-radius: 4px;
+    color: #999;
+    font-weight: 500;
+}
+
 
 
 

@@ -8,10 +8,6 @@ import LayoutDefault from './layouts/LayoutDefault';
 
 // Pages
 import Home from "./pages/homes/Home";
-import Home2 from './pages/homes/Home2';
-import Home3 from './pages/homes/Home3';
-import Home4 from './pages/homes/Home4';
-import Home5 from './pages/homes/Home5';
 import AllCategories from './pages/categories/AllCategories';
 import AllLocations from './pages/categories/AllLocations';
 import TopPlaces from "./pages/categories/TopPlaces";
@@ -30,8 +26,6 @@ import Booking from "./pages/dashboard/Booking";
 import BookingConfirmation from "./pages/dashboard/BookingConfirmation";
 import Invoice from "./pages/dashboard/Invoice";
 import PricingPlan from "./pages/PricingPlan";
-import About from "./pages/About";
-import Faq from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import RecoverPassword from "./pages/RecoverPassword";
 import BlogFullWidth from "./pages/blogs/BlogFullWidth";
@@ -49,6 +43,7 @@ const App = () => {
   const childRef = useRef();
   let location = useLocation();
 
+  
   useEffect(() => {
     document.body.classList.add('is-loaded')
     childRef.current.init();
@@ -61,10 +56,6 @@ const App = () => {
         children={() => (
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
-              <AppRoute path="/index2" component={Home2} />
-              <AppRoute path="/index3" component={Home3} />
-              <AppRoute path="/index4" component={Home4} />
-              <AppRoute path="/index5" component={Home5} />
               <AppRoute path="/all-categories" component={AllCategories} />
               <AppRoute path="/all-locations" component={AllLocations} />
               <AppRoute path="/top-place" component={TopPlaces} />
@@ -83,8 +74,6 @@ const App = () => {
               <AppRoute path="/booking-confirmation" component={BookingConfirmation} />
               <AppRoute path="/invoice" component={Invoice} />
               <AppRoute path="/pricing" component={PricingPlan} />
-              <AppRoute path="/about" component={About} />
-              <AppRoute path="/faq" component={Faq} />
               <AppRoute path="/contact" component={Contact} />
               <AppRoute path="/recover" component={RecoverPassword} />
               <AppRoute path="/blog-full-width" component={BlogFullWidth} />
