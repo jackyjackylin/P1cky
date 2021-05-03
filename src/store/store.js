@@ -2111,6 +2111,77 @@ const sectiondata = {
         phoneNum: '+7(111)123456789',
         website: 'www.techydevs.com',
     },
+    dashboard1: {
+        breadcrumbimg: breadcrumbimg,
+        cards: [
+            {
+                img: img2,
+                title: 'Favorite Irvine Restaurants',
+                subtitle: 'Good Irvine, Good Food',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            },
+            {
+                img: img2,
+                title: 'Favorite New York Restaurantsk',
+                subtitle: 'Dirty New York, But Good Food',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            },
+            {
+                img: img2,
+                title: 'Yummy Burger Lists',
+                subtitle: 'Burger makes me happy',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            },
+            {
+                img: img2,
+                title: 'Drinks List',
+                subtitle: 'Drink water is bad',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            },
+            {
+                img: img2,
+                title: 'Junk Food List',
+                subtitle: 'Juck eats Junk Food',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            },
+            {
+                img: img2,
+                title: 'Cheap Food List',
+                subtitle: 'Food for the End of month',
+                editTxt: 'Edit',
+                editIcon: <FaRegEdit />,
+                deleteTxt: 'Delete',
+                deleteIcon: <FaRegTrashAlt />,
+                cardLink: '/listing-details'
+            }
+        ],
+        userImg: userimage,
+        userName: 'Mark Williamson',
+        userbio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
+        address: '101 Parkview, New York',
+        phoneNum: '+7(111)123456789',
+        website: 'www.techydevs.com',
+    },
     teamdata: {
         sectitle: 'Our Expert Team Members',
         seccontent: 'Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortors.',

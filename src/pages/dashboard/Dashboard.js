@@ -8,9 +8,7 @@ import { FaGlobeAmericas, FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
-import Button from "../../components/common/Button";
-import NewsLetter from "../../components/other/cta/NewsLetter";
-import Footer from "../../components/common/footer/Footer";
+import Button from "../../components/common/Button";import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
 
@@ -317,7 +315,7 @@ function Dashboard() {
                                     </TabPanel>
                                     <TabPanel>
                                         <div className="row">
-                                            {sectiondata.dashboard.cards.map((item, i) => {
+                                            {sectiondata.dashboard1.cards.map((item, i) => {
                                                 return (
                                                     <div key={i} className="col-lg-4 column-td-6">
                                                         <div className="card-item">
