@@ -2124,7 +2124,7 @@ const sectiondata = {
             {
                 img: userimg1,
                 title: 'Jacky Lin',
-                subtitle: 'Most Handsome Boy in Irvine',
+                subtitle: 'The Most Handsome Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2134,7 +2134,7 @@ const sectiondata = {
             {
                 img: userimg2,
                 title: 'Tim Chen',
-                subtitle: 'Most Nice Boy in Irvine',
+                subtitle: 'The Nicest Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2144,7 +2144,7 @@ const sectiondata = {
             {
                 img: userimg3,
                 title: 'Kris Hung',
-                subtitle: 'Most Smart Girl in Irvine',
+                subtitle: 'The Smartest Girl in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2154,7 +2154,7 @@ const sectiondata = {
             {
                 img: userimg4,
                 title: 'Jacky Lin',
-                subtitle: 'Most Handsome Boy in Irvine',
+                subtitle: 'The Most Handsome Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2164,7 +2164,7 @@ const sectiondata = {
             {
                 img: userimg5,
                 title: 'Tim Chen',
-                subtitle: 'Most Nice Boy in Irvine',
+                subtitle: 'The Nicest Boy in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
@@ -2174,7 +2174,7 @@ const sectiondata = {
             {
                 img: userimg6,
                 title: 'Kris Hung',
-                subtitle: 'Most Smart Girl in Irvine',
+                subtitle: 'The Smartest Girl in Irvine',
                 editTxt: 'Edit',
                 editIcon: <FaRegEdit />,
                 deleteTxt: 'Delete',
