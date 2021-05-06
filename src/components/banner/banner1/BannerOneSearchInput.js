@@ -18,6 +18,21 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
     const [lat, setLat] = useState(33.6846);
     const [lng, setLng] = useState(-117.8265049);
 
+    const body = document.querySelector('body')
+    
+    function showDeleteAcntModal() {
+        body.classList.add('modal-open')
+        body.style.paddingRight = '17px'
+        // e.preventDefault()
+    }
+
+    function hideDeleteAcntModal(e) {
+        body.classList.remove('modal-open')
+        body.style.paddingRight = '0'
+        // e.preventDefault()
+    }
+
+
     const _setFoodType = (ft) => {
         setFoodType(ft)
     }
@@ -59,9 +74,13 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
                 <div className="main-search-input-btn">
                     <button className="button theme-btn" type="submit" onClick={()=>{
                         GetRestaurantsFromApi({lat,lng,foodType,rating,price})
-                        .then((res) => setPopItemList(res.data.businesses));
-                        console.log(toggleShowPop);
-                        toggleShowPop();
+                        .then((res) => {
+                            setPopItemList(res.data.businesses);
+                            console.log(res); 
+                            //toggleShowPop(set,flag)
+                            toggleShowPop({set:true,val:true});
+                            showDeleteAcntModal();
+                        });
                     }}>
                         Search</button>
 

@@ -29,8 +29,11 @@ function Home() {
         }
     }
     // clean all data before toggle the flag show up
-    let toggleShowPop = ()=>{
-        if(!showPop){
+    function toggleShowPop({set,val} = {set : false, val:false}){
+        
+        let flag = (set==true)? val: showPop;
+        if(flag){
+            console.log(flag);
             setShowPop(true);
             setPopItemId(0);
         }else{

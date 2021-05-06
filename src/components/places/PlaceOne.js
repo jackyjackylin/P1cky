@@ -61,6 +61,8 @@ const responsive = [
     }
 ]
 
+
+
 function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
 
     return (
@@ -74,7 +76,7 @@ function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
                                     <div className="card-image">
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
-                                        <span className="badge-toggle" onClick={toggleShowPop} data-toggle="tooltip" data-placement="bottom" title="22 Likes">
+                                        <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
 
                                         </span>  
@@ -136,6 +138,7 @@ function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
                                     </div>
                                 </div>
                                 {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>: ""}
+                                {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Get Direction</button>: ""}
                             </div>
                         )
                     })}
