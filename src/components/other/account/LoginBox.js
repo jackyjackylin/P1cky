@@ -1,10 +1,10 @@
-import {React, useState} from 'react';
+import React, {useState, useContext} from 'react';
 import SignInOptions from "./SignInOptions";
 import {AiOutlineUser} from 'react-icons/ai'
 import {FiLock} from 'react-icons/fi'
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { auth } from "../../../firebase";
-
+import {AuthContext} from "../../providers/UserProvider";
 
 function LoginBox({title, subtitle}) {
 
@@ -26,7 +26,11 @@ function LoginBox({title, subtitle}) {
             setPassword(value);
         }
     };
-    
+    const { currentUser } = useContext(AuthContext);
+    if (currentUser) {
+      return <Redirect to="/" />;
+    }
+
     return (
         <>
             <div className="billing-form-item mb-0">

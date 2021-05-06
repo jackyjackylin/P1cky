@@ -1,4 +1,5 @@
 import React from 'react';
+
 import GeneralHeader from "../components/common/GeneralHeader";
 import Breadcrumb from "../components/common/Breadcrumb";
 import RecoverPassBox from "../components/other/account/RecoverPassBox";
@@ -11,6 +12,9 @@ import sectiondata from "../store/store";
 const state = {
     breadcrumbimg: breadcrumbimg,
 }
+
+
+
 function RecoverPassword() {
     return (
         <main className="recover-pass-page">
@@ -21,9 +25,6 @@ function RecoverPassword() {
             <Breadcrumb CurrentPgTitle="Recover Password" MenuPgTitle="Pages" img={state.breadcrumbimg} />
 
             <RecoverPassBox />
-
-            {/* Newsletter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
 
             {/* Footer */}
             <Footer />

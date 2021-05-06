@@ -56,6 +56,7 @@ const App = () => {
       <ScrollReveal
         ref={childRef}
         children={() => (
+        
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
               <AppRoute path="/all-categories" component={AllCategories} />
@@ -87,6 +88,7 @@ const App = () => {
               <AppRoute path="/sign-up" component={SignUp} />
               <AppRoute component={Error} />
           </Switch>
+        
         )} />
     </>
     </UserProvider>
