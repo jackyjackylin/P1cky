@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+//import DisplayName from "react-accessible-accordion/dist/types/helpers/DisplayName";
 
 var firebaseConfig = {
     apiKey: "AIzaSyCozpgaiUZgrrIYQpVNFyN3Vv7noqKIFJM",
@@ -19,16 +20,18 @@ export const firestore = firebase.firestore();
 
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
+  console.log(user);
   const userRef = firestore.doc(`users/${user.uid}`);
+  console.log(additionalData);
+
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
     const { email, displayName, photoURL } = user;
     try {
       await userRef.set({
-        displayName,
-        email,
-        photoURL,
-        ...additionalData
+        "displayName": displayName, 
+        "email": email,
+        "photoURL": photoURL,
       });
     } catch (error) {
       console.error("Error creating user document", error);
@@ -41,6 +44,7 @@ export const getUserDocument = async uid => {
     if (!uid) return null;
     try {
       const userDocument = await firestore.doc(`users/${uid}`).get();
+      console.log(userDocument);
       return {
         uid,
         ...userDocument.data()
@@ -49,3 +53,5 @@ export const getUserDocument = async uid => {
       console.error("Error fetching user", error);
     }
 };
+
+export default firebaseConfig;
