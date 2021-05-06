@@ -29,9 +29,10 @@ export const generateUserDocument = async (user, additionalData) => {
     const { email, displayName, photoURL } = user;
     try {
       await userRef.set({
-        "displayName": displayName, 
+        //"displayName": displayName, 
         "email": email,
         "photoURL": photoURL,
+        ...additionalData
       });
     } catch (error) {
       console.error("Error creating user document", error);

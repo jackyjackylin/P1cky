@@ -1,30 +1,43 @@
-import {React, useState} from 'react';
+import React, {useState, useContext} from 'react';
 import SignInOptions from "./SignInOptions";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { AiOutlineUser } from 'react-icons/ai'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { FiLock } from 'react-icons/fi'
 import { auth, generateUserDocument} from "../../../firebase";
+import {AuthContext} from "../../providers/UserProvider";
 
 function SignUpBox({title, subtitle}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmpassword] = useState("");
     const [displayName, setDisplayName] = useState("");
     const [error, setError] = useState(null);
-    const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+
+    const isPasswordConfirmed = (password,confimPassword) => {
+        if(password && confimPassword && password === confimPassword) return true;
+        return false;
+    }
+    const createUserWithEmailAndPasswordHandler = async (event, email, password, displayName, confirmpassword) => {
         event.preventDefault();
+
+        if(!isPasswordConfirmed(password, confirmpassword)){
+            // password is not matching, you can show error to your user
+            alert("Confirm Password is not matched");
+        }
         try{
           const {user} = await auth.createUserWithEmailAndPassword(email, password);
+          console.log(displayName);
           generateUserDocument(user, {displayName});
         }
         catch(error){
-          setError('Error Signing up with email and password');
+          alert('Error Signing up with email and password');
         }
-    
         setEmail("");
         setPassword("");
         setDisplayName("");
+        setConfirmpassword("");
     };
     const onChangeHandler = event => {
         const { name, value } = event.currentTarget;
@@ -34,7 +47,13 @@ function SignUpBox({title, subtitle}) {
             setPassword(value);
         } else if (name === "displayName") {
             setDisplayName(value);
+        } else if (name === "confirmPassword") {
+            setConfirmpassword(value);
         }
+    }
+    const { currentUser } = useContext(AuthContext);
+    if (currentUser) {
+      return <Redirect to="/" />;
     }
 
     return (
@@ -120,7 +139,7 @@ function SignUpBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <FiLock />
                                                 </span>
-                                            <input className="form-control" type="password" name="text" placeholder="Confirm password" />
+                                            <input  type="password" className="form-control" name="confirmPassword" value={confirmpassword} id="confirmPassword" placeholder="Confirm password" onChange={event => onChangeHandler(event)} />
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +157,7 @@ function SignUpBox({title, subtitle}) {
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="btn-box margin-top-20px margin-bottom-20px">
-                                        <button className="theme-btn border-0" type="submit" onClick={event => {createUserWithEmailAndPasswordHandler(event, email, password);}}>
+                                        <button className="theme-btn border-0" type="submit" onClick={event => {createUserWithEmailAndPasswordHandler(event, email, password, displayName, confirmpassword);}}>
                                             Register account
                                         </button>
                                     </div>
