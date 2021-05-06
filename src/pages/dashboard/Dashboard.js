@@ -11,7 +11,8 @@ import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube
 import Button from "../../components/common/Button";import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
-
+import SectionsHeading from "../../components/common/SectionsHeading";
+import AccordionList from "../../components/other/AccordionList";
 
 function Dashboard() {
     const [isOpenForm, setIsOpenForm] = useState(false)
@@ -99,7 +100,18 @@ function Dashboard() {
                             <div className="col-lg-12">
                                 <div className="tab-content" id="nav-tabContent">
                                     <TabPanel>
-                                        <div className="row">
+                                    <section>
+                                        <div className="container">
+                                            <div className="row section-title-width section-title-ml-mr-0">
+                                                <div className="col-lg-12">
+                                                    {/* <SectionsHeading title={sectiondata.accordions.sectitle} desc={sectiondata.accordions.seccontent} /> */}
+                                                    <AccordionList accordionItems={sectiondata.accordions.items} />
+                                                </div>
+                                            </div>
+                                            <div className="section-block-2 margin-top-120px"></div>
+                                        </div>
+                                    </section>
+                                        {/* <div className="row">
 
                                             {sectiondata.dashboard.cards.map((item, i) => {
                                                 return (
@@ -132,8 +144,7 @@ function Dashboard() {
                                                     </div>
                                                 )
                                             })}
-
-                                        </div>
+                                        </div> */}
                                     </TabPanel>
                                     <TabPanel>
                                         <div className="row">

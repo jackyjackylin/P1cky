@@ -144,8 +144,47 @@ dl, ol, ul {
     border-radius: 4px;
     color: #999;
     font-weight: 500;
+    font-family: "Work Sans", sans-serif;
 }
-
+.auto-complete-search-bar::placeholder {
+    font-family: "Work Sans", sans-serif;
+    color: #808996;
+    padding: 3px 0 3px 18px;
+    border-color: rgba(128, 137, 150, 0.3);
+    outline: none;
+    height: 50px;
+    box-shadow: none !important;
+    min-height: 50px;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: left;
+}
+.add-to-lists-show-my-lists {
+    align-items: center;
+    padding: 0 30px 25px 30px;
+    font-weight: 500;
+    line-height: 26px;
+    background-color: #fff;
+    border-bottom: none;
+    margin-bottom: 0;
+    border-color: rgba(128, 137, 150, 0.3);
+    width: 500px;
+    text-align: left;
+    color: #333f57;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 14px 30px;
+}
+.btn-radius-rounded {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px; 
+    width: 100%;
+    background-color: #fff;
+    border-color: rgba(128, 137, 150, 0.3);
+    color: #808996;
+}
 
 
 

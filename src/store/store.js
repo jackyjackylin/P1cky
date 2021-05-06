@@ -2888,60 +2888,39 @@ const sectiondata = {
         seccontent: 'Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortors.',
         items: [
             {
-                title: 'What is a novel coronavirus?',
+                title: 'Must-Go Places near Irvine',
                 desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
                 plus: <FaPlus />,
                 minus: <FaMinus />,
                 cardClass: 'mb-3'
             },
             {
-                title: 'Can I create a free listing?',
+                title: 'Burgers',
                 desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
                 plus: <FaPlus />,
                 minus: <FaMinus />,
                 cardClass: 'mb-3'
             },
             {
-                title: 'How much time does it take to get approval?',
+                title: 'Date Spots',
                 desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
                 plus: <FaPlus />,
                 minus: <FaMinus />,
                 cardClass: 'mb-3'
             },
             {
-                title: 'Do I have to commit to a yearly subscription?',
+                title: 'Bars',
                 desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
                 plus: <FaPlus />,
                 minus: <FaMinus />,
                 cardClass: 'mb-3'
             },
             {
-                title: 'Is my listing secure?',
+                title: 'Mom\'s Fav',
                 desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
                 plus: <FaPlus />,
                 minus: <FaMinus />,
                 cardClass: 'mb-3'
-            },
-            {
-                title: 'How can i Delete listing?',
-                desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
-                plus: <FaPlus />,
-                minus: <FaMinus />,
-                cardClass: 'mb-3'
-            },
-            {
-                title: 'What is listing site?',
-                desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
-                plus: <FaPlus />,
-                minus: <FaMinus />,
-                cardClass: 'mb-3'
-            },
-            {
-                title: 'Why people chose this listing?',
-                desc: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text',
-                plus: <FaPlus />,
-                minus: <FaMinus />,
-                cardClass: ''
             },
         ]
     },

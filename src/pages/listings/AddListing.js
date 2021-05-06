@@ -1,74 +1,65 @@
 import React from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
-import Breadcrumb from "../../components/common/Breadcrumb";
-import GeneralInfo from "../../components/addlisting/GeneralInfo";
-import AddLocation from "../../components/addlisting/AddLocation";
-import AddFullDetails from "../../components/addlisting/AddFullDetails";
-import PhotoUploader from "../../components/addlisting/PhotoUploader";
-import Amenities from "../../components/addlisting/Amenities";
-import OpeningHours from "../../components/addlisting/OpeningHours";
-import AddPrice from "../../components/addlisting/AddPrice";
-import NewsLetter from "../../components/other/cta/NewsLetter";
+import Banner6 from "../../components/banner/banner6/Banner6";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
-import {Link} from "react-router-dom";
 import breadcrumbimg from '../../assets/images/bread-bg.jpg'
-import sectiondata from "../../store/store";
-
+import { FiSearch } from 'react-icons/fi'
 const states = {
     breadcrumbimg: breadcrumbimg
 }
 function AddListing() {
     return (
         <main className="add-listing">
-            {/* Header */}
             <GeneralHeader />
 
             {/* Breadcrumb */}
-            <Breadcrumb CurrentPgTitle="Add Listing" MenuPgTitle="Listings" img={states.breadcrumbimg} />
+            {/* <Breadcrumb CurrentPgTitle="Add Listing" MenuPgTitle="Listings" img={states.breadcrumbimg} /> */}
 
-            {/* Add Listing */}
-            <section className="add-listing-area padding-top-40px padding-bottom-100px">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-9 mx-auto">
-                            <GeneralInfo />
+            {/* Banner */}
+            <Banner6 title="Add restaurants to your lists!" />
 
-                            <AddLocation />
 
-                            <AddFullDetails />
-
-                            <PhotoUploader />
-
-                            <Amenities />
-
-                            <OpeningHours />
-
-                            <AddPrice />
-
-                            <div className="billing-form-item p-0 border-0 mb-0 shadow-none">
-                                <div className="billing-content p-0">
-                                    <div className="custom-checkbox d-block mr-0">
-                                        <input type="checkbox" id="privacy" />
-                                        <label htmlFor="privacy">I Agree to Dirto's <Link to="#" className="color-text">Privacy Policy</Link></label>
+            {/* <section className="faq-area padding-top-100px padding-bottom-100px">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="breadcrumb-content">
+                            <div className="contact-form-action">
+                                <form method="post">
+                                    <div className="row">
+                                        <div className="col-lg-7 mx-auto">
+                                            <div className="input-box">
+                                                <div className="form-group mb-0">
+                                                    <button type="button" className="theme-btn submit-btn border-0">
+                                                        <span className="d-inline-block"><FiSearch /></span>
+                                                    </button>
+                                                    <input className="form-control" type="text" name="name" placeholder="Search your restaurants here..." />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="custom-checkbox d-block mr-0">
-                                        <input type="checkbox" id="terms" />
-                                        <label htmlFor="terms">I Agree to Dirto's <Link to="#" className="color-text">Terms of Services</Link>
-                                        </label>
-                                    </div>
-                                    <div className="btn-box mt-4">
-                                        <button type="submit" className="theme-btn border-0">submit listing</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+            </section> */}
 
-            {/* Newsletter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
+            
+            {/* <section className="faq-area padding-top-100px padding-bottom-100px">
+                <div className="container">
+                    <div className="row section-title-width section-title-ml-mr-0">
+                        <div className="col-lg-12">
+                            <SectionsHeading title={sectiondata.accordions.sectitle} desc={sectiondata.accordions.seccontent} />
+                            <AccordionList accordionItems={sectiondata.accordions.items} />
+                        </div>
+                    </div>
+
+                    <div className="section-block-2 margin-top-120px"></div>
+                </div>
+            </section> */}
 
             {/* Footer */}
             <Footer />
@@ -76,6 +67,7 @@ function AddListing() {
             <ScrollTopBtn />
 
         </main>
+
     );
 }
 
