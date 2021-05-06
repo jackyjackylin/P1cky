@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react'
 import {Link} from "react-router-dom";
 import { FaRegEnvelope } from 'react-icons/fa'
+import { auth } from "../../../firebase";
+
 
 function RecoverPassBox() {
+
+    const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState(null);
+    const sendResetEmail = event => {
+        event.preventDefault();
+        console.log(email);
+        auth.sendPasswordResetEmail(email)
+          .then(() => {
+            setEmailHasBeenSent(true);
+            setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
+          })
+          .catch(() => {
+            setError("Error resetting password");
+          });
+    };
+    const onChangeHandler = (event) => {
+        const {name, value} = event.currentTarget;
+        if(name === 'resetEmail') {
+            console.log(email);
+            setEmail(value);
+        }
+    };
+
     return (
         <>
             <section className="form-shared padding-top-40px padding-bottom-100px">
@@ -25,11 +51,11 @@ function RecoverPassBox() {
                                                 <label className="label-text">Your Email</label>
                                                 <div className="form-group">
                                                     <span className="la form-icon"><FaRegEnvelope /></span>
-                                                    <input className="form-control" type="email" name="text" placeholder="Enter email address" />
+                                                    <input className="form-control" type="email" name="resetEmail" placeholder="Enter email address" onChange = {(event) => onChangeHandler(event)}/>
                                                 </div>
                                             </div>
                                             <div className="btn-box margin-top-20px margin-bottom-20px">
-                                                <button className="theme-btn border-0" type="submit">
+                                                <button className="theme-btn border-0" type="submit" onClick={(event) => {sendResetEmail(event);}}>
                                                     reset password
                                                 </button>
                                             </div>

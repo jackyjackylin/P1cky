@@ -66,7 +66,7 @@ export default function HeaderAuthorAccess() {
                         <li><div className="dropdown-divider"></div></li>
                         <li><Link to="#"><BsQuestion className="user-icon" /> help</Link></li>
                         <li><Link to="#"><BsGear className="user-icon" /> Settings</Link></li>
-                        <li><Link to="#" onClick={event => {signOutUser(event);}}><BsPower className="user-icon" /> Sign Out</Link></li>
+                        <li><Link to="/" onClick={event => {signOutUser(event);}}><BsPower className="user-icon" /> Sign Out</Link></li>
                     </ul>
                     <div className="side-user-search contact-form-action">
                         <form method="post">
