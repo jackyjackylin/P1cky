@@ -62,15 +62,17 @@ function Home() {
         }
     },[]);
 
-    useEffect(() =>{
+    useEffect(() => {
         async function fetchData() {
-            const response = GetRestaurantsFromApi({lat,lng,foodType,rating,price}).then((res)=>{
+            GetRestaurantsFromApi({lat,lng,foodType,rating,price}).then((res)=>{
                 setBusinesses(res.data.businesses)
+                console.log("Bussiness:", businesses);
                 if(businesses.length > 0 ) setRloaded(true);
             });
         }
+        console.log(lat, lng, rloaded);
         fetchData();
-    },[lat, lng]);
+    },[businesses.length, lat, lng]);
 
     return (
         <main className="home-1">

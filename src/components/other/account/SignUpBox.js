@@ -1,11 +1,42 @@
-import React from 'react';
+import {React, useState} from 'react';
 import SignInOptions from "./SignInOptions";
 import {Link} from "react-router-dom";
 import { AiOutlineUser } from 'react-icons/ai'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { FiLock } from 'react-icons/fi'
+import { auth, generateUserDocument} from "../../../firebase";
 
 function SignUpBox({title, subtitle}) {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [displayName, setDisplayName] = useState("");
+    const [error, setError] = useState(null);
+    const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
+        event.preventDefault();
+        try{
+          const {user} = await auth.createUserWithEmailAndPassword(email, password);
+          generateUserDocument(user, {displayName});
+        }
+        catch(error){
+          setError('Error Signing up with email and password');
+        }
+    
+        setEmail("");
+        setPassword("");
+        setDisplayName("");
+    };
+    const onChangeHandler = event => {
+        const { name, value } = event.currentTarget;
+        if (name === "userEmail") {
+            setEmail(value);
+        } else if (name === "userPassword") {
+            setPassword(value);
+        } else if (name === "displayName") {
+            setDisplayName(value);
+        }
+    }
+
     return (
         <>
             <div className="billing-form-item mb-0">
@@ -21,9 +52,7 @@ function SignUpBox({title, subtitle}) {
                     <div className="contact-form-action">
                         <form method="post">
                             <div className="row">
-
                                 <SignInOptions />
-
                                 <div className="col-lg-12">
                                     <div className="account-assist mt-4 mb-4 text-center">
                                         <p className="account__desc">or</p>
@@ -31,16 +60,16 @@ function SignUpBox({title, subtitle}) {
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="input-box">
-                                        <label className="label-text">First name</label>
+                                        <label className="label-text">Display Name:</label>
                                         <div className="form-group">
                                                 <span className="form-icon">
                                                     <AiOutlineUser />
                                                 </span>
-                                            <input className="form-control" type="text" name="text" placeholder="First name" />
+                                            <input type="text" className="form-control"  name="displayName" value={displayName} id="displayName" placeholder="First name" onChange={event => onChangeHandler(event)}/>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-12">
+                                {/* <div className="col-lg-12">
                                     <div className="input-box">
                                         <label className="label-text">Last name</label>
                                         <div className="form-group">
@@ -61,7 +90,7 @@ function SignUpBox({title, subtitle}) {
                                             <input className="form-control" type="text" name="text" placeholder="Username" />
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-12">
                                     <div className="input-box">
                                         <label className="label-text">Email</label>
@@ -69,7 +98,7 @@ function SignUpBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <FaRegEnvelope />
                                                 </span>
-                                            <input className="form-control" type="email" name="text" placeholder="Enter email" />
+                                            <input type="email" className="form-control"  name="userEmail" value={email} id="userEmail" placeholder="Enter email" onChange={event => onChangeHandler(event)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +109,7 @@ function SignUpBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <FiLock />
                                                 </span>
-                                            <input className="form-control" type="text" name="text" placeholder="Password" />
+                                            <input type="password" className="form-control"  name="userPassword" value={password} id="userPassword" placeholder="Password" onChange={event => onChangeHandler(event)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +120,7 @@ function SignUpBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <FiLock />
                                                 </span>
-                                            <input className="form-control" type="text" name="text" placeholder="Confirm password" />
+                                            <input className="form-control" type="password" name="text" placeholder="Confirm password" />
                                         </div>
                                     </div>
                                 </div>
@@ -99,17 +128,17 @@ function SignUpBox({title, subtitle}) {
                                     <div className="form-group">
                                         <div className="custom-checkbox d-block mr-0">
                                             <input type="checkbox" id="chb13" />
-                                            <label htmlFor="chb13">I Agree to Dirto's <Link to="#" className="color-text">Privacy Policy</Link></label>
+                                            <label htmlFor="chb13">I Agree to P1cky's <Link to="#" className="color-text">Privacy Policy</Link></label>
                                         </div>
                                         <div className="custom-checkbox d-block mr-0">
                                             <input type="checkbox" id="chb14" />
-                                            <label htmlFor="chb14">I Agree to Dirto's <Link to="#" className="color-text">Terms of Services</Link></label>
+                                            <label htmlFor="chb14">I Agree to P1cky's <Link to="#" className="color-text">Terms of Services</Link></label>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="btn-box margin-top-20px margin-bottom-20px">
-                                        <button className="theme-btn border-0" type="submit">
+                                        <button className="theme-btn border-0" type="submit" onClick={event => {createUserWithEmailAndPasswordHandler(event, email, password);}}>
                                             Register account
                                         </button>
                                     </div>

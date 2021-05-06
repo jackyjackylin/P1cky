@@ -1,10 +1,32 @@
-import React from 'react';
+import {React, useState} from 'react';
 import SignInOptions from "./SignInOptions";
 import {AiOutlineUser} from 'react-icons/ai'
 import {FiLock} from 'react-icons/fi'
 import {Link} from "react-router-dom";
+import { auth } from "../../../firebase";
+
 
 function LoginBox({title, subtitle}) {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
+    const signInWithEmailAndPasswordHandler = (event, email, password) => {
+        event.preventDefault();
+        auth.signInWithEmailAndPassword(email, password).catch(error => {
+          setError("Error signing in with password and email!");
+          console.error("Error signing in with password and email", error);
+        });
+    };    
+    const onChangeHandler = (event) => {
+        const {name, value} = event.currentTarget;
+        if(name === 'userEmail') {
+            setEmail(value);
+        }else if(name === 'userPassword'){
+            setPassword(value);
+        }
+    };
+    
     return (
         <>
             <div className="billing-form-item mb-0">
@@ -35,7 +57,7 @@ function LoginBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <AiOutlineUser />
                                                 </span>
-                                            <input className="form-control" type="email" name="text" placeholder="Username, or email" />
+                                            <input type="email" className="form-control"  name="userEmail" value = {email} placeholder="Username, or email" id="userEmail" onChange = {(event) => onChangeHandler(event)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -46,7 +68,7 @@ function LoginBox({title, subtitle}) {
                                                 <span className="form-icon">
                                                     <FiLock />
                                                 </span>
-                                            <input className="form-control" type="text" name="text" placeholder="Password" />
+                                            <input type="password" className="form-control"  name="userPassword" value = {password} placeholder="Your Password" id="userPassword" onChange = {(event) => onChangeHandler(event)}/>
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +89,7 @@ function LoginBox({title, subtitle}) {
                                 </div>
                                 <div className="col-lg-12">
                                     <div className="btn-box margin-top-20px margin-bottom-20px">
-                                        <button className="theme-btn border-0" type="submit">
+                                        <button className="theme-btn border-0" type="submit"  onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
                                             Login now
                                         </button>
                                     </div>

@@ -36,6 +36,7 @@ import BlogDetail from "./pages/blogs/BlogDetail";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Error from "./pages/Error";
+import UserProvider from "./components/providers/UserProvider";
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
   }, [location]);
 
   return (
+    <UserProvider>
     <>
       <ScrollReveal
         ref={childRef}
@@ -87,6 +89,7 @@ const App = () => {
           </Switch>
         )} />
     </>
+    </UserProvider>
   );
 }
 
