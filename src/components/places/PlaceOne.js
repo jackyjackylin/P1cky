@@ -60,8 +60,34 @@ const responsive = [
         }
     }
 ]
+function parseLocation(business){
+    let location = business.location;
+    let res = business.alias
+    let addr = ["address1","address2","address3"]
 
+      
+    for(let i = 0; i < addr.length; i++){
+        let val = addr[i]
+        if(location[val] == null) continue
+        
+        location[val].split(' ').filter((val)=> val!="Ste"  ).forEach((value, index, array)=> res = res+"+"+value)
+    }
+    res += "+" + location["city"]
+    res += "+" + location["state"]
+    res += "+" + location["zip_code"]
+    res += "+" + location["country"]
 
+    console.log(res);
+    return res;
+}
+
+function getDirection(business){
+    let parsedAddr = parseLocation(business);
+    // let params ={
+    //     destination: dest
+    // }
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${parsedAddr}`);
+}
 
 function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
 
@@ -138,7 +164,7 @@ function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
                                     </div>
                                 </div>
                                 {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>: ""}
-                                {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Get Direction</button>: ""}
+                                {showPop ? <button className="button theme-btn" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>: ""}
                             </div>
                         )
                     })}
