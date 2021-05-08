@@ -4,8 +4,12 @@ import ListsBtn from "../../common/ListsBtn";
 import { FiSearch,FiPlusCircle } from 'react-icons/fi'
 import sectiondata from "../../../store/store";
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
+import AddRestaurants from "../../common/AddRestaurants"
+
 
 function Banner6({title}) {
+    const [restaurants, setRestaurants] = useState([]);
+
     useEffect(() => {
         const body = document.querySelector('body')
 
@@ -47,6 +51,24 @@ function Banner6({title}) {
         )
     })
 
+    const handleRestaurantSearch = () => {
+        console.log("here")
+        const url  = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
+        // const location = `location=${this.state.latitude},${this.state.longitude}`;
+        // const radius = '&radius=2000';
+        // const type = '&keyword=restaurant';
+        const key = `&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+        const input = '&input=chipotle';
+        const inputtype = '&inputtype=textquery';
+        // const restaurantSearchUrl = url + location + radius + type + key;
+        const restaurantSearchUrl = url + input + inputtype + key;
+        console.log(restaurantSearchUrl);
+        fetch(url)
+          .then(response => response.json())
+          .then(result => setRestaurants({restaurants: result}))
+          .catch( e => console.log(e))
+        console.log(restaurants);
+    }
 
     return (
         <>
@@ -63,12 +85,20 @@ function Banner6({title}) {
                                         <form method="post">
                                             <div className="row">
                                                 <div className="col-lg-7 mx-auto">
-                                                    <div className="input-box">
+                                                    {/* <div className="input-box">
                                                         <div className="form-group mb-0">
                                                             <button type="button" className="theme-btn submit-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
                                                                 <span className="d-inline-block"><FiPlusCircle /></span>
                                                             </button>
                                                             <input className="form-control" type="text" name="name" placeholder="Search your restaurants here..." />
+                                                        </div>
+                                                    </div> */}
+                                                    <div className="input-box">
+                                                        <div className="form-group mb-0">
+                                                            <button type="button" className="theme-btn submit-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
+                                                                <span className="d-inline-block"><FiPlusCircle /></span>
+                                                            </button>
+                                                            <AddRestaurants />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,15 +116,8 @@ function Banner6({title}) {
             <div className="modal-form text-center">
                 <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
-                    <div className="modal-dialog modal-sm" role="document">
+                    <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
-                            {/* <div className="modal-top border-0 mb-4 p-0">
-                                <div className="alert-content">
-                                    <span className="la warning-icon"><AiOutlineExclamationCircle /></span>
-                                    <h4 className="modal-title mt-2 mb-1">Your account will be deleted permanently!</h4>
-                                    <p className="modal-sub">Are you sure to proceed.</p>
-                                </div>
-                            </div> */}
                             <div className="highlight-btn mt-4">
                                 <ListsBtn text="Must-Go Places near Irvine" className="btn-radius-rounded"></ListsBtn>
                             </div>

@@ -9,9 +9,10 @@ import {
 } from "@reach/combobox";
 
 import "@reach/combobox/styles.css";
+import { set } from "lodash-es";
 
 
-export default function SelectLocation() {
+export default function AddRestaurants({lat,setLat,lng,setLng}) {
     const {
       ready,
       value,
@@ -24,18 +25,37 @@ export default function SelectLocation() {
       setValue(e.target.value);
     };
   
-    const handleSelect = ({ val }) => () => {
+    const handleSelect = (val) => {
       setValue(val, false);
     };
 
+    const handleRestaurantSearch = () => {
+      console.log("here")
+      const url  = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
+      const location = `location=${this.state.latitude},${this.state.longitude}`;
+      // const radius = '&radius=2000';
+      // const type = '&keyword=restaurant';
+      const key = `&key=${process.env.REACT_APP_API_KEY}`;
+      const input = 'chipotle';
+      const inputtype = 'textquery';
+      // const restaurantSearchUrl = url + location + radius + type + key;
+      const restaurantSearchUrl = url + key + input + inputtype;
+      fetch(restaurantSearchUrl)
+        .then(response => response.json())
+        .then(result => this.setState({restaurantList: result}))
+        .catch( e => console.log(e))
+    }
 
+    
     return (
         <>    
-            {/* <Combobox onSelect={handleSelect} aria-labelledby="demo"> */}
             <Combobox onSelect={async (address) => {
+              setValue(address, false);
               try {
                 const results = await getGeocode({ address });
                 const { lat, lng } = await getLatLng(results[0]);
+                setLat(lat);
+                setLng(lng);
                 console.log(lat, lng);
                 
               } catch (error) {
@@ -43,7 +63,8 @@ export default function SelectLocation() {
               }
               console.log(address);
             }}>
-            <ComboboxInput value={value} onChange={(e) => { setValue(e.target.value); }} disabled={!ready} placeholder="Where are you?"/>
+
+            <ComboboxInput className='add-to-lists-search-bar' value={value} onChange={handleInput} disabled={!ready} placeholder="Where are you?" />
             <ComboboxPopover>
             <ComboboxList>
                 {status === "OK" &&

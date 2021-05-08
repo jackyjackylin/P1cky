@@ -32,8 +32,6 @@ export default function SelectLocation({lat,setLat,lng,setLng}) {
     
     return (
         <>    
-            {/* <Combobox onSelect={handleSelect} aria-labelledby="demo"> */}
-            
             <Combobox onSelect={async (address) => {
               setValue(address, false);
               try {

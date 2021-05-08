@@ -147,9 +147,36 @@ dl, ol, ul {
     font-family: "Work Sans", sans-serif;
 }
 .auto-complete-search-bar::placeholder {
+    flex: 2;
+    color: #999;
+    margin-right: 6px;
+    padding: 0 12px;
+    text-align: left;
+    z-index: 99;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+}
+.add-to-lists-search-bar {
+    flex: 2;
+    color: #333f57;
+    margin-right: 6px;
+    text-align: left;
+    z-index: 99;
+    height: 65px;
+    width: 100%;
+    padding: 0 15px;
+    border: 1px solid rgba(128, 137, 150, 0.3);
+    border-radius: 40px;
+    color: #999;
+    font-weight: 500;
+    padding: 12px 20px 12px 40px;
+    font-size: 13px;
+    font-family: "Work Sans", sans-serif;
+}
+.add-to-lists-search-bar::placeholder {
     font-family: "Work Sans", sans-serif;
     color: #808996;
-    padding: 3px 0 3px 18px;
     border-color: rgba(128, 137, 150, 0.3);
     outline: none;
     height: 50px;
@@ -158,23 +185,6 @@ dl, ol, ul {
     font-weight: 500;
     font-size: 15px;
     text-align: left;
-}
-.add-to-lists-show-my-lists {
-    align-items: center;
-    padding: 0 30px 25px 30px;
-    font-weight: 500;
-    line-height: 26px;
-    background-color: #fff;
-    border-bottom: none;
-    margin-bottom: 0;
-    border-color: rgba(128, 137, 150, 0.3);
-    width: 500px;
-    text-align: left;
-    color: #333f57;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 14px 30px;
 }
 .btn-radius-rounded {
     -webkit-border-radius: 30px;

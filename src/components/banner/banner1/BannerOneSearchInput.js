@@ -47,12 +47,6 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
                     <div className="contact-form-action">
                         <form action="#">
                             <div className="form-group mb-0">
-                            {/* <span className="form-icon">
-                                <FiNavigation/>
-                            </span> */}
-                                {/* <input className="form-control" type="text" name="keywords"
-                                        onChange={location_handleChange}
-                                        placeholder="Where are you?"/> */}
                                     <SelectLocation lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
                             </div>
                         </form>

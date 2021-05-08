@@ -92,7 +92,8 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> create listing</Link>
+                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
+                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
                                         <Link to="/" className="theme-btn ml-1"><span className="la"><AiOutlinePoweroff /></span> sign out</Link>
                                     </div>
                                 </div>
@@ -104,48 +105,14 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    {/* <SectionsHeading title={sectiondata.accordions.sectitle} desc={sectiondata.accordions.seccontent} /> */}
                                                     <AccordionList accordionItems={sectiondata.accordions.items} />
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>
                                         </div>
                                     </section>
-                                        {/* <div className="row">
-
-                                            {sectiondata.dashboard.cards.map((item, i) => {
-                                                return (
-                                                    <div key={i} className="col-lg-4 column-td-6">
-                                                        <div className="card-item">
-                                                            <Link to={item.cardLink} className="card-image-wrap">
-                                                                <div className="card-image">
-                                                                    <img src={item.img} className="card__img" alt="Card" />
-                                                                </div>
-                                                            </Link>
-                                                            <div className="card-content-wrap">
-                                                                <div className="card-content">
-                                                                    <Link to={item.cardLink}>
-                                                                        <h4 className="card-title mt-0">{item.title}</h4>
-                                                                        <p className="card-sub">{item.subtitle}</p>
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="rating-row">
-                                                                    <div className="edit-info-box">
-                                                                        <button type="button" className="theme-btn button-success border-0 mr-1">
-                                                                            <span className="la">{item.editIcon}</span> {item.editTxt}
-                                                                        </button>
-                                                                        <button type="button" className="theme-btn delete-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
-                                                                            <span className="la">{item.deleteIcon}</span> {item.deleteTxt}
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })}
-                                        </div> */}
                                     </TabPanel>
+                                    
                                     <TabPanel>
                                         <div className="row">
                                             <div className="col-lg-4">
