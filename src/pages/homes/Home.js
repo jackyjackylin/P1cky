@@ -80,8 +80,8 @@ function Home() {
             <GeneralHeader />
 
             {/* Hero Banner */}
-            {loaded && (            
-            <BannerOne toggleShowPop={toggleShowPop} setPopItemList={setPopItemList}/>
+            {(            
+            <BannerOne loaded={loaded} toggleShowPop={toggleShowPop} setPopItemList={setPopItemList}/>
             )}
             {/* Most Visited Place */}
             <section className="card-area text-center padding-bottom-100px">

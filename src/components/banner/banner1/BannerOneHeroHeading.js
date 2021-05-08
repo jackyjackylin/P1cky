@@ -5,7 +5,7 @@ export default function BannerOneHeroHeading({title, content, titleHighlight}) {
         <>
             <div className="hero-heading">
                 <div className="section-heading">
-                    <h2 className="sec__title cd-headline zoom">
+                    <h2 className="sec__title cd-headline rotate-1">
                         {title}
                         <span className="cd-words-wrapper">
                             {titleHighlight.map((item, index) => {
