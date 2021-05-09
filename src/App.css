@@ -175,16 +175,15 @@ dl, ol, ul {
     font-family: "Work Sans", sans-serif;
 }
 .add-to-lists-search-bar::placeholder {
+    flex: 2;
+    color: #999;
+    margin-right: 6px;
+    padding: 0 12px;
+    text-align: left;
+    z-index: 99;
     font-family: "Work Sans", sans-serif;
-    color: #808996;
-    border-color: rgba(128, 137, 150, 0.3);
-    outline: none;
-    height: 50px;
-    box-shadow: none !important;
-    min-height: 50px;
     font-weight: 500;
     font-size: 15px;
-    text-align: left;
 }
 .btn-radius-rounded {
     -webkit-border-radius: 30px;

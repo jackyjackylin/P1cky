@@ -1,4 +1,6 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
+import ReactDOM from "react-dom";
+import {ReactModal} from "react-modal";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -8,13 +10,15 @@ import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineExclamationCircle } from 'react-icons/ai'
-import Button from "../../components/common/Button";import Footer from "../../components/common/footer/Footer";
+import Button from "../../components/common/Button";
+import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
 import AccordionList from "../../components/other/AccordionList";
 import {AuthContext} from "../../components/providers/UserProvider";
 import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
+import CreateNewList from "./CreateNewList"
 
 function Dashboard() {
     const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
@@ -26,6 +30,25 @@ function Dashboard() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
+
+    var uid = "fEyvLKgSSWeRHPf87PUr1OQotHF3";
+    const [listName, setListName]=useState('')
+
+    const data = {
+        restaurants: [],
+        comments: []
+    }
+
+    const handleInput = (val) => {
+        setListName(val.target.value);
+    };
+
+    const handleCreateNewListName=e => {
+        e.preventDefault();
+        firestore.doc(`users/${uid}`).collection('myLists').doc(listName).set(data)
+        .then(()=>console.log("uploadedlala"))
+
+    }
 
     if (currentUser) {
         console.log(currentUser)
@@ -112,6 +135,7 @@ function Dashboard() {
         }
     }
 
+
     useEffect(() => {
         const body = document.querySelector('body')
 
@@ -126,7 +150,7 @@ function Dashboard() {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn')) {
+                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box .createNewList')) {
                         showDeleteAcntModal.call(target, e)
                         break
                     }
@@ -161,6 +185,7 @@ function Dashboard() {
             {/* Breadcrumb */}
             <Breadcrumb CurrentPgTitle="Dashboard" MenuPgTitle="pages" img={sectiondata.dashboard.breadcrumbimg} />
 
+
             {/*<TestVanillaJs />*/}
 
             <section className="dashboard-area padding-top-40px padding-bottom-90px">
@@ -187,7 +212,7 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
+                                        <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
                                         <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
                                         <Link to="/" className="theme-btn ml-1"><span className="la"><AiOutlinePoweroff /></span> sign out</Link>
                                     </div>
@@ -452,6 +477,16 @@ function Dashboard() {
                                     delete!
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-form text-center">
+                <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div className="modal-bg"></div>
+                    <div className="modal-dialog modal-lg" role="document" >
+                        <div className="modal-content p-4">
+                            <CreateNewList />
                         </div>
                     </div>
                 </div>
