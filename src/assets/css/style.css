@@ -106,7 +106,7 @@
 }
 .card-item.popup-window .card-area{
   width: 400px;
-  margin-top: 3%;
+  margin-top: 1%;
 }
 .info-list .info-button-row{
   display: flex;
@@ -1352,7 +1352,34 @@ body {
     width: 5px;
     height: 5px;
     background-color: #fff; }
+/*======= list-menu==============*/
+.menu {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
 
+.menu-item {
+  cursor: pointer;
+  padding: 5px;
+  height: 28px;
+  border-bottom: 1px solid rgb(187, 187, 187);
+}
+.menu-item.sub-menu{
+  cursor: pointer;
+  padding: 5px;
+  height: 28px;
+  background-color:#eaecee;
+}
+.menu-item:hover {
+  color: #2980b9;
+  background-color:#cbe0ee;
+  
+}
+.popup-arrow {
+  color: #eaecee;
+}
 /*======= social-profile ========*/
 .social-profile li {
   margin-right: 3px;

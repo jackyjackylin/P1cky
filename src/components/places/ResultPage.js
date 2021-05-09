@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
+import ListToolTip from "./ListMenu";
 import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
@@ -69,7 +70,7 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                                 </div>
                             </a>
                             
-                            <div className={`card-content-wrap  ${showPop ? "popup-window-content": ""}`}>
+                            <div className={`card-content-wrap  popup-window-content`}>
                                 <div className="card-content ">
                                     <a href="#">
                                         <h5 className="card-meta">
@@ -104,8 +105,9 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                                                     })}      
                                                 </div>
                                                 <div>
-                                                    {showPop ? <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>: ""}
-                                                    {showPop ? <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>: ""}
+                                                    <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                    <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
+                                                    <ListToolTip></ListToolTip>
                                                 </div>
                                             </div>
 
