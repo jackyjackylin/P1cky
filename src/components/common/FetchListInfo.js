@@ -1,23 +1,35 @@
-import firestore from '../../firebase';
+import {firestore} from '../../firebase';
 import React,{useState, useEffect} from 'react';
-import { response } from 'express';
 
-export default function FetchListInfo({uid}) {
-    useEffect(() => {
-        getListInfo();
-    }, [])
+export default function FetchListInfo({uid, userList, setUserList}) {
+    const [loaded,setLoaded]=useState(false);
+
     const getListInfo=async()=>{
-        if (!uid) return null;
-            try {
-                const resposne = await firestore.doc(`users/${uid}`).collection(myLists).get();
-                // const userDocument = await firestore.doc(`users/${uid}`).get();
-                console.log(resposne);
-                return {
-                    uid,
-                    ...resposne.data()
+        const doc = firestore.doc(`users/${uid}`).collection('myLists');
+        const listInfo = await doc.get()
+        .then (response => {
+            const fetchedLists = [];
+            response.forEach(doc => {
+                console.log(doc.id, '=>', doc.data());
+                const fetchedList = {
+                    listName: doc.id,
+                    ...doc.data()
                 };
-            } catch (error) {
-            console.error("Error fetching user", error);
-        }
+                fetchedLists.push(fetchedList);
+            });
+            setUserList(fetchedLists);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        console.log("userListssss: ",userList);
+        setLoaded(true);
     }
+    useEffect(() => {
+        if (!loaded) {
+            getListInfo();
+        }
+    },[])
+    return null;
 }

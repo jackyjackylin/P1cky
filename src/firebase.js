@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import { BsCollection } from "react-icons/bs";
 //import DisplayName from "react-accessible-accordion/dist/types/helpers/DisplayName";
 
 var firebaseConfig = {
@@ -54,5 +55,7 @@ export const getUserDocument = async uid => {
       console.error("Error fetching user", error);
     }
 };
+
+
 
 export default firebaseConfig;

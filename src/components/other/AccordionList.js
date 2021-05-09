@@ -1,4 +1,6 @@
-import React from 'react';
+import {firestore} from '../../firebase';
+import { FaPlus, FaMinus } from 'react-icons/fa'
+import React,{useState, useEffect} from 'react';
 import {
     Accordion,
     AccordionItem,
@@ -8,21 +10,26 @@ import {
 } from 'react-accessible-accordion';
 import {Link} from "react-router-dom";
 import sectiondata from "../../store/store";
+import FetchListInfo from '../common/FetchListInfo'
 
 function AccordionList({accordionItems}) {
+    var uid = "fEyvLKgSSWeRHPf87PUr1OQotHF3";
+    const [userList,setUserList]=useState([])
+    
     return (
         <>
+            
             <Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
-
-                {accordionItems.map((item, i) => {
+            <FetchListInfo uid={uid} userList={userList} setUserList={setUserList}/>
+                {userList.map((item, i) => {
                     return (
-                        <div className={'card ' + item.cardClass} key={i}>
+                        <div className="card mb-3" key={i}>
                             <AccordionItem>
-                                <AccordionItemHeading className="card-header">
-                                    <AccordionItemButton className="btn btn-link d-flex align-items-center justify-content-between">
-                                        {item.title}
-                                        <i className="minus">{item.minus}</i>
-                                        <i className="plus">{item.plus}</i>
+                                <AccordionItemHeading className="card-header ">
+                                    <AccordionItemButton className="btn btn-link d-flex align-items-center justify-content-between ">
+                                        {item.listName}
+                                        <i className="minus"><FaMinus /></i>
+                                        <i className="plus"><FaPlus /></i>
                                     </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel>
