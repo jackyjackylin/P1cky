@@ -97,8 +97,20 @@
 .popup-window-content{
   background-color: white;
 }
-.card-item .POP{
-  height: 20%;
+.card-item.popup-window{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+}
+.card-item.popup-window .card-area{
+  width: 400px;
+  margin-top: 3%;
+}
+.info-list .info-button-row{
+  display: flex;
+  justify-content: space-between;
 }
 /*============== loader-ripple ==============*/
 @keyframes loader-ripple {
@@ -448,6 +460,12 @@ body {
     max-width: 100%; } }
 
 /*=== theme-btn ====*/
+.theme-btn.green {
+  background-color: #40CC6F;
+ }
+.theme-btn.green:hover {
+  background-color: #3acc6b;
+  color: #fff; }
 .theme-btn {
   font-weight: 600;
   font-size: 15px;
@@ -8267,3 +8285,37 @@ input[type=range]::-webkit-slider-thumb {
       justify-content: center;
       }
       }
+.pop-modal {
+  font-size: 12px;
+  z-index: 10000;
+}
+.pop-modal .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.pop-modal .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.pop-modal .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.pop-modal .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}

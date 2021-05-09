@@ -60,6 +60,7 @@ const responsive = [
         }
     }
 ]
+
 function parseLocation(business){
     let location = business.location;
     let res = business.alias
@@ -80,7 +81,6 @@ function parseLocation(business){
     console.log(res);
     return res;
 }
-
 function getDirection(business){
     let parsedAddr = parseLocation(business);
     // let params ={

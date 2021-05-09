@@ -1,5 +1,7 @@
 
 import PlaceOne from "../../components/places/PlaceOne";
+
+import ResultPage from "../../components/places/ResultPage";
 import React, {useEffect, useState} from 'react';
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
 function PlacePop({showPop,toggleShowPop,itemList,itemId,nextItemId}) {
@@ -85,7 +87,7 @@ function PlacePop({showPop,toggleShowPop,itemList,itemId,nextItemId}) {
     //                 </div>
     //             </div>
     //         </div>)
-    if( itemList){
+    if( itemList && showPop){
         return (
         //     <div className="modal-form text-center">
         //     <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -111,12 +113,15 @@ function PlacePop({showPop,toggleShowPop,itemList,itemId,nextItemId}) {
         //         </div>
         //     </div>
         // </div>
+        // <ResultPage itemList={itemList} itemId={itemId} toggleShowPop={toggleShowPop} showPop={showPop}/>
             <div className="modal-form text-center">
             <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                <div className="modal-bg"></div>
-                    <section className="card-area text-center ">
+                <div className="modal-bg"></div> 
+                <ResultPage itemList={itemList} itemId={itemId} toggleShowPop={toggleShowPop} showPop={showPop}/>
+                    {/* {  <section className="card-area text-center ">
                         <PlaceOne places={itemList.slice(itemId,itemId+1)} nextItemId={nextItemId}  toggleShowPop={toggleShowPop} showPop={showPop} className="container popup-window-content"/>  
-                    </section>
+                    </section> } */}
+                    
             </div>
             </div>
             )

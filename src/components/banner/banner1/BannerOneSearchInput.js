@@ -5,6 +5,7 @@ import SelectRating from "../../common/SelectRating";
 import SelectPrice from "../../common/SelectPrice";
 import SelectLocation from "../../common/SelectLocation";
 import GetRestaurantsFromApi from '../../common/GetRestaurantsFromApi';
+import ResultPage from '../../places/ResultPage';
 
 
 // this.handleChange = this.handleChange.bind(this);
@@ -66,6 +67,7 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
 
 
                 <div className="main-search-input-btn">
+                    {/* <ResultPage text="search"/> */}
                     <button className="button theme-btn" type="submit" onClick={()=>{
                         GetRestaurantsFromApi({lat,lng,foodType,rating,price})
                         .then((res) => {

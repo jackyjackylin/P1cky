@@ -34,8 +34,9 @@ function Home() {
         let flag = (set==true)? val: showPop;
         if(flag){
             console.log(flag);
-            setShowPop(true);
             setPopItemId(0);
+            setShowPop(true);
+            
         }else{
             setPopItemList(null);
             setPopItemId( -1);
