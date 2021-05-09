@@ -4,9 +4,10 @@ import { BsListCheck, BsQuestion, BsGear, BsPower } from 'react-icons/bs'
 import { AiOutlineUser } from 'react-icons/ai'
 import {Link} from "react-router-dom";
 import Button from "../../common/Button";
-import userimg from '../../../assets/images/team1.jpg'
 import {AuthContext} from "../../providers/UserProvider";
 import { auth } from "../../../firebase";
+import userDefaultImg from "../../../assets/images/userDefaultImg.jpg";
+
 
 export default function HeaderAuthorAccess() {
     const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
@@ -50,9 +51,9 @@ export default function HeaderAuthorAccess() {
                 <div className="side-menu-wrap side-user-menu-wrap">
 
                     <div className="side-user-img">
-                        <img src={userimg} alt="User" />
-                        <h4 className="su__name">Mark Williamson</h4>
-                        <span className="su__meta">Joined 3 years ago</span>
+                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : ""} alt="User" />
+                        <h4 className="su__name">{currentUser? currentUser.displayName: ""}</h4>
+                        <span className="su__meta">{currentUser? currentUser.bioData: ""}</span>
                         <div className="avatar-icon">
                             <Link to="/dashboard" data-toggle="tooltip" data-placement="top" title="Change Avatar"> <FiPlus /></Link>
                         </div>
@@ -61,7 +62,7 @@ export default function HeaderAuthorAccess() {
                     <ul className="side-menu-ul">
                         <li><Link to="/dashboard"><AiOutlineUser className="user-icon" /> My Profile</Link></li>
                         <li><Link to="/dashboard"><BsListCheck className="user-icon" /> My Listings</Link></li>
-                        <li><Link to="/dashboard"><FiBookmark className="user-icon" /> My Bookmarks</Link></li>
+                        <li><Link to="/dashboard"><FiBookmark className="user-icon" /> My Friends</Link></li>
                         {/* <li><Link to="/dashboard"><FiPlusCircle className="user-icon" /> Add to List</Link></li> */}
                         <li><div className="dropdown-divider"></div></li>
                         <li><Link to="#"><BsQuestion className="user-icon" /> help</Link></li>

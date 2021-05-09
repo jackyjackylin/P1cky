@@ -24,6 +24,7 @@ import userimg3 from "../assets/images/userimg3.jpg"; // 362*242
 import userimg4 from "../assets/images/userimg4.jpg"; // 362*242
 import userimg5 from "../assets/images/userimg5.jpg"; // 362*242
 import userimg6 from "../assets/images/userimg6.jpg"; // 362*242
+import userDefaultImg from "../assets/images/userDefaultImg.jpg"; // 263*175
 
 import authorimg from "../assets/images/small-team1.jpg"; // 67*60
 import symble1 from "../assets/images/symble1.png";

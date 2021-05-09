@@ -1,21 +1,116 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import {Link} from "react-router-dom";
 import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
-import { FaGlobeAmericas, FaRegEnvelope } from 'react-icons/fa'
+import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineExclamationCircle } from 'react-icons/ai'
 import Button from "../../components/common/Button";import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
-import SectionsHeading from "../../components/common/SectionsHeading";
 import AccordionList from "../../components/other/AccordionList";
+import {AuthContext} from "../../components/providers/UserProvider";
+import { auth , firestore,  storage} from "../../firebase";
+import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 
 function Dashboard() {
+    const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
+    const { currentUser } = useContext(AuthContext);
     const [isOpenForm, setIsOpenForm] = useState(false)
+    const [isPhotoOpenForm, setIsPhotoOpenForm] = useState(false)
+    const [displayName, setDisplayName] = useState("");
+    const [bioData, setBioData] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [location, setLocation] = useState("");
+    const [file, setFile] = useState(null);
+
+    if (currentUser) {
+        console.log(currentUser)
+      }
+  
+      const onChangeHandler = (event) => {
+          const {name, value} = event.currentTarget;
+          if(name === 'displayName') {
+              setDisplayName(value);
+          }else if(name === 'bioData'){
+              setBioData(value);
+          }else if(name === 'phoneNumber'){
+              setPhoneNumber(value);
+          }else if(name === 'location'){
+              setLocation(value);
+          }
+      };
+  
+      const updateProfile = async() => {
+          const userRef = firestore.doc(`users/${currentUser.uid}`);  
+          const snapshot = await userRef.get();
+          if (snapshot.exists) {
+              try {
+                  await userRef.update({
+                      displayName: displayName,
+                      bioData: bioData,
+                      phoneNumber: phoneNumber,
+                      location: location,
+                  }).then(() => {
+                      auth.currentUser.updateProfile({
+                          displayName: displayName,
+                          bioData: bioData,
+                          phoneNumber: phoneNumber,
+                          location: location,
+                      });
+                  }).then(() => {
+                      setIsOpenForm(false);
+                      window.location.reload();
+                  })
+              } catch (error) {
+                  console.error("Error creating user document", error);
+              }
+          }
+      }
+
+    function handleChange(e) {
+        setFile(e.target.files[0]);
+    }
+
+    const handleFireBaseUpload = async (event) => {
+        const userRef = firestore.doc(`users/${currentUser.uid}`);  
+        event.preventDefault();
+        const uploadTask = storage.ref(`/images/${currentUser.uid}/${file.name}`).put(file);
+        uploadTask.on("state_changed", console.log, console.error, () => {
+            storage.ref("images").child(`${currentUser.uid}/${file.name}`).getDownloadURL().then((url) => {
+                userRef.update({
+                    photoURL: url,
+                }).then(() => {
+                    auth.currentUser.updateProfile({photoURL: url,})
+                }).then(() => {
+                    setIsPhotoOpenForm(false);
+                    window.location.reload();
+                });
+            })
+        })
+    }
+
+    const removePhoto = async (event) => {
+        console.log("Remove GOGOOG");
+        event.preventDefault();
+        const userRef = firestore.doc(`users/${currentUser.uid}`);  
+        const snapshot = await userRef.get();
+        if (snapshot.exists) { 
+            await userRef.update({
+                photoURL: ""
+            }).then(() => {
+                auth.currentUser.updateProfile({
+                    photoURL: ""
+                });
+            }).then(() => {
+                setIsOpenForm(false);
+                window.location.reload();
+            })
+        }
+    }
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -118,26 +213,25 @@ function Dashboard() {
                                             <div className="col-lg-4">
                                                 <div className="user-profile-action">
                                                     <div className="user-pro-img mb-4">
-                                                        <img src={sectiondata.dashboard.userImg} alt="user" />
+                                                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : ""}  alt="User Image"  width="331" height="368"/>
                                                         <div className="dropdown edit-btn">
                                                             <button
                                                                 className="theme-btn edit-btn dropdown-toggle border-0 after-none"
                                                                 type="button" id="editImageMenu"
-                                                                data-toggle="dropdown" aria-haspopup="true">
+                                                                data-toggle="dropdown" aria-haspopup="true"  onClick={() => setIsPhotoOpenForm(!isPhotoOpenForm)}>
                                                                 <i className="la la-photo"></i> Edit
                                                             </button>
-                                                            <div className="dropdown-menu"
-                                                                 aria-labelledby="editImageMenu">
+                                                            <div className={isPhotoOpenForm ? 'dropdown-menu show' : 'dropdown-menu'} aria-labelledby="editImageMenu">
                                                                 <div className="upload-btn-box">
-                                                                    <form>
-                                                                        <input type="file" name="files[]" id="filer_input" multiple="multiple" />
+                                                                    <form onSubmit={handleFireBaseUpload}>
+                                                                        <input type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
                                                                         <button className="theme-btn border-0 w-100 button-success" type="submit" value="submit">
                                                                             Save changes
                                                                         </button>
                                                                     </form>
                                                                 </div>
                                                                 <div className="btn-box mt-3">
-                                                                    <button className="theme-btn border-0 w-100">Remove
+                                                                    <button className="theme-btn border-0 w-100" onClick={(event) => removePhoto(event)}>Remove
                                                                         Photo
                                                                     </button>
                                                                 </div>
@@ -146,25 +240,28 @@ function Dashboard() {
                                                     </div>
                                                     <div className="user-details">
                                                         <h2 className="user__name widget-title pb-2">
-                                                            {sectiondata.dashboard.userName}
+                                                            {currentUser? currentUser.displayName:""}
                                                         </h2>
                                                         <div className="section-heading">
                                                             <p className="sec__desc font-size-15 line-height-24">
-                                                                {sectiondata.dashboard.userbio}
+                                                            {currentUser? currentUser.bioData:""}
                                                             </p>
                                                         </div>
                                                         <ul className="list-items mt-3">
                                                             <li>
-                                                                <span className="la d-inline-block"><GiPositionMarker /></span> {sectiondata.dashboard.address}
+                                                                <span className="la d-inline-block"><GiPositionMarker /></span> {currentUser? currentUser.location:""}
                                                             </li>
                                                             <li className="text-lowercase">
-                                                                <span className="la d-inline-block"><FiPhone /></span> {sectiondata.dashboard.phoneNum}
+                                                                <span className="la d-inline-block"><FiPhone /></span> {currentUser? currentUser.phoneNumber:""}
                                                             </li>
                                                             <li className="text-lowercase">
+                                                                <span className="la d-inline-block"><FaRegEnvelope /></span> {currentUser? currentUser.email:""}
+                                                            </li>
+                                                            {/* <li className="text-lowercase">
                                                                 <span className="la d-inline-block"><FaGlobeAmericas /></span> {sectiondata.dashboard.website}
-                                                            </li>
+                                                            </li> */}
                                                         </ul>
-                                                        <div className="user-edit-form mt-4">
+                                                        <div className="user-edit-form mt-7">
                                                             <div className={isOpenForm ? 'dropdown show' : 'dropdown'}>
                                                                 <button
                                                                     className="theme-btn edit-form-btn shadow-none w-100 dropdown-toggle after-none"
@@ -178,35 +275,33 @@ function Dashboard() {
                                                                             <label className="label-text">Name</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><AiOutlineUser /></span>
-                                                                                <input className="form-control" type="text" name="name" placeholder="Enter your name" />
+                                                                                <input type="text" className="form-control"  name="displayName" value={displayName} id="displayName" placeholder="Enter your name" onChange={event => onChangeHandler(event)}/>
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <label className="label-text">Bio Data</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><BsPencil /></span>
-                                                                                <textarea className="message-control form-control" name="message" placeholder="Add a bio"></textarea>
+                                                                                <textarea type="text" className="message-control form-control"  name="bioData" value={bioData} id="bioData" placeholder="Add a bio" onChange={event => onChangeHandler(event)}></textarea>
+                                                                                {/* <textarea className="message-control form-control" name="message" placeholder="Add a bio"></textarea> */}
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><GiPositionMarker /></span>
-                                                                                <input className="form-control" type="text" name="location" placeholder="Location" />
+                                                                                <input type="text" className="form-control"  name="location" value={location} id="location" placeholder="Enter your Location" onChange={event => onChangeHandler(event)}/>
+                                                                                {/* <input className="form-control" type="text" name="location" placeholder="Location" /> */}
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><FiPhone /></span>
-                                                                                <input className="form-control" type="text" name="number" placeholder="Number" />
+                                                                                <input type="text" className="form-control"  name="phoneNumber" value={phoneNumber} id="phoneNumber" placeholder="Enter your Number" onChange={event => onChangeHandler(event)}/>
+                                                                                {/* <input className="form-control" type="text" name="number" placeholder="Number" /> */}
                                                                             </div>
                                                                         </div>
-                                                                        <div className="input-box">
-                                                                            <div className="form-group">
-                                                                                <span className="la form-icon"><FaRegEnvelope /></span>
-                                                                                <input className="form-control" type="email" name="email" placeholder="Email Address" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="input-box">
+                                                                      
+                                                                        {/* <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><AiOutlineYoutube /></span>
                                                                                 <input className="form-control" type="text" name="youtube" placeholder="Youtube URL" />
@@ -217,12 +312,12 @@ function Dashboard() {
                                                                                 <span className="la form-icon"><FaGlobeAmericas /></span>
                                                                                 <input className="form-control" type="text" name="website" placeholder="Website" />
                                                                             </div>
-                                                                        </div>
+                                                                        </div> */}
                                                                         <div className="btn-box">
-                                                                            <button type="button" className="theme-btn border-0 button-success mr-1">
+                                                                            <button type="button" className="theme-btn border-0 button-success mr-1" onClick={(event) => updateProfile(event)} >
                                                                                 save changes
                                                                             </button>
-                                                                            <button type="button" className="theme-btn border-0">
+                                                                            <button type="button" className="theme-btn border-0" onClick={() => setIsOpenForm(!isOpenForm)}>
                                                                                 Cancel
                                                                             </button>
                                                                         </div>

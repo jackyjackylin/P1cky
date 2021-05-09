@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import 'firebase/storage';
 import { BsCollection } from "react-icons/bs";
 //import DisplayName from "react-accessible-accordion/dist/types/helpers/DisplayName";
 
@@ -18,6 +19,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+export const storage = firebase.storage();
+
 
 export const generateUserDocument = async (user, additionalData) => {
   if (!user) return;
@@ -27,12 +30,13 @@ export const generateUserDocument = async (user, additionalData) => {
 
   const snapshot = await userRef.get();
   if (!snapshot.exists) {
-    const { email, displayName, photoURL } = user;
+    const { email, photoURL, phoneNumber } = user;
     try {
       await userRef.set({
-        //"displayName": displayName, 
         "email": email,
         "photoURL": photoURL,
+        "phoneNumber": phoneNumber,
+        "bioData": "",
         ...additionalData
       });
     } catch (error) {
@@ -43,17 +47,17 @@ export const generateUserDocument = async (user, additionalData) => {
 };
 
 export const getUserDocument = async uid => {
-    if (!uid) return null;
-    try {
-      const userDocument = await firestore.doc(`users/${uid}`).get();
-      console.log(userDocument);
-      return {
-        uid,
-        ...userDocument.data()
-      };
-    } catch (error) {
-      console.error("Error fetching user", error);
-    }
+  if (!uid) return null;
+  try {
+    const userDocument = await firestore.doc(`users/${uid}`).get();
+    console.log(userDocument);
+    return {
+      uid,
+      ...userDocument.data()
+    };
+  } catch (error) {
+    console.error("Error fetching user", error);
+  }
 };
 
 

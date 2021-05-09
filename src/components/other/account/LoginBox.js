@@ -15,6 +15,7 @@ function LoginBox({title, subtitle}) {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password).catch(error => {
           setError("Error signing in with password and email!");
+          alert(error);
           console.error("Error signing in with password and email", error);
         });
     };    
