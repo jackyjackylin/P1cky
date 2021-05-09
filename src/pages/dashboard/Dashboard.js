@@ -22,7 +22,7 @@ import CreateNewList from "./CreateNewList"
 
 function Dashboard() {
     const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
-    const { currentUser } = useContext(AuthContext);
+    const {currentUser} = useContext(AuthContext);
     const [isOpenForm, setIsOpenForm] = useState(false)
     const [isPhotoOpenForm, setIsPhotoOpenForm] = useState(false)
     const [displayName, setDisplayName] = useState("");
@@ -65,7 +65,7 @@ function Dashboard() {
           }else if(name === 'location'){
               setLocation(value);
           }
-      };
+    };
   
       const updateProfile = async() => {
           const userRef = firestore.doc(`users/${currentUser.uid}`);  
@@ -300,28 +300,28 @@ function Dashboard() {
                                                                             <label className="label-text">Name</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><AiOutlineUser /></span>
-                                                                                <input type="text" className="form-control"  name="displayName" value={displayName} id="displayName" placeholder="Enter your name" onChange={event => onChangeHandler(event)}/>
+                                                                                <input type="text" className="form-control"  name="displayName" value={currentUser? currentUser.displayName:""} id="displayName" placeholder="Enter your name" onChange={event => onChangeHandler(event)}/>
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <label className="label-text">Bio Data</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><BsPencil /></span>
-                                                                                <textarea type="text" className="message-control form-control"  name="bioData" value={bioData} id="bioData" placeholder="Add a bio" onChange={event => onChangeHandler(event)}></textarea>
+                                                                                <textarea type="text" className="message-control form-control"  name="bioData" value={currentUser? currentUser.bioData:""} id="bioData" placeholder="Add a bio" onChange={event => onChangeHandler(event)}></textarea>
                                                                                 {/* <textarea className="message-control form-control" name="message" placeholder="Add a bio"></textarea> */}
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><GiPositionMarker /></span>
-                                                                                <input type="text" className="form-control"  name="location" value={location} id="location" placeholder="Enter your Location" onChange={event => onChangeHandler(event)}/>
+                                                                                <input type="text" className="form-control"  name="location" value={currentUser? currentUser.location:""} id="location" placeholder="Enter your Location" onChange={event => onChangeHandler(event)}/>
                                                                                 {/* <input className="form-control" type="text" name="location" placeholder="Location" /> */}
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><FiPhone /></span>
-                                                                                <input type="text" className="form-control"  name="phoneNumber" value={phoneNumber} id="phoneNumber" placeholder="Enter your Number" onChange={event => onChangeHandler(event)}/>
+                                                                                <input type="text" className="form-control"  name="phoneNumber" value={currentUser? currentUser.phoneNumber:""} id="phoneNumber" placeholder="Enter your Number" onChange={event => onChangeHandler(event)}/>
                                                                                 {/* <input className="form-control" type="text" name="number" placeholder="Number" /> */}
                                                                             </div>
                                                                         </div>
