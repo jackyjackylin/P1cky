@@ -4540,6 +4540,8 @@ body {
 .card-content {
   padding: 30px 20px 25px 20px; }
 
+.card-content.popup-card{
+    padding: 30px 20px 5px 20px; }
 .rating-row {
   border-top: 1px solid #eee;
   padding: 15px 20px 15px 24px;

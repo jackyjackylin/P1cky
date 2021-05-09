@@ -71,7 +71,7 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                             </a>
                             
                             <div className={`card-content-wrap  popup-window-content`}>
-                                <div className="card-content ">
+                                <div className="card-content popup-card">
                                     <a href="#">
                                         <h5 className="card-meta">
                                             <span>{<GiChickenOven />}</span> 
@@ -125,16 +125,7 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                                             </span>
                                         <span className="rating-count">{parseFloat(item.rating)}</span>
                                     </div> 
-                                    <div className="listing-info">
-                                        <ul>
-                                            <li><span className="info__count"><AiOutlineEye /></span> {item.review_count}</li>
-                                            <li>
-                                                <span className="info__save" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                                                    <FiHeart />
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             </div>
