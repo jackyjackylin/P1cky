@@ -245,7 +245,7 @@ function Dashboard() {
                                                             <div className={isPhotoOpenForm ? 'dropdown-menu show' : 'dropdown-menu'} aria-labelledby="editImageMenu">
                                                                 <div className="upload-btn-box">
                                                                     <form onSubmit={handleFireBaseUpload}>
-                                                                        <input type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
+                                                                        <input  className="input-file-btn" type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
                                                                         <button className="theme-btn border-0 w-100 button-success" type="submit" value="submit">
                                                                             Save changes
                                                                         </button>
