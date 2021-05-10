@@ -3,6 +3,7 @@ import React,{useState, useEffect} from 'react';
 
 export default function FetchListInfo({uid, userList, setUserList}) {
     const [loaded,setLoaded]=useState(false);
+    const [wdwed,dwdwd]=useState(false);
 
     const getListInfo=async()=>{
         const doc = firestore.doc(`users/${uid}`).collection('myLists');

@@ -18,7 +18,8 @@ function CreateNewList() {
     const onSubmit=e => {
         e.preventDefault();
         firestore.doc(`users/${uid}`).collection('myLists').doc(listName).set(data)
-        .then(()=>console.log("uploadedlala"))
+        .then(()=>console.log("uploaded"))
+        .then(()=>window.location.reload(true))
 
     }
 

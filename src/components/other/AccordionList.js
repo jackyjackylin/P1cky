@@ -1,5 +1,5 @@
 import {firestore} from '../../firebase';
-import { FaPlus, FaMinus } from 'react-icons/fa'
+import { FaPlus, FaMinus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import React,{useState, useEffect} from 'react';
 import {
     Accordion,
@@ -12,8 +12,7 @@ import {Link} from "react-router-dom";
 import sectiondata from "../../store/store";
 import FetchListInfo from '../common/FetchListInfo'
 
-function AccordionList({accordionItems}) {
-    var uid = "fEyvLKgSSWeRHPf87PUr1OQotHF3";
+function AccordionList({uid, accordionItems}) {
     const [userList,setUserList]=useState([])
     
     return (
@@ -22,7 +21,7 @@ function AccordionList({accordionItems}) {
             <Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
             <FetchListInfo uid={uid} userList={userList} setUserList={setUserList}/>
                 {userList.map((item, i) => {
-                    return (
+                    return ( 
                         <div className="card mb-3" key={i}>
                             <AccordionItem>
                                 <AccordionItemHeading className="card-header ">
@@ -34,32 +33,26 @@ function AccordionList({accordionItems}) {
                                 </AccordionItemHeading>
                                 <AccordionItemPanel>
                                     <div className="card-body">
-                                        {/* {item.desc} */}
                                         <div className="row">
-
-                                            {sectiondata.dashboard.cards.map((item, i) => {
+                                            {item.restaurants.map((val, index) => {
                                                 return (
                                                     <div key={i} className="col-lg-4 column-td-6">
                                                         <div className="card-item">
-                                                            <Link to={item.cardLink} className="card-image-wrap">
-                                                                <div className="card-image">
-                                                                    <img src={item.img} className="card__img" alt="Card" />
-                                                                </div>
-                                                            </Link>
+                                                            <div className="card-image">
+                                                                <img src={item.photoURL[index]} className="card__img" alt="Card" />
+                                                            </div>
                                                             <div className="card-content-wrap">
                                                                 <div className="card-content">
-                                                                    <Link to={item.cardLink}>
-                                                                        <h4 className="card-title mt-0">{item.title}</h4>
-                                                                        <p className="card-sub">{item.subtitle}</p>
-                                                                    </Link>
+                                                                    <h4 className="card-title mt-0">{val}</h4>
+                                                                    <p className="card-sub">{item.comments[index]}</p>
                                                                 </div>
                                                                 <div className="rating-row">
                                                                     <div className="edit-info-box">
                                                                         <button type="button" className="theme-btn button-success border-0 mr-1">
-                                                                            <span className="la">{item.editIcon}</span> {item.editTxt}
+                                                                            <span className="la"><FaRegEdit /></span> Edit
                                                                         </button>
                                                                         <button type="button" className="theme-btn delete-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
-                                                                            <span className="la">{item.deleteIcon}</span> {item.deleteTxt}
+                                                                            <span className="la"><FaRegTrashAlt /></span> Delete
                                                                         </button>
                                                                     </div>
                                                                 </div>

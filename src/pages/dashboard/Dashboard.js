@@ -30,25 +30,21 @@ function Dashboard() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
-
-    var uid = "fEyvLKgSSWeRHPf87PUr1OQotHF3";
-    const [listName, setListName]=useState('')
+    const [uid, setUID] = useState("");
+    const [loaded, setLoaded] = useState(false);
 
     const data = {
         restaurants: [],
-        comments: []
+        comments: [],
+        photoURL: [],
     }
-
-    const handleInput = (val) => {
-        setListName(val.target.value);
-    };
-
-    const handleCreateNewListName=e => {
-        e.preventDefault();
-        firestore.doc(`users/${uid}`).collection('myLists').doc(listName).set(data)
-        .then(()=>console.log("uploadedlala"))
-
-    }
+    useEffect(()=> {
+        if (currentUser) {
+            console.log("uidddd:",currentUser.uid)
+            setUID(currentUser.uid)
+            setLoaded(true)
+        }
+    },[currentUser])
 
     if (currentUser) {
         console.log(currentUser)
@@ -168,7 +164,7 @@ function Dashboard() {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.account-delete-modal .modal-bg, .account-delete-modal .modal-dialog .btn-box .theme-btn')) {
+                    if (target.matches('.account-delete-modal .modal-bg')) {
                         hideDeleteAcntModal.call(target, e)
                         break
                     }
@@ -225,7 +221,7 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    <AccordionList accordionItems={sectiondata.accordions.items} />
+                                                    {loaded&& <AccordionList uid={currentUser.uid} accordionItems={sectiondata.accordions.items} />}
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>
