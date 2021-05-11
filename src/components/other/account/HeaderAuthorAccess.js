@@ -51,7 +51,7 @@ export default function HeaderAuthorAccess() {
                 <div className="side-menu-wrap side-user-menu-wrap">
 
                     <div className="side-user-img">
-                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : ""} alt="User" />
+                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : userDefaultImg} alt="User" />
                         <h4 className="su__name">{currentUser? currentUser.displayName: ""}</h4>
                         <span className="su__meta">{currentUser? currentUser.bioData: ""}</span>
                         <div className="avatar-icon">
