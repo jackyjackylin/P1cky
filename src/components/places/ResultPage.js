@@ -1,7 +1,7 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
 
-import ListToolTip from "./ListMenu";
+import ListMenu from "./ListMenu";
 import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
@@ -105,9 +105,10 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                                                     })}      
                                                 </div>
                                                 <div>
-                                                    <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                    
                                                     <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
-                                                    <ListToolTip></ListToolTip>
+                                                    <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                    <ListMenu/>
                                                 </div>
                                             </div>
 
