@@ -69,7 +69,7 @@ const App = () => {
               <AppRoute path="/list-left-sidebar" component={ListLeftSidebar} />
               <AppRoute path="/list-right-sidebar" component={ListRightSidebar} />
               <AppRoute path="/listing-details" component={ListingDetails} />
-              <AppRoute path="/add-listing/new" component={AddListing} />
+              <AppRoute path="/add-listing/" component={AddListing} />
               <AppRoute path="/user-profile" component={UserProfile} />
               <AppRoute path="/top-author" component={TopAuthors} />
               <AppRoute path="/dashboard" component={Dashboard} />

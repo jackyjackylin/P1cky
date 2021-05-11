@@ -8,7 +8,8 @@ function CreateNewList() {
 
     const data = {
         restaurants: [],
-        comments: []
+        comments: [],
+        photoURL: []
     }
 
     const handleInput = (val) => {

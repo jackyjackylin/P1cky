@@ -38,7 +38,7 @@ function Banner6({title}) {
         const body = document.querySelector('body')
 
         function showDeleteAcntModal(e) {
-            body.classList.add('modal-open')
+            body.classList.add('list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
@@ -48,7 +48,7 @@ function Banner6({title}) {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.breadcrumb-wrap .theme-btn')) {
+                    if (target.matches('.breadcrumb-wrap .submit-btn')) {
                         showDeleteAcntModal.call(target, e)
                         break
                     }
@@ -56,7 +56,7 @@ function Banner6({title}) {
             },false
         )
         function hideDeleteAcntModal(e) {
-            body.classList.remove('modal-open')
+            body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
@@ -66,7 +66,7 @@ function Banner6({title}) {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.account-delete-modal .modal-bg, .account-delete-modal .modal-dialog .btn-box .theme-btn')) {
+                    if (target.matches('.add-list-modal .modal-bg, .btn-box .theme-btn')) {
                         hideDeleteAcntModal.call(target, e)
                         break
                     }
@@ -104,9 +104,9 @@ function Banner6({title}) {
     const updateList = async(listName) => {
         const userRef = firestore.doc(`users/${currentUser.uid}/myLists/${listName}`);
         const unionRes = await userRef.update({
-            restaurants: admin.firestore.FieldValue.arrayUnion(restaurantName),
-            comments: admin.firestore.FieldValue.arrayUnion(""),
-            photoURL: admin.firestore.FieldValue.arrayUnion("")
+            restaurants: firebase.firestore.FieldValue.arrayUnion(restaurantName),
+            comments: firebase.firestore.FieldValue.arrayUnion(""),
+            photoURL: firebase.firestore.FieldValue.arrayUnion("")
         }).then(() => {
             window.location.reload();
         }).catch((error)=>{
@@ -158,7 +158,7 @@ function Banner6({title}) {
 
             {/* Modal */}
             <div className="modal-form text-center">
-                <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div className="modal fade add-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
