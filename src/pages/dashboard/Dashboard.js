@@ -140,14 +140,23 @@ function Dashboard() {
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
+        
+        function showAddListModal(e) {
+            body.classList.add('list-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box .createNewList')) {
+                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box')) {
                         showDeleteAcntModal.call(target, e)
+                        break
+                    }else if(target.matches('.createNewList')){
+                        showAddListModal.call(target,e)
                         break
                     }
                 }
@@ -155,6 +164,11 @@ function Dashboard() {
         )
         function hideDeleteAcntModal(e) {
             body.classList.remove('modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+        function hideAddListModal(e) {
+            body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
@@ -166,6 +180,9 @@ function Dashboard() {
                 ) {
                     if (target.matches('.account-delete-modal .modal-bg')) {
                         hideDeleteAcntModal.call(target, e)
+                        break
+                    }else if (target.matches('.add-list-modal .modal-bg, .btn-box .hide-list')) {
+                        hideAddListModal.call(target, e)
                         break
                     }
                 }
@@ -475,7 +492,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="modal-form text-center">
-                <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div className="modal fade add-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
