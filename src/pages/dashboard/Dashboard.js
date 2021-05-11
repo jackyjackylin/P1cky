@@ -31,6 +31,7 @@ function Dashboard() {
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
+    const [uid, setUID] = useState("");
     const [loaded, setLoaded] = useState(false);
 
     const data = {
@@ -42,6 +43,7 @@ function Dashboard() {
     useEffect(()=> {
         if (currentUser) {
             console.log("uidddd:",currentUser.uid)
+            setUID(currentUser.uid)
             setLoaded(true)
             setDisplayName(currentUser.displayName);
             setBioData(currentUser.bioData);
@@ -183,8 +185,9 @@ function Dashboard() {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box')) {
+                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn')) {
                         showDeleteAcntModal.call(target, e)
+                        console.log(target.classList);
                         break
                     }else if(target.matches('.createNewList')){
                         showAddListModal.call(target,e)
@@ -257,7 +260,7 @@ function Dashboard() {
                                     </TabList>
                                     <div className="btn-box">
                                         <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
-                                        <Link to="/add-listing/" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
+                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
                                         <Link to="/" className="theme-btn ml-1"><span className="la"><AiOutlinePoweroff /></span> sign out</Link>
                                     </div>
                                 </div>
@@ -269,7 +272,7 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    {loaded&& <AccordionList uid={currentUser.uid} />}
+                                                    {loaded&& <AccordionList uid={currentUser.uid} accordionItems={sectiondata.accordions.items} />}
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>
