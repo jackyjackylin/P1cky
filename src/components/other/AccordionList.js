@@ -1,4 +1,3 @@
-import {firestore} from '../../firebase';
 import { FaPlus, FaMinus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import React,{useState, useEffect} from 'react';
 import {
@@ -8,8 +7,6 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-import {Link} from "react-router-dom";
-import sectiondata from "../../store/store";
 import FetchListInfo from '../common/FetchListInfo'
 
 function AccordionList({uid, accordionItems}) {

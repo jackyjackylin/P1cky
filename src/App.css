@@ -185,7 +185,7 @@ dl, ol, ul {
     font-weight: 500;
     font-size: 15px;
 }
-.btn-radius-rounded {
+.add-to-lists-list-item {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px; 

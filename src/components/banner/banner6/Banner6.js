@@ -1,14 +1,38 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Button from "../../common/Button";
 import ListsBtn from "../../common/ListsBtn";
 import { FiSearch,FiPlusCircle } from 'react-icons/fi'
 import sectiondata from "../../../store/store";
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
-import AddRestaurants from "../../common/AddRestaurants"
+import AddRestaurants from "../../common/AddRestaurants";
+import {AuthContext} from "../../providers/UserProvider";
+import ButtonList from "../../other/ButtonList";
+import { auth , firestore,  storage} from "../../../firebase";
+import firebase from "firebase/app";
 
 
 function Banner6({title}) {
+    const {currentUser} = useContext(AuthContext);
     const [restaurants, setRestaurants] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+    const [lists, setLists] = useState([]);
+    const [restaurantName, setRes] = useState("");
+    const admin = require('firebase-admin')
+
+    const data = {
+        restaurants: [],
+        comments: [],
+        photoURL: [],
+    }
+    useEffect(()=> {
+        if (currentUser) {
+            setLoaded(true)
+        }
+    },[currentUser])
+
+    if (currentUser) {
+        console.log(currentUser)
+    }
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -70,6 +94,26 @@ function Banner6({title}) {
         console.log(restaurants);
     }
 
+    const addToLists = () => {
+        {lists.map((item, i) => {
+            console.log("adding to list" + lists.listName)
+           updateList(item.listName)
+        })}
+    }
+
+    const updateList = async(listName) => {
+        const userRef = firestore.doc(`users/${currentUser.uid}/myLists/${listName}`);
+        const unionRes = await userRef.update({
+            restaurants: admin.firestore.FieldValue.arrayUnion(restaurantName),
+            comments: admin.firestore.FieldValue.arrayUnion(""),
+            photoURL: admin.firestore.FieldValue.arrayUnion("")
+        }).then(() => {
+            window.location.reload();
+        }).catch((error)=>{
+            console.error("Error la", error);
+        })
+    }
+
     return (
         <>
             <section className="breadcrumb-area faq-breadcrumb" style={{backgroundImage: 'url('+sectiondata.herobanners.banner1.bgimage+')'}}>
@@ -98,7 +142,7 @@ function Banner6({title}) {
                                                             <button type="button" className="theme-btn submit-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
                                                                 <span className="d-inline-block"><FiPlusCircle /></span>
                                                             </button>
-                                                            <AddRestaurants />
+                                                            <AddRestaurants value={restaurantName} setValue={setRes}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -118,30 +162,22 @@ function Banner6({title}) {
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Must-Go Places near Irvine" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Burgers" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Date Spots" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Bars" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Mom's Fav" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="highlight-btn mt-4">
-                                <ListsBtn text="Create New List" className="btn-radius-rounded"></ListsBtn>
-                            </div>
-                            <div className="row padding-top-100px"></div>
+                            {loaded && <ButtonList uid={currentUser.uid} lists={lists} setLists={setLists} />}
+                            {/* <div className="row padding-top-100px"></div> */}
                             <div className="btn-box">
                                 <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">
                                     Cancel
                                 </button>
-                                <button type="button" className="theme-btn border-0 button-danger">
+                                <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
+                                    if (restaurantName) {
+                                        addToLists();
+                                        console.log("Add to:", lists);
+                                        console.log("restaurant:", restaurantName);
+                                    }
+                                    else {
+                                        console.log("Empty input")
+                                    }
+                                }}>
                                     Add!
                                 </button>
                             </div>

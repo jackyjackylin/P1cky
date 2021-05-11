@@ -12,13 +12,10 @@ import "@reach/combobox/styles.css";
 import { set } from "lodash-es";
 
 
-export default function AddRestaurants({lat,setLat,lng,setLng}) {
+export default function AddRestaurants({value, setValue}) {
     const {
       ready,
-      value,
       suggestions: { status, data },
-      setValue,
-      clearSuggestions,
     } = usePlacesAutocomplete();
   
     const handleInput = (e) => {
@@ -50,14 +47,9 @@ export default function AddRestaurants({lat,setLat,lng,setLng}) {
     return (
         <>    
             <Combobox onSelect={async (address) => {
-              setValue(address, false);
+              // setValue(address, false);
               try {
-                const results = await getGeocode({ address });
-                const { lat, lng } = await getLatLng(results[0]);
-                setLat(lat);
-                setLng(lng);
-                console.log(lat, lng);
-                
+                const results = await getGeocode({ address });                
               } catch (error) {
                 console.log(error);
               }
