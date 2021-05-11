@@ -460,6 +460,10 @@ body {
     max-width: 100%; } }
 
 /*=== theme-btn ====*/
+.input-file-btn{
+  margin-bottom: 15px;
+ }
+
 .theme-btn.green {
   background-color: #40CC6F;
  }
@@ -2163,6 +2167,11 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .add-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .modal-open .report-modal-box,
   .modal-open .account-delete-modal {
     visibility: visible;
@@ -2188,7 +2197,22 @@ body {
 .modal-open .modal .modal-dialog {
   transform: none;
 }
+/*-----------new modal---------------------*/
+.list-modal-open .modal-bg {
+  opacity: 0.5;
+}
 
+.list-modal-open .modal.add-list-modal .fade.show,
+.list-modal-open .modal.add-list-modal .fade:not(.show),
+.list-modal-open .modal {
+  opacity: 1;
+}
+.list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.list-modal-open .add-list-modal {
+  visibility: visible;
+}
 /*====================================================
     breadcrumb-area
  ====================================================*/
@@ -5864,7 +5888,7 @@ body {
     -moz-border-radius: 4px;
     border-radius: 4px;
     border: 1px solid rgba(128, 137, 150, 0.2);
-    width: 225px;
+    width: 370px;
     margin: 17px 0 0; }
     .user-profile-action .user-pro-img .dropdown-menu .upload-btn-box .jFiler-theme-default .jFiler-input {
       width: 100%; }
@@ -5947,7 +5971,7 @@ body {
 
 .user-edit-form .dropdown-menu {
   min-width: 100%;
-  margin-top: 15px;
+  margin-top: 200px;
   border: 1px solid rgba(128, 137, 150, 0.2);
   padding: 20px; }
   .user-edit-form .dropdown-menu .theme-btn {

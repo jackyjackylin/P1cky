@@ -1,6 +1,4 @@
 import React, {useEffect, useState,useContext} from 'react';
-import ReactDOM from "react-dom";
-import {ReactModal} from "react-modal";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -19,41 +17,56 @@ import {AuthContext} from "../../components/providers/UserProvider";
 import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 import CreateNewList from "./CreateNewList"
+import firebase from "firebase/app";
 
 function Dashboard() {
-    const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
     const {currentUser} = useContext(AuthContext);
     const [isOpenForm, setIsOpenForm] = useState(false)
     const [isPhotoOpenForm, setIsPhotoOpenForm] = useState(false)
-    const [displayName, setDisplayName] = useState("");
+    const [displayName, setDisplayName] = useState();
     const [bioData, setBioData] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
     const [loaded, setLoaded] = useState(false);
+
+    const data = {
+        restaurants: [],
+        comments: [],
+        photoURL: [],
+    }
 
     useEffect(()=> {
         if (currentUser) {
             console.log("uidddd:",currentUser.uid)
             setLoaded(true)
+            setDisplayName(currentUser.displayName);
+            setBioData(currentUser.bioData);
+            setLocation(currentUser.location);
+            setPhoneNumber(currentUser.phoneNumber);
         }
     },[currentUser])
 
-    if (currentUser) {
-        console.log(currentUser)
-      }
-  
-      const onChangeHandler = (event) => {
-          const {name, value} = event.currentTarget;
-          if(name === 'displayName') {
-              setDisplayName(value);
-          }else if(name === 'bioData'){
-              setBioData(value);
-          }else if(name === 'phoneNumber'){
-              setPhoneNumber(value);
-          }else if(name === 'location'){
-              setLocation(value);
-          }
+    const onChangeHandler = (event) => {
+        const {name, value} = event.currentTarget;
+        if(name === 'displayName') {
+            setDisplayName(value);
+        }else if(name === 'bioData'){
+            setBioData(value);
+        }else if(name === 'phoneNumber'){
+            setPhoneNumber(value);
+        }else if(name === 'location'){
+            setLocation(value);
+        }else if(name === 'currentPassword'){
+            setCurrentPassword(value);
+        }else if(name === 'newPassword'){
+            setNewPassword(value);
+        }else if(name === 'confirmNewPassword'){
+            setConfirmNewPassword(value);
+        }
     };
   
       const updateProfile = async() => {
@@ -106,7 +119,6 @@ function Dashboard() {
     }
 
     const removePhoto = async (event) => {
-        console.log("Remove GOGOOG");
         event.preventDefault();
         const userRef = firestore.doc(`users/${currentUser.uid}`);  
         const snapshot = await userRef.get();
@@ -124,12 +136,44 @@ function Dashboard() {
         }
     }
 
+    const reauthenticate = (currentPassword) => {
+        var user = firebase.auth().currentUser;
+        var cred = firebase.auth.EmailAuthProvider.credential(
+            user.email, currentPassword);
+        return user.reauthenticateWithCredential(cred);
+    }
+    
+    const isPasswordConfirmed = (password,confimPassword) => {
+        if(password && confimPassword && password === confimPassword) return true;
+        return false;
+    }
+    const handlePasswordUpdate = (event) => {
+        event.preventDefault();
+        if(!isPasswordConfirmed(newPassword, confirmNewPassword)){
+            alert("Confirm Password is not matched");
+        } 
+        reauthenticate(currentPassword).then(() => {
+            console.log("Password reauthenticate!");
+            var user = firebase.auth().currentUser;
+            user.updatePassword(newPassword).then(() => {
+                console.log("Password updated!");
+                window.location.reload();
+            }).catch((error) => { console.log(error); });
+            }).catch((error) => { console.log(error); 
+        });   
+    } 
+    
 
     useEffect(() => {
         const body = document.querySelector('body')
-
         function showDeleteAcntModal(e) {
             body.classList.add('modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+        
+        function showAddListModal(e) {
+            body.classList.add('list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
@@ -139,8 +183,11 @@ function Dashboard() {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box .createNewList')) {
+                    if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn, .dashboard-nav .btn-box')) {
                         showDeleteAcntModal.call(target, e)
+                        break
+                    }else if(target.matches('.createNewList')){
+                        showAddListModal.call(target,e)
                         break
                     }
                 }
@@ -148,6 +195,11 @@ function Dashboard() {
         )
         function hideDeleteAcntModal(e) {
             body.classList.remove('modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+        function hideAddListModal(e) {
+            body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
@@ -159,6 +211,9 @@ function Dashboard() {
                 ) {
                     if (target.matches('.account-delete-modal .modal-bg')) {
                         hideDeleteAcntModal.call(target, e)
+                        break
+                    }else if (target.matches('.add-list-modal .modal-bg, .btn-box .hide-list')) {
+                        hideAddListModal.call(target, e)
                         break
                     }
                 }
@@ -227,7 +282,7 @@ function Dashboard() {
                                             <div className="col-lg-4">
                                                 <div className="user-profile-action">
                                                     <div className="user-pro-img mb-4">
-                                                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : ""}  alt="User Image"  width="331" height="368"/>
+                                                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : userDefaultImg}  alt="User Image"  width="331" height="368"/>
                                                         <div className="dropdown edit-btn">
                                                             <button
                                                                 className="theme-btn edit-btn dropdown-toggle border-0 after-none"
@@ -238,7 +293,7 @@ function Dashboard() {
                                                             <div className={isPhotoOpenForm ? 'dropdown-menu show' : 'dropdown-menu'} aria-labelledby="editImageMenu">
                                                                 <div className="upload-btn-box">
                                                                     <form onSubmit={handleFireBaseUpload}>
-                                                                        <input type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
+                                                                        <input  className="input-file-btn" type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
                                                                         <button className="theme-btn border-0 w-100 button-success" type="submit" value="submit">
                                                                             Save changes
                                                                         </button>
@@ -289,44 +344,29 @@ function Dashboard() {
                                                                             <label className="label-text">Name</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><AiOutlineUser /></span>
-                                                                                <input type="text" className="form-control"  name="displayName" value={currentUser? currentUser.displayName:""} id="displayName" placeholder="Enter your name" onChange={event => onChangeHandler(event)}/>
+                                                                                <input type="text" className="form-control"  name="displayName" value={displayName} id="displayName" placeholder="Enter your name" onChange={event => onChangeHandler(event)}/>
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <label className="label-text">Bio Data</label>
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><BsPencil /></span>
-                                                                                <textarea type="text" className="message-control form-control"  name="bioData" value={currentUser? currentUser.bioData:""} id="bioData" placeholder="Add a bio" onChange={event => onChangeHandler(event)}></textarea>
-                                                                                {/* <textarea className="message-control form-control" name="message" placeholder="Add a bio"></textarea> */}
+                                                                                <textarea type="text" className="message-control form-control"  name="bioData" value={bioData} id="bioData" placeholder="Add a bio" onChange={event => onChangeHandler(event)}></textarea>
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><GiPositionMarker /></span>
-                                                                                <input type="text" className="form-control"  name="location" value={currentUser? currentUser.location:""} id="location" placeholder="Enter your Location" onChange={event => onChangeHandler(event)}/>
-                                                                                {/* <input className="form-control" type="text" name="location" placeholder="Location" /> */}
+                                                                                <input type="text" className="form-control"  name="location" value={location} id="location" placeholder="Enter your Location" onChange={event => onChangeHandler(event)}/>
                                                                             </div>
                                                                         </div>
                                                                         <div className="input-box">
                                                                             <div className="form-group">
                                                                                 <span className="la form-icon"><FiPhone /></span>
-                                                                                <input type="text" className="form-control"  name="phoneNumber" value={currentUser? currentUser.phoneNumber:""} id="phoneNumber" placeholder="Enter your Number" onChange={event => onChangeHandler(event)}/>
-                                                                                {/* <input className="form-control" type="text" name="number" placeholder="Number" /> */}
+                                                                                <input type="text" className="form-control"  name="phoneNumber" value={phoneNumber} id="phoneNumber" placeholder="Enter your Number" onChange={event => onChangeHandler(event)}/>
                                                                             </div>
                                                                         </div>
-                                                                      
-                                                                        {/* <div className="input-box">
-                                                                            <div className="form-group">
-                                                                                <span className="la form-icon"><AiOutlineYoutube /></span>
-                                                                                <input className="form-control" type="text" name="youtube" placeholder="Youtube URL" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="input-box">
-                                                                            <div className="form-group">
-                                                                                <span className="la form-icon"><FaGlobeAmericas /></span>
-                                                                                <input className="form-control" type="text" name="website" placeholder="Website" />
-                                                                            </div>
-                                                                        </div> */}
+                                                                    
                                                                         <div className="btn-box">
                                                                             <button type="button" className="theme-btn border-0 button-success mr-1" onClick={(event) => updateProfile(event)} >
                                                                                 save changes
@@ -356,25 +396,25 @@ function Dashboard() {
                                                                         <label className="label-text">Current Password</label>
                                                                         <div className="form-group">
                                                                             <span className="la form-icon"><BsPencil /></span>
-                                                                            <input className="form-control" type="text" name="text" placeholder="Current Password" />
+                                                                            <input type="password" className="form-control"  name="currentPassword" placeholder="Current Password" onChange={event => onChangeHandler(event)}/>
                                                                         </div>
                                                                     </div>
                                                                     <div className="input-box">
                                                                         <label className="label-text">New Password</label>
                                                                         <div className="form-group">
                                                                             <span className="la form-icon"><BsPencil /></span>
-                                                                            <input className="form-control" type="text" name="text" placeholder="New Password" />
+                                                                            <input type="password" className="form-control"  name="newPassword" placeholder="New Password" onChange={event => onChangeHandler(event)}/>
                                                                         </div>
                                                                     </div>
                                                                     <div className="input-box">
                                                                         <label className="label-text">Confirm New Password</label>
                                                                         <div className="form-group">
                                                                             <span className="la form-icon"><BsPencil /></span>
-                                                                            <input className="form-control" type="text" name="text" placeholder="Confirm New Password" />
+                                                                            <input type="password" className="form-control"  name="confirmNewPassword" placeholder="Confirm New Password" onChange={event => onChangeHandler(event)}/>
                                                                         </div>
                                                                     </div>
                                                                     <div className="btn-box">
-                                                                        <button className="theme-btn button-success border-0">
+                                                                        <button className="theme-btn button-success border-0" onClick={(event) => handlePasswordUpdate(event)}>
                                                                             updated password
                                                                         </button>
                                                                     </div>
@@ -471,7 +511,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="modal-form text-center">
-                <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div className="modal fade add-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">

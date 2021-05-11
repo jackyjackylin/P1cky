@@ -32,7 +32,7 @@ function CreateNewList() {
                     </div>
                 </div>
                 <div className="btn-box">
-                    <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">
+                    <button type="button" className="theme-btn border-0 button-success mr-1 hide-list" data-dismiss="modal">
                         Cancel
                     </button>
                     <button className="theme-btn border-0 button-danger">
