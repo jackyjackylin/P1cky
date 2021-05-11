@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import Button from "../../common/Button";
 import {AuthContext} from "../../providers/UserProvider";
 import { auth } from "../../../firebase";
-import userDefaultImg from "../../../assets/images/userDefaultImg.jpg";
+import userDefaultImg from "../../../assets/images/userDefaultImg.jpg"; 
 
 
 export default function HeaderAuthorAccess() {

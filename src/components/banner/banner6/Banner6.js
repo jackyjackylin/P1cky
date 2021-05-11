@@ -17,7 +17,7 @@ function Banner6({title}) {
     const [loaded, setLoaded] = useState(false);
     const [lists, setLists] = useState([]);
     const [restaurantName, setRes] = useState("");
-    const admin = require('firebase-admin')
+    //const admin = require('firebase-admin')
 
     const data = {
         restaurants: [],
