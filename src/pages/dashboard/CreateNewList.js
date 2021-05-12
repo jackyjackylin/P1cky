@@ -33,7 +33,7 @@ function CreateNewList({uid}) {
                     <button type="button" className="theme-btn border-0 button-success mr-1 hide-list" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button className="theme-btn border-0 button-danger">
+                    <button className="theme-btn border-0 button-danger" type='submit'>
                         Add!
                     </button>
                 </div>

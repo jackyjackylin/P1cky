@@ -29,7 +29,7 @@ function AccordionList ({uid}) {
             }).then(()=>{
                 setUserList(fetchedLists);
                 console.log("final:", userList);
-                setTimeout(() => {  setLoaded(true); }, 1000);
+                setTimeout(() => {  setLoaded(true); }, 500);
             })
             .catch(error => {
                 console.log(error);
@@ -73,13 +73,19 @@ function AccordionList ({uid}) {
         })}
     }
 
+    const delRestaurant=async(docName, resName)=>{
+        console.log(docName, resName)
+        const res = await firestore.doc(`users/${uid}/myLists/${docName}/restaurantsList/${resName}`).delete();
+        window.location.reload();
+    }
+
     return (
         <>
            {loaded&&<Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
                 {userList.map((item, i) => {
                     console.log("now:", item)
                     return ( 
-                        <div className="card mb-3" key={i}>
+                        <div className="card mb-3" key={item.listName}>
                             <AccordionItem>
                                 <AccordionItemHeading className="card-header ">
                                     <AccordionItemButton className="btn btn-link d-flex align-items-center justify-content-between ">
@@ -93,8 +99,8 @@ function AccordionList ({uid}) {
                                         <div className="row">
                                             {item.restaurants.map((val, index) => {
                                                 return (
-                                                    <div key={i} className="col-lg-4 column-td-6">
-                                                        <div className="card-item">
+                                                    <div key={`${item.listName}-${index}`} className="col-lg-4 column-td-6">
+                                                        <div className="restaurant-item">
                                                             <div className="card-image">
                                                                 <img src={item.photoURL[index]} className="card__img" alt="Card" />
                                                             </div>
@@ -108,7 +114,7 @@ function AccordionList ({uid}) {
                                                                         <button type="button" className="theme-btn button-success border-0 mr-1">
                                                                             <span className="la"><FaRegEdit /></span> Edit
                                                                         </button>
-                                                                        <button type="button" className="theme-btn delete-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
+                                                                        <button type="button" className="theme-btn delete-btn border-0" onClick={()=>delRestaurant(item.listName,val)}>
                                                                             <span className="la"><FaRegTrashAlt /></span> Delete
                                                                         </button>
                                                                     </div>

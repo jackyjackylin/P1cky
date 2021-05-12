@@ -17,20 +17,17 @@ function Banner6({title}) {
     const [loaded, setLoaded] = useState(false);
     const [lists, setLists] = useState([]);
     const [restaurantName, setRes] = useState("");
-
     const data = {
         comments: "tmp comments",
-        photoURL: "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fiu_bbibbi.jpg?alt=media&token=64b3c484-6059-48be-b406-899020e5e51b",
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fuserimg5.jpg?alt=media&token=dd5c08b1-3bfb-42b3-9257-dbb331acd645"
     }
+
     useEffect(()=> {
         if (currentUser) {
             setLoaded(true)
         }
     },[currentUser])
 
-    if (currentUser) {
-        console.log(currentUser)
-    }
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -94,8 +91,8 @@ function Banner6({title}) {
 
     const addToLists = () => {
         {lists.map((item, i) => {
-            console.log("adding to list" + lists.listName)
-           updateList(item.listName)
+            console.log("adding to list " + item)
+            updateList(item)
         })}
     }
 
@@ -105,7 +102,7 @@ function Banner6({title}) {
             console.log("update");
             window.location.reload();
         }).catch((error)=>{
-            console.error("Error la", error);
+            console.error("Error", error);
         })
     }
 
@@ -165,9 +162,9 @@ function Banner6({title}) {
                                 </button>
                                 <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
                                     if (restaurantName) {
-                                        addToLists();
                                         console.log("Add to:", lists);
                                         console.log("restaurant:", restaurantName);
+                                        addToLists();
                                     }
                                     else {
                                         console.log("Empty input")

@@ -15,7 +15,6 @@ function AddListing() {
     useEffect(() => {
         const google = window.google;
         if (typeof google === 'object' && typeof google.maps === 'object') {
-            console.log("123");
             setLoaded(true);
         }
         else {
