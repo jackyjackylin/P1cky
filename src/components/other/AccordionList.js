@@ -1,4 +1,5 @@
 import { FaPlus, FaMinus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
+import {firestore} from '../../firebase';
 import React,{useState, useEffect} from 'react';
 import {
     Accordion,
@@ -7,17 +8,77 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-import FetchListInfo from '../common/FetchListInfo'
+// import FetchListInfo from '../common/FetchListInfo'
 
-function AccordionList({uid, accordionItems}) {
-    const [userList,setUserList]=useState([])
+function AccordionList ({uid}) {
+    const [loaded,setLoaded]=useState(false);
+    const [userList, setUserList] = useState([]);
+    var fetchedLists = [];
+    var names = [];
+
+    useEffect(() => {
+        if (!loaded) {
+            fetchListInfo();
+        }
+    },[])
+    const getListInfo=async(value)=>{
+        console.log("list:", value);
+        var tmpList = {
+            listName: value,
+            restaurants: [],
+            comments: [],
+            photoURL: []
+        }
+        const ref = firestore.doc(`users/${uid}/myLists/${value}`).collection('restaurantsList');
+        const collections = await ref.get()
+        .then(collections=>{
+            collections.forEach(collection => {
+                tmpList.restaurants.push(collection.id);
+                tmpList.comments.push(collection.data().comments);
+                tmpList.photoURL.push(collection.data().photoURL);
+                console.log("tmp:", tmpList);
+            });
+            fetchedLists.push(tmpList)
+        })
+        .then(()=>{
+            console.log("fetched:", fetchedLists);
+            setUserList(fetchedLists);
+            console.log("final:", userList);
+            setLoaded(true);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
+    const fetchListInfo=async()=>{
+        const doc = firestore.doc(`users/${uid}`).collection('myLists');
+        const listInfo = await doc.get()
+        .then (response => {
+            response.forEach(doc => {
+                names.push(doc.id);
+            });
+        }).then (()=>{
+            getRestaurants();
+            setLoaded(true);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     
+    
+    const getRestaurants=async()=> {
+        {names.map((value) => {
+            getListInfo(value);
+        })}
+    }
+
+
     return (
         <>
-            
             <Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
-            <FetchListInfo uid={uid} userList={userList} setUserList={setUserList}/>
                 {userList.map((item, i) => {
+                    console.log("now:", item)
                     return ( 
                         <div className="card mb-3" key={i}>
                             <AccordionItem>

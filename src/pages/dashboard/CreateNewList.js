@@ -1,27 +1,24 @@
 import {firestore} from '../../firebase';
 import React,{useState, useEffect} from 'react';
+import { AiOutlineRadiusBottomright } from 'react-icons/ai';
 
 
-function CreateNewList() {
-    var uid = "fEyvLKgSSWeRHPf87PUr1OQotHF3";
+function CreateNewList({uid}) {
     const [listName, setListName]=useState('')
 
     const data = {
-        restaurants: [],
-        comments: [],
-        photoURL: []
     }
 
     const handleInput = (val) => {
         setListName(val.target.value);
     };
 
-    const onSubmit=e => {
+    const onSubmit= e => {
+        console.log("uiddd:", uid);
         e.preventDefault();
-        firestore.doc(`users/${uid}`).collection('myLists').doc(listName).set(data)
+        firestore.doc(`users/${uid}`).collection('myLists').doc(`${listName}`).set(data)
         .then(()=>console.log("uploaded"))
         .then(()=>window.location.reload(true))
-
     }
 
     return (

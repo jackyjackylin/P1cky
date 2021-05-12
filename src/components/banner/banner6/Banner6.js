@@ -17,12 +17,10 @@ function Banner6({title}) {
     const [loaded, setLoaded] = useState(false);
     const [lists, setLists] = useState([]);
     const [restaurantName, setRes] = useState("");
-    const admin = require('firebase-admin')
 
     const data = {
-        restaurants: [],
-        comments: [],
-        photoURL: [],
+        comments: ["tmp comments"],
+        photoURL: ["https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fiu_bbibbi.jpg?alt=media&token=64b3c484-6059-48be-b406-899020e5e51b"],
     }
     useEffect(()=> {
         if (currentUser) {
@@ -101,13 +99,10 @@ function Banner6({title}) {
         })}
     }
 
-    const updateList = async(listName) => {
-        const userRef = firestore.doc(`users/${currentUser.uid}/myLists/${listName}`);
-        const unionRes = await userRef.update({
-            restaurants: firebase.firestore.FieldValue.arrayUnion(restaurantName),
-            comments: firebase.firestore.FieldValue.arrayUnion(""),
-            photoURL: firebase.firestore.FieldValue.arrayUnion("")
-        }).then(() => {
+    const updateList = async(docName) => {
+        const userRef = firestore.doc(`users/${currentUser.uid}/myLists/${docName}/restaurantsList/${restaurantName}`).set(data)
+        .then(() => {
+            console.log("update");
             window.location.reload();
         }).catch((error)=>{
             console.error("Error la", error);

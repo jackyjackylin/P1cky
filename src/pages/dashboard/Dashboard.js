@@ -18,6 +18,7 @@ import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 import CreateNewList from "./CreateNewList"
 import firebase from "firebase/app";
+import FetchListInfo from "../../components/common/FetchListInfo"
 
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
@@ -32,21 +33,17 @@ function Dashboard() {
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
     const [loaded, setLoaded] = useState(false);
+    const [userList, setUserList] = useState([]);
 
-    const data = {
-        restaurants: [],
-        comments: [],
-        photoURL: [],
-    }
 
     useEffect(()=> {
         if (currentUser) {
-            console.log("uidddd:",currentUser.uid)
-            setLoaded(true)
+            console.log("uid:",currentUser.uid)
             setDisplayName(currentUser.displayName);
             setBioData(currentUser.bioData);
             setLocation(currentUser.location);
             setPhoneNumber(currentUser.phoneNumber);
+            setLoaded(true)
         }
     },[currentUser])
 
@@ -269,7 +266,7 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    {loaded&& <AccordionList uid={currentUser.uid} />}
+                                                    {loaded&& <AccordionList uid={currentUser.uid} userList={userList} setUserList={setUserList} />}
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>
@@ -515,7 +512,7 @@ function Dashboard() {
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
-                            <CreateNewList />
+                            {loaded && <CreateNewList uid={currentUser.uid}/>}
                         </div>
                     </div>
                 </div>
