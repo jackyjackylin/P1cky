@@ -14,33 +14,32 @@ function AccordionList ({uid}) {
     const [userList, setUserList] = useState([]);
     var fetchedLists = [];
     var names = [];
-
+    let flag = false;
 
     useEffect(() => {
-        async function fetch() {
-            const doc = firestore.doc(`users/${uid}`).collection('myLists');
-            const listInfo = await doc.get()
-            .then (response => {
-                response.forEach(doc => {
-                    names.push(doc.id);
-                });
-            }).then (()=>{
-                getRestaurants();
-            }).then(()=>{
-                setUserList(fetchedLists);
-                console.log("final:", userList);
-                setTimeout(() => {  setLoaded(true); }, 500);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        if(!loaded){
+            fetch()
         }
+    },[loaded])
 
-        fetch()
-    },[])
-
+    async function fetch() {
+        console.log("fetch")
+        const doc = firestore.doc(`users/${uid}`).collection('myLists');
+        const listInfo = await doc.get()
+        .then (response => {
+            response.forEach(doc => {
+                names.push(doc.id);
+            });
+        }).then (()=>{
+            console.log("get Restaurants")
+            getRestaurants()
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     const getListInfo=async(value)=>{
-        console.log("list:", value);
+        // console.log("list:", value);
         var tmpList = {
             listName: value,
             restaurants: [],
@@ -51,17 +50,17 @@ function AccordionList ({uid}) {
         const collections = await ref.get()
         .then(collections=>{
             collections.forEach(collection => {
-                console.log("current doc:", collection.id)
+                // console.log("current doc:", collection.id)
                 tmpList.restaurants.push(collection.id);
                 tmpList.comments.push(collection.data().comments);
                 tmpList.photoURL.push(collection.data().photoURL);
             });
-            console.log("tmp:", tmpList);
             fetchedLists.push(tmpList)
-            console.log("fetched:", fetchedLists);
-            setUserList(fetchedLists);
-            console.log("final:", userList);
-        })
+        }).then(()=>{
+                setUserList(userList=>[...fetchedLists]);
+                setLoaded(loaded=>true);
+            }
+        )
         .catch(error => {
             console.log(error);
         });
@@ -81,7 +80,8 @@ function AccordionList ({uid}) {
 
     return (
         <>
-           {loaded&&<Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
+        
+           {<Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
                 {userList.map((item, i) => {
                     console.log("now:", item)
                     return ( 
