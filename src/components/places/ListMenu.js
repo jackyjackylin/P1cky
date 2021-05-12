@@ -9,7 +9,7 @@ const ListMenu = () => (
         closeOnDocumentClick
         mouseLeaveDelay={300}
         mouseEnterDelay={0}
-        contentStyle={{ padding: '0px', border: '10px', "z-index": "10000"}}
+        contentStyle={{ padding: '0px', border: '10px', "zIndex": "10000"}}
         arrow={true}
       >
         <div className="menu">

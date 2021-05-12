@@ -26,6 +26,7 @@ function Home() {
     let nextItemId = ()=>{
         if(popItemList != null){
             setPopItemId( (popItemId+1) % popItemList.length);
+            
         }
     }
     // clean all data before toggle the flag show up

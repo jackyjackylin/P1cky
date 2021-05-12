@@ -25,19 +25,21 @@ function SignUpBox({title, subtitle}) {
         if(!isPasswordConfirmed(password, confirmpassword)){
             // password is not matching, you can show error to your user
             alert("Confirm Password is not matched");
+        }else{
+            try{
+                const {user} = await auth.createUserWithEmailAndPassword(email, password);
+                console.log(displayName);
+                generateUserDocument(user, {displayName});
+              }
+              catch(error){
+                alert('Error Signing up with email and password');
+              }
+              setEmail("");
+              setPassword("");
+              setDisplayName("");
+              setConfirmpassword("");
         }
-        try{
-          const {user} = await auth.createUserWithEmailAndPassword(email, password);
-          console.log(displayName);
-          generateUserDocument(user, {displayName});
-        }
-        catch(error){
-          alert('Error Signing up with email and password');
-        }
-        setEmail("");
-        setPassword("");
-        setDisplayName("");
-        setConfirmpassword("");
+
     };
     const onChangeHandler = event => {
         const { name, value } = event.currentTarget;
