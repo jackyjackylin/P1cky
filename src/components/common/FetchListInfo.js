@@ -65,4 +65,4 @@ export default function FetchListInfo({uid, userList, setUserList}) {
         });
     }
     return null;
-};
+}

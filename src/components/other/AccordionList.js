@@ -8,7 +8,6 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-// import FetchListInfo from '../common/FetchListInfo'
 
 function AccordionList ({uid}) {
     const [loaded,setLoaded]=useState(false);
@@ -16,11 +15,30 @@ function AccordionList ({uid}) {
     var fetchedLists = [];
     var names = [];
 
+
     useEffect(() => {
-        if (!loaded) {
-            fetchListInfo();
+        async function fetch() {
+            const doc = firestore.doc(`users/${uid}`).collection('myLists');
+            const listInfo = await doc.get()
+            .then (response => {
+                response.forEach(doc => {
+                    names.push(doc.id);
+                });
+            }).then (()=>{
+                getRestaurants();
+            }).then(()=>{
+                setUserList(fetchedLists);
+                console.log("final:", userList);
+                setTimeout(() => {  setLoaded(true); }, 1000);
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
+
+        fetch()
     },[])
+
     const getListInfo=async(value)=>{
         console.log("list:", value);
         var tmpList = {
@@ -33,39 +51,21 @@ function AccordionList ({uid}) {
         const collections = await ref.get()
         .then(collections=>{
             collections.forEach(collection => {
+                console.log("current doc:", collection.id)
                 tmpList.restaurants.push(collection.id);
                 tmpList.comments.push(collection.data().comments);
                 tmpList.photoURL.push(collection.data().photoURL);
-                console.log("tmp:", tmpList);
             });
+            console.log("tmp:", tmpList);
             fetchedLists.push(tmpList)
-        })
-        .then(()=>{
             console.log("fetched:", fetchedLists);
             setUserList(fetchedLists);
             console.log("final:", userList);
-            setLoaded(true);
         })
         .catch(error => {
             console.log(error);
         });
     }
-    const fetchListInfo=async()=>{
-        const doc = firestore.doc(`users/${uid}`).collection('myLists');
-        const listInfo = await doc.get()
-        .then (response => {
-            response.forEach(doc => {
-                names.push(doc.id);
-            });
-        }).then (()=>{
-            getRestaurants();
-            setLoaded(true);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
-    
     
     const getRestaurants=async()=> {
         {names.map((value) => {
@@ -73,10 +73,9 @@ function AccordionList ({uid}) {
         })}
     }
 
-
     return (
         <>
-            <Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
+           {loaded&&<Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
                 {userList.map((item, i) => {
                     console.log("now:", item)
                     return ( 
@@ -127,7 +126,7 @@ function AccordionList ({uid}) {
                     )
                 })}
 
-            </Accordion>
+            </Accordion>}
         </>
     );
 }

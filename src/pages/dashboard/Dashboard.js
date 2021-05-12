@@ -18,7 +18,6 @@ import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 import CreateNewList from "./CreateNewList"
 import firebase from "firebase/app";
-import FetchListInfo from "../../components/common/FetchListInfo"
 
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
@@ -32,9 +31,7 @@ function Dashboard() {
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
-    const [uid, setUID] = useState("");
     const [loaded, setLoaded] = useState(false);
-    const [userList, setUserList] = useState([]);
 
 
     useEffect(()=> {
@@ -268,7 +265,7 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    {loaded&& <AccordionList uid={currentUser.uid} userList={userList} setUserList={setUserList} />}
+                                                    {loaded && <AccordionList uid={currentUser.uid} />}
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>

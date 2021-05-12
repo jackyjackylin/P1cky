@@ -19,8 +19,8 @@ function Banner6({title}) {
     const [restaurantName, setRes] = useState("");
 
     const data = {
-        comments: ["tmp comments"],
-        photoURL: ["https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fiu_bbibbi.jpg?alt=media&token=64b3c484-6059-48be-b406-899020e5e51b"],
+        comments: "tmp comments",
+        photoURL: "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fiu_bbibbi.jpg?alt=media&token=64b3c484-6059-48be-b406-899020e5e51b",
     }
     useEffect(()=> {
         if (currentUser) {
