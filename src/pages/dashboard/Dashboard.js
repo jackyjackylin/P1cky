@@ -7,7 +7,7 @@ import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineExclamationCircle } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
 import Button from "../../components/common/Button";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
@@ -254,7 +254,7 @@ function Dashboard() {
                                     <div className="btn-box">
                                         <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
                                         <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
-                                        <Link to="/" className="theme-btn ml-1"><span className="la"><AiOutlinePoweroff /></span> sign out</Link>
+                                        <Link to="/" className="theme-btn ml-1"><span className="la"><AiFillDelete /></span> delete List</Link>
                                     </div>
                                 </div>
                             </div>
