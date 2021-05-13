@@ -57,10 +57,13 @@ function DeleteListCheckList({uid}) {
         // window.location.reload();
     }
 
-    const deleteList=async(docName)=>{
-        console.log("current list:", docName);
-        const res = await firestore.doc(`users/${uid}/myLists/${docName}`).delete();
-        console.log(docName, " deleted!");
+    const deleteList = async _ => {
+        const promises= checked.map(async item => {
+            const res = await firestore.doc(`users/${uid}/myLists/${item}`).delete();
+            console.log(item)
+        })
+        const res = await Promise.all(promises)
+        window.location.reload();
     }
     
     return (
@@ -93,10 +96,7 @@ function DeleteListCheckList({uid}) {
                         console.log("uid:", uid);
                         console.log("checked:", checked);
                         e.preventDefault();
-                        checked.map((item, i) => {
-                            deleteList(item);
-                        })
-                        setTimeout(() => {window.location.reload();}, 500);
+                        deleteList();
                     }}>
                         Delete
                     </button>
