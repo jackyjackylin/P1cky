@@ -188,15 +188,12 @@ function Dashboard() {
                 ) {
                     if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn')) {
                         showDeleteAcntModal.call(target, e)
-                        console.log(target.classList);
                         break
                     }else if(target.matches('.createNewList')){
                         showAddListModal.call(target,e)
-                        console.log(target.classList);
                         break
                     }else if(target.matches('.createNewFriend')){
                         showAddFriendModal.call(target,e)
-                        console.log(target.classList);
                         break
                     }
                 }
@@ -444,20 +441,6 @@ function Dashboard() {
                                                                     </div>
                                                                 </form>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="delete-account-info">
-                                                    <div className="billing-form-item">
-                                                        <div className="billing-title-wrap">
-                                                            <h3 className="widget-title pb-0 color-text">Delete Account</h3>
-                                                            <div className="title-shape margin-top-10px"></div>
-                                                        </div>
-                                                        <div className="delete-info-content p-4">
-                                                            <p className="mb-3">
-                                                                <span className="text-warning">Warning:</span> Once you delete your account, there is no going back. Please be certain.
-                                                            </p>
-                                                            <Button text="delete my account" url="#" className="delete-account border-0" />
                                                         </div>
                                                     </div>
                                                 </div>

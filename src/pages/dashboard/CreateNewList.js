@@ -36,7 +36,6 @@ function CreateNewList({uid}) {
                     </button>
                 </div>
             </form>
-            
         </>
     );
 }

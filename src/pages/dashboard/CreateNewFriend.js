@@ -1,22 +1,32 @@
 import {firestore} from '../../firebase';
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 
 function CreateNewFriend({uid}) {
-    const [listName, setListName]=useState('')
+    const [friend, setFriend]=useState('')
 
     const data = {
     }
 
     const handleInput = (val) => {
-        setListName(val.target.value);
+        setFriend(val.target.value);
     };
 
     const onSubmit= e => {
-        console.log("uiddd:", uid);
+        console.log(uid);
+        console.log(friend);
         e.preventDefault();
-        firestore.doc(`users/${uid}`).collection('myFriends').doc(`${listName}`).set(data)
-        .then(()=>console.log("Add Friend!!"))
-        .then(()=>window.location.reload(true))
+        firestore.collection("users").where("email", "==", friend).get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                firestore.doc(`users/${uid}`).collection('myFriends').doc(`${doc.id}`).set(data)
+                .then(()=>console.log("Add Friend!!"))
+                .then(()=>window.location.reload(true))
+            });
+        })
+        .catch((error) => {
+            console.log("Error fetching user data:", error);
+            alert("Can not Find The User")
+        });
     }
 
     return (
