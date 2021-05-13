@@ -84,16 +84,24 @@ function DeleteListCheckList({uid}) {
                     );
                 })}
             </List>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}> */}
                 <div className="btn-box">
                     <button type="button" className="theme-btn border-0 button-success mr-1 hide-delete-list" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button className="theme-btn border-0 button-danger" type='submit'>
+                    <button className="theme-btn border-0 button-danger" type='button' onClick={(e)=>{
+                        console.log("uid:", uid);
+                        console.log("checked:", checked);
+                        e.preventDefault();
+                        checked.map((item, i) => {
+                            deleteList(item);
+                        })
+                        setTimeout(() => {window.location.reload();}, 500);
+                    }}>
                         Delete
                     </button>
                 </div>
-            </form>
+            {/* </form> */}
         </>
     );
 }
