@@ -2172,6 +2172,11 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .add-friend-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .modal-open .report-modal-box,
   .modal-open .account-delete-modal {
     visibility: visible;
@@ -2211,6 +2216,23 @@ body {
   transform: none;
 }
 .list-modal-open .add-list-modal {
+  visibility: visible;
+}
+
+/*-----------new modal---------------------*/
+.friend-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.friend-modal-open .modal.add-friend-modal .fade.show,
+.friend-modal-open .modal.add-friend-modal .fade:not(.show),
+.friend-modal-open .modal {
+  opacity: 1;
+}
+.friend-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.friend-modal-open .add-friend-modal {
   visibility: visible;
 }
 /*====================================================

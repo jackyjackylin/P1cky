@@ -1,7 +1,7 @@
 import {firestore} from '../../firebase';
 import React,{useState, useEffect} from 'react';
 
-function CreateNewList({uid}) {
+function CreateNewFriend({uid}) {
     const [listName, setListName]=useState('')
 
     const data = {
@@ -14,8 +14,8 @@ function CreateNewList({uid}) {
     const onSubmit= e => {
         console.log("uiddd:", uid);
         e.preventDefault();
-        firestore.doc(`users/${uid}`).collection('myLists').doc(`${listName}`).set(data)
-        .then(()=>console.log("uploaded"))
+        firestore.doc(`users/${uid}`).collection('myFriends').doc(`${listName}`).set(data)
+        .then(()=>console.log("Add Friend!!"))
         .then(()=>window.location.reload(true))
     }
 
@@ -24,11 +24,11 @@ function CreateNewList({uid}) {
             <form onSubmit={onSubmit}>
                 <div className="input-box">
                     <div className="form-group">
-                        <input onChange={handleInput} className="form-control" type="text" name="text" placeholder="Enter the name of your new list" />
+                        <input onChange={handleInput} className="form-control" type="text" name="text" placeholder="Enter your Friends' Email" />
                     </div>
                 </div>
                 <div className="btn-box">
-                    <button type="button" className="theme-btn border-0 button-success mr-1 hide-list" data-dismiss="modal">
+                    <button type="button" className="theme-btn border-0 button-success mr-1 hide-friend" data-dismiss="modal">
                         Cancel
                     </button>
                     <button className="theme-btn border-0 button-danger" type='submit'>
@@ -41,4 +41,4 @@ function CreateNewList({uid}) {
     );
 }
 
-export default CreateNewList;
+export default CreateNewFriend;
