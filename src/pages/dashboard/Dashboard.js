@@ -32,7 +32,7 @@ function Dashboard() {
     const [location, setLocation] = useState("");
     const [file, setFile] = useState(null);
     const [loaded, setLoaded] = useState(false);
-
+    const [userList, setUserList] = useState([]);
 
     useEffect(()=> {
         if (currentUser) {
@@ -252,7 +252,8 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                        <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link>
+                                    <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
+                                        {/* <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
                                         <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
                                         <Link to="/" className="theme-btn ml-1"><span className="la"><AiFillDelete /></span> delete List</Link>
                                     </div>
@@ -265,7 +266,7 @@ function Dashboard() {
                                         <div className="container">
                                             <div className="row section-title-width section-title-ml-mr-0">
                                                 <div className="col-lg-12">
-                                                    {loaded && <AccordionList uid={currentUser.uid} />}
+                                                    {loaded && <AccordionList uid={currentUser.uid} userList={userList} setUserList={setUserList}/>}
                                                 </div>
                                             </div>
                                             <div className="section-block-2 margin-top-120px"></div>

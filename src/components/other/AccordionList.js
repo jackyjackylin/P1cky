@@ -9,15 +9,15 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 
-function AccordionList ({uid}) {
+function AccordionList ({uid,userList, setUserList}) {
     const [loaded,setLoaded]=useState(false);
-    const [userList, setUserList] = useState([]);
+    
     var fetchedLists = [];
     var names = [];
     let flag = false;
 
     useEffect(() => {
-        if(!loaded){
+        if(userList.length==0 ){
             fetch()
         }
     },[loaded])
@@ -83,7 +83,6 @@ function AccordionList ({uid}) {
         
            {<Accordion allowZeroExpanded className="accordion accordion-item pr-4" id="accordionExample">
                 {userList.map((item, i) => {
-                    console.log("now:", item)
                     return ( 
                         <div className="card mb-3" key={item.listName}>
                             <AccordionItem>
