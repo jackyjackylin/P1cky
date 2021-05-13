@@ -1,14 +1,10 @@
 import React, {useEffect, useState, useContext} from 'react';
-import Button from "../../common/Button";
-import ListsBtn from "../../common/ListsBtn";
 import { FiSearch,FiPlusCircle } from 'react-icons/fi'
 import sectiondata from "../../../store/store";
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
 import AddRestaurants from "../../common/AddRestaurants";
 import {AuthContext} from "../../providers/UserProvider";
 import ButtonList from "../../other/ButtonList";
-import { auth , firestore,  storage} from "../../../firebase";
-import firebase from "firebase/app";
+import {firestore} from "../../../firebase";
 
 
 function Banner6({title}) {

@@ -7,7 +7,7 @@ import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlinePlusCircle, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
 import Button from "../../components/common/Button";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
@@ -17,6 +17,7 @@ import {AuthContext} from "../../components/providers/UserProvider";
 import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 import CreateNewList from "./CreateNewList"
+import CreateNewFriend from "./CreateNewFriend"
 import firebase from "firebase/app";
 
 function Dashboard() {
@@ -64,12 +65,12 @@ function Dashboard() {
         }
     };
   
-      const updateProfile = async() => {
+    const updateProfile = async() => {
           const userRef = firestore.doc(`users/${currentUser.uid}`);  
           const snapshot = await userRef.get();
           if (snapshot.exists) {
               try {
-                  await userRef.update({
+                userRef.update({
                       displayName: displayName,
                       bioData: bioData,
                       phoneNumber: phoneNumber,
@@ -89,7 +90,7 @@ function Dashboard() {
                   console.error("Error creating user document", error);
               }
           }
-      }
+    }
 
     function handleChange(e) {
         setFile(e.target.files[0]);
@@ -172,6 +173,13 @@ function Dashboard() {
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
+
+        function showAddFriendModal(e) {
+            body.classList.add('friend-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
@@ -184,6 +192,11 @@ function Dashboard() {
                         break
                     }else if(target.matches('.createNewList')){
                         showAddListModal.call(target,e)
+                        console.log(target.classList);
+                        break
+                    }else if(target.matches('.createNewFriend')){
+                        showAddFriendModal.call(target,e)
+                        console.log(target.classList);
                         break
                     }
                 }
@@ -194,11 +207,19 @@ function Dashboard() {
             body.style.paddingRight = '0'
             e.preventDefault()
         }
+
         function hideAddListModal(e) {
             body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
+
+        function hideAddFriendModal(e) {
+            body.classList.remove('friend-modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
@@ -210,6 +231,9 @@ function Dashboard() {
                         break
                     }else if (target.matches('.add-list-modal .modal-bg, .btn-box .hide-list')) {
                         hideAddListModal.call(target, e)
+                        break
+                    }else if (target.matches('.add-friend-modal .modal-bg, .btn-box .hide-friend')) {
+                        hideAddFriendModal.call(target, e)
                         break
                     }
                 }
@@ -252,9 +276,12 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                    <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
+                                        <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
                                         {/* <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
-                                        <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
+                                        {/* <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
+                                        <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
+                                        {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
+                                        <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
                                         <Link to="/" className="theme-btn ml-1"><span className="la"><AiFillDelete /></span> delete List</Link>
                                     </div>
                                 </div>
@@ -279,7 +306,7 @@ function Dashboard() {
                                             <div className="col-lg-4">
                                                 <div className="user-profile-action">
                                                     <div className="user-pro-img mb-4">
-                                                        <img src= {currentUser? (currentUser.photoURL==""? userDefaultImg : currentUser.photoURL) : userDefaultImg}  alt="User Image"  width="331" height="368"/>
+                                                        <img src= {currentUser? (currentUser.photoURL===""? userDefaultImg : currentUser.photoURL) : userDefaultImg}  alt="User Image"  width="331" height="368"/>
                                                         <div className="dropdown edit-btn">
                                                             <button
                                                                 className="theme-btn edit-btn dropdown-toggle border-0 after-none"
@@ -478,7 +505,6 @@ function Dashboard() {
 
             {/* Footer */}
             <Footer />
-
             <ScrollTopBtn />
 
 
@@ -503,6 +529,16 @@ function Dashboard() {
                                     delete!
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-form text-center">
+                <div className="modal fade add-friend-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div className="modal-bg"></div>
+                    <div className="modal-dialog modal-lg" role="document" >
+                        <div className="modal-content p-4">
+                            {loaded && <CreateNewFriend uid={currentUser.uid}/>}
                         </div>
                     </div>
                 </div>
