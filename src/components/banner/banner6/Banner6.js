@@ -3,7 +3,7 @@ import { FiSearch,FiPlusCircle } from 'react-icons/fi'
 import sectiondata from "../../../store/store";
 import AddRestaurants from "../../common/AddRestaurants";
 import {AuthContext} from "../../providers/UserProvider";
-import ButtonList from "../../other/ButtonList";
+import AddToListCheckList from "../../other/AddToListCheckList";
 import {firestore} from "../../../firebase";
 
 
@@ -150,7 +150,7 @@ function Banner6({title}) {
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
-                            {loaded && <ButtonList uid={currentUser.uid} lists={lists} setLists={setLists} />}
+                            {loaded && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
                             {/* <div className="row padding-top-100px"></div> */}
                             <div className="btn-box">
                                 <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">

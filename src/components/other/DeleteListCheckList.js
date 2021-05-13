@@ -7,22 +7,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//         width: '100%',
-//         maxWidth: 360,
-//         backgroundColor: theme.palette.background.paper,
-//     },
-// }));
-
-function ButtonList({uid, lists, setLists}) {
-    // const classes = useStyles();
+function DeleteListCheckList({uid}) {
     const [checked, setChecked] = useState([]);
     const [loaded, setLoaded] = useState([]);
     const [names, setNames] = useState([]);
+
     const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
     
         if (currentIndex === -1) {
             newChecked.push(value);
@@ -30,8 +22,6 @@ function ButtonList({uid, lists, setLists}) {
             newChecked.splice(currentIndex, 1);
         }
         setChecked(newChecked);
-        setLists(newChecked);
-        console.log("newChecked:", newChecked, "checked:", checked);
     };
 
     useEffect(()=> {
@@ -55,11 +45,27 @@ function ButtonList({uid, lists, setLists}) {
         }
         fetch();
     },[])
+
+    const onSubmit= e => {
+        console.log("uid:", uid);
+        console.log("checked:", checked);
+        e.preventDefault();
+        checked.map((item, i) => {
+            deleteList(item);
+        })
+        setTimeout(() => {window.location.reload();}, 500);
+        // window.location.reload();
+    }
+
+    const deleteList=async(docName)=>{
+        console.log("current list:", docName);
+        const res = await firestore.doc(`users/${uid}/myLists/${docName}`).delete();
+        console.log(docName, " deleted!");
+    }
     
     return (
         <>
-            {/* <List className={classes.root}> */}
-            <List className=".add-to-lists-list-item">
+            <List className=".delete-lists-item">
                 {names.map((item, i) => {
                     const labelId = `checkbox-list-label-${item}`;
                     return (
@@ -78,8 +84,18 @@ function ButtonList({uid, lists, setLists}) {
                     );
                 })}
             </List>
+            <form onSubmit={onSubmit}>
+                <div className="btn-box">
+                    <button type="button" className="theme-btn border-0 button-success mr-1 hide-delete-list" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button className="theme-btn border-0 button-danger" type='submit'>
+                        Delete
+                    </button>
+                </div>
+            </form>
         </>
     );
 }
 
-export default ButtonList;
+export default DeleteListCheckList;

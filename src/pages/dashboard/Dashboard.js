@@ -19,6 +19,7 @@ import userDefaultImg from "../../assets/images/userDefaultImg.jpg";
 import CreateNewList from "./CreateNewList"
 import CreateNewFriend from "./CreateNewFriend"
 import firebase from "firebase/app";
+import DeleteListCheckList from '../../components/other/DeleteListCheckList';
 
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
@@ -180,6 +181,12 @@ function Dashboard() {
             e.preventDefault()
         }
 
+        function showDeleteListModal(e) {
+            body.classList.add('delete-list-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
@@ -194,6 +201,9 @@ function Dashboard() {
                         break
                     }else if(target.matches('.createNewFriend')){
                         showAddFriendModal.call(target,e)
+                        break
+                    }else if(target.matches('.deleteList')){
+                        showDeleteListModal.call(target,e)
                         break
                     }
                 }
@@ -217,6 +227,12 @@ function Dashboard() {
             e.preventDefault()
         }
 
+        function hideDeleteListModal(e) {
+            body.classList.remove('delete-list-modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
@@ -231,6 +247,9 @@ function Dashboard() {
                         break
                     }else if (target.matches('.add-friend-modal .modal-bg, .btn-box .hide-friend')) {
                         hideAddFriendModal.call(target, e)
+                        break
+                    }else if (target.matches('.delete-list-modal .modal-bg, .btn-box .hide-delete-list')) {
+                        hideDeleteListModal.call(target, e)
                         break
                     }
                 }
@@ -279,7 +298,7 @@ function Dashboard() {
                                         <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
                                         {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
                                         <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
-                                        <Link to="/" className="theme-btn ml-1"><span className="la"><AiFillDelete /></span> delete List</Link>
+                                        <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
                                     </div>
                                 </div>
                             </div>
@@ -532,6 +551,16 @@ function Dashboard() {
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
                             {loaded && <CreateNewList uid={currentUser.uid}/>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="modal-form text-center">
+                <div className="modal fade delete-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div className="modal-bg"></div>
+                    <div className="modal-dialog modal-lg" role="document" >
+                        <div className="modal-content p-4">
+                            {loaded && <DeleteListCheckList uid={currentUser.uid}/>}
                         </div>
                     </div>
                 </div>

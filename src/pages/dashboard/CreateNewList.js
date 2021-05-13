@@ -12,9 +12,10 @@ function CreateNewList({uid}) {
     };
 
     const onSubmit= e => {
-        console.log("uiddd:", uid);
+        console.log("uid:", uid);
+        console.log(listName);
         e.preventDefault();
-        firestore.doc(`users/${uid}`).collection('myLists').doc(`${listName}`).set(data)
+        firestore.doc(`users/${uid}/myLists/${listName}`).set(data)
         .then(()=>console.log("uploaded"))
         .then(()=>window.location.reload(true))
     }

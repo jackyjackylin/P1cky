@@ -2177,6 +2177,11 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .delete-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .modal-open .report-modal-box,
   .modal-open .account-delete-modal {
     visibility: visible;
@@ -2235,6 +2240,24 @@ body {
 .friend-modal-open .add-friend-modal {
   visibility: visible;
 }
+
+/*-----------new modal---------------------*/
+.delete-list-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.delete-list-modal-open .modal.delete-list-modal .fade.show,
+.delete-list-modal-open .modal.delete-list-modal .fade:not(.show),
+.delete-list-modal-open .modal {
+  opacity: 1;
+}
+.delete-list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.delete-list-modal-open .delete-list-modal {
+  visibility: visible;
+}
+
 /*====================================================
     breadcrumb-area
  ====================================================*/

@@ -194,6 +194,15 @@ dl, ol, ul {
     border-color: rgba(128, 137, 150, 0.3);
     color: #808996;
 }
+.delete-lists-item {
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px; 
+    width: 100%;
+    background-color: #fff;
+    border-color: rgba(128, 137, 150, 0.3);
+    color: #808996;
+}
 
 
 
