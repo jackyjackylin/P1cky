@@ -54,87 +54,93 @@ function getDirection(business){
 
 function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItemId}){
     let item = itemList[itemId];
-    return(
-        <div className="row mt-5">
-            <div className="col-lg-12">
-                        <div className="card-item popup-window" >
-                            <div className="card-area">
-                            <a href="#" className="card-image-wrap">
-                                <div className="card-image">
-                                    <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
-                                    { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
-                                    <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
-                                        {showPop ? <FiX/> : <FiHeart/>}
-
-                                    </span>  
-                                </div>
-                            </a>
-                            
-                            <div className={`card-content-wrap  popup-window-content`}>
-                                <div className="card-content popup-card">
-                                    <a href="#">
-                                        <h5 className="card-meta">
-                                            <span>{<GiChickenOven />}</span> 
-                                            <i key={nanoid()}>{item.categories[0].title.trim()}</i>
-                                            {(item.categories.length>1) && <i key={nanoid()}> &amp; {item.categories[1].title.trim()}</i>}
-                                        </h5>
-                                        <h4 className="card-title">{item.name}
-                                            <i>{item.titleIcon}</i>
-                                        </h4>
-                                        <p className="card-sub">
-                                            <i>{item.location.city}, {item.location.state} {item.location.zip_code}</i>
-                                        </p>
-                                    </a>
-                                    <ul className="info-list padding-top-20px">
-                                        <li>
-                                            <span className="la d-inline-block"><FiPhone /></span> {item.display_phone}
-                                        </li>
-                                        <li>
-                                            <span className="la d-inline-block"><IoIosLink /></span>  <a href={item.url}>
-                                                Link to Yelp
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div className="info-button-row">
-                                                <div>
-                                                    <span className="la d-inline-block"><FaMoneyBillWave />  </span> 
-                                                    {String(item.price).split('').map(()=> {
-                                                        return (
-                                                            <a key={nanoid()}> <AiFillDollarCircle /> </a>
-                                                        )   
-                                                    })}      
-                                                </div>
-                                                <div>
-                                                    
-                                                    <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
-                                                    <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
-                                                    <ListMenu/>
-                                                </div>
-                                            </div>
-
+    try {
+        return(
+            <div className="row mt-5">
+                <div className="col-lg-12">
+                            <div className="card-item popup-window" >
+                                <div className="card-area">
+                                <a href="#" className="card-image-wrap">
+                                    <div className="card-image">
+                                        <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
+                                        { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
+                                        <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
+                                            {showPop ? <FiX/> : <FiHeart/>}
+    
+                                        </span>  
+                                    </div>
+                                </a>
+                                
+                                <div className={`card-content-wrap  popup-window-content`}>
+                                    <div className="card-content popup-card">
+                                        <a href="#">
+                                            <h5 className="card-meta">
+                                                <span>{<GiChickenOven />}</span> 
+                                                <i key={nanoid()}>{item.categories[0].title.trim()}</i>
+                                                {(item.categories.length>1) && <i key={nanoid()}> &amp; {item.categories[1].title.trim()}</i>}
+                                            </h5>
+                                            <h4 className="card-title">{item.name}
+                                                <i>{item.titleIcon}</i>
+                                            </h4>
+                                            <p className="card-sub">
+                                                <i>{item.location.city}, {item.location.state} {item.location.zip_code}</i>
+                                            </p>
+                                        </a>
+                                        <ul className="info-list padding-top-20px">
+                                            <li>
+                                                <span className="la d-inline-block"><FiPhone /></span> {item.display_phone}
+                                            </li>
+                                            <li>
+                                                <span className="la d-inline-block"><IoIosLink /></span>  <a href={item.url}>
+                                                    Link to Yelp
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div className="info-button-row">
+                                                    <div>
+                                                        <span className="la d-inline-block"><FaMoneyBillWave />  </span> 
+                                                        {String(item.price).split('').map(()=> {
+                                                            return (
+                                                                <a key={nanoid()}> <AiFillDollarCircle /> </a>
+                                                            )   
+                                                        })}      
+                                                    </div>
+                                                    <div>
                                                         
-                                        </li>
-                                    </ul>
-                                </div> 
-                                <div className="rating-row">
-                                    <div className="rating-rating">
-                                        <span> {rating_to_star[parseFloat(item.rating)/0.5].map((rating, index) => {
-                                                return (
-                                                    <span key={index}>{rating}</span>
-                                                )
-                                            })}
-                                            </span>
-                                        <span className="rating-count">{parseFloat(item.rating)}</span>
+                                                        <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
+                                                        <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                        <ListMenu/>
+                                                    </div>
+                                                </div>
+    
+                                                            
+                                            </li>
+                                        </ul>
                                     </div> 
-                                    
+                                    <div className="rating-row">
+                                        <div className="rating-rating">
+                                            <span> {rating_to_star[parseFloat(item.rating)/0.5].map((rating, index) => {
+                                                    return (
+                                                        <span key={index}>{rating}</span>
+                                                    )
+                                                })}
+                                                </span>
+                                            <span className="rating-count">{parseFloat(item.rating)}</span>
+                                        </div> 
+                                        
+                                    </div>
+                                </div>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                    )
+                        )
+                </div>
             </div>
-        </div>
-    )
+        )}
+        catch(err){
+            console.log(err)
+            return null;
+        }
+    
 };
 
 export default ResultPage;

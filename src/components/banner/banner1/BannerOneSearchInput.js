@@ -12,7 +12,7 @@ import ResultPage from '../../places/ResultPage';
 // this.handleSubmit = this.handleSubmit.bind(this);
 
 
-export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
+export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop}) {
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState(1);
     const [price, setPrice] = useState(1);
@@ -26,13 +26,6 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
         body.style.paddingRight = '17px'
         // e.preventDefault()
     }
-
-    function hideDeleteAcntModal(e) {
-        body.classList.remove('modal-open')
-        body.style.paddingRight = '0'
-        // e.preventDefault()
-    }
-
 
     const _setFoodType = (ft) => {
         setFoodType(ft)
@@ -71,7 +64,7 @@ export default function BannerOneSearchInput({setPopItemList,toggleShowPop}) {
                     <button className="button theme-btn" type="submit" onClick={()=>{
                         GetRestaurantsFromApi({lat,lng,foodType,rating,price})
                         .then((res) => {
-                            setPopItemList(res.data.businesses);
+                            setPopItemList(itemList=> res.data.businesses);
                             console.log(res); 
                             //toggleShowPop(set,flag)
                             toggleShowPop({set:true,val:true});

@@ -22,7 +22,55 @@ function Home() {
     const [lng, setLng] = useState(-117.8265049);
     const [rloaded, setRloaded] = useState(false);
     const [popItem, setPopItem] = useState(null);
+
+    /*=================Control Modal that would display on HomePage===============*/
+    useEffect(() => {
+        const body = document.querySelector('body')
     
+        function showDeleteAcntModal(e) {
+            body.classList.add('modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+        // document.addEventListener('click', function (e) {
+        //         for (
+        //             let target = e.target;
+        //             target && target !== this;
+        //             target = target.parentNode
+        //         ) {
+        //             if (target.matches('.button.theme-btn')) {
+        //                 console.log("match")
+        //                 console.log(showPop)
+        //                 showDeleteAcntModal.call(target, e)
+        //                 break
+        //             }
+        //         }
+        //     },false
+        // )
+        function hideDeleteAcntModal(e) {
+            body.classList.remove('modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+        document.addEventListener('click', function (e) {
+                for (
+                    let target = e.target;
+                    target && target !== this;
+                    target = target.parentNode
+                ) {
+                    if (target.matches('.badge-toggle')) {
+                        console.log("match hide")
+                        hideDeleteAcntModal.call(target, e)
+                        // toggleShowPop();
+                        toggleShowPop({set:true,val:false});
+                        // setTimeout(function() { toggleShowPop({set:true,val:false}); }, 0);
+                        break
+                    }
+                }
+            }, false
+        )
+    });    
+    /*=======================================================================================*/
     let nextItemId = ()=>{
         if(popItemList != null){
             setPopItemId( (popItemId+1) % popItemList.length);
@@ -39,7 +87,7 @@ function Home() {
             setShowPop(true);
             
         }else{
-            setPopItemList(null);
+            setTimeout(()=>setPopItemList(null),1000);
             setPopItemId( -1);
             setShowPop(false);
         }
@@ -83,7 +131,7 @@ function Home() {
 
             {/* Hero Banner */}
             {(            
-            <BannerOne loaded={loaded} toggleShowPop={toggleShowPop} setPopItemList={setPopItemList}/>
+            <BannerOne loaded={loaded} toggleShowPop={toggleShowPop} itemList={popItemList} setPopItemList={setPopItemList}/>
             )}
             {/* Most Visited Place */}
             <section className="card-area text-center padding-bottom-100px">
