@@ -2,6 +2,8 @@ import {firestore} from '../../firebase';
 import React,{useEffect, useState} from 'react';
 import {FaRegTrashAlt } from 'react-icons/fa'
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
+import { GrView } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 function FriendList ({uid}) {
 
@@ -12,6 +14,7 @@ function FriendList ({uid}) {
     useEffect(() => {
         async function fetchFriend() {
             console.log("fetch")
+            console.log(uid)
             const doc = firestore.doc(`users/${uid}`).collection('myFriends');
             var tmpList = [];
             const FriendInfo = await doc.get().then (response => {
@@ -33,7 +36,10 @@ function FriendList ({uid}) {
                 listName: value,
                 displayName: [],
                 bioData: [],
-                photoURL: []
+                photoURL: [],
+                location:[],
+                phoneNumber:[],
+                email:[],
             }
             console.log("list:", value);
             const friendRef = firestore.doc(`users/${value}`);  
@@ -42,6 +48,9 @@ function FriendList ({uid}) {
                     tmpList.displayName.push(snapshot.data().displayName);
                     tmpList.bioData.push(snapshot.data().bioData);
                     tmpList.photoURL.push(snapshot.data().photoURL);
+                    tmpList.location.push(snapshot.data().location);
+                    tmpList.phoneNumber.push(snapshot.data().phoneNumber);
+                    tmpList.email.push(snapshot.data().email);
                     setFetchedLists(fetchedLists=>[...fetchedLists , tmpList]);
                     console.log(fetchedLists);
                 } catch (error) {
@@ -53,11 +62,11 @@ function FriendList ({uid}) {
         })
     },[friends]);
 
-    // const delRestaurant=async(docName, resName)=>{
-    //     console.log(docName, resName)
-    //     const res = await firestore.doc(`users/${uid}/myLists/${docName}/restaurantsList/${resName}`).delete();
-    //     window.location.reload();
-    // }
+    const delFriend=async(docName)=>{
+        console.log(docName)
+        const res = await firestore.doc(`users/${uid}/myFriends/${docName}/`).delete();
+        window.location.reload();
+    }
 
     return (
         <>
@@ -77,9 +86,14 @@ function FriendList ({uid}) {
                                 </div>
                                 <div className="rating-row">
                                     <div className="edit-info-box">
-                                    <button type="button" className="theme-btn delete-btn border-0">
+                                    <button type="button" className="theme-btn delete-btn border-0 ml-1" onClick={()=>delFriend(item.listName)}>
                                         <span className="la"><FaRegTrashAlt /></span> Delete
                                     </button>
+                                    <Link to={{pathname: `/view-contact-details/${item.listName}`, state: { users: item}}}>
+                                        <button type="button" className="theme-btn button-success border-0 ml-1">
+                                            <span className="la"><GrView  color="white"/></span> View
+                                        </button>
+                                    </Link>
                                     </div>
                                 </div>
                             </div>
