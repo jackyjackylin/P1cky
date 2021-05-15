@@ -24,7 +24,7 @@ function AccordionList ({uid,userList, setUserList}) {
 
     async function fetch() {
         console.log("fetch")
-        const doc = firestore.doc(`users/${uid}`).collection('myLists');
+        const doc = firestore.doc(`users/${uid}`).collection('pocketList');
         const listInfo = await doc.get()
         .then (response => {
             response.forEach(doc => {
@@ -46,7 +46,7 @@ function AccordionList ({uid,userList, setUserList}) {
             comments: [],
             photoURL: []
         }
-        const ref = firestore.doc(`users/${uid}/myLists/${value}`).collection('restaurantsList');
+        const ref = firestore.doc(`users/${uid}/pocketList/${value}`).collection('restaurantsList');
         const collections = await ref.get()
         .then(collections=>{
             collections.forEach(collection => {
@@ -74,7 +74,7 @@ function AccordionList ({uid,userList, setUserList}) {
 
     const delRestaurant=async(docName, resName)=>{
         console.log(docName, resName)
-        const res = await firestore.doc(`users/${uid}/myLists/${docName}/restaurantsList/${resName}`).delete();
+        const res = await firestore.doc(`users/${uid}/pocketList/${docName}/restaurantsList/${resName}`).delete();
         window.location.reload();
     }
 
@@ -101,7 +101,7 @@ function AccordionList ({uid,userList, setUserList}) {
                                                     <div key={`${item.listName}-${index}`} className="col-lg-4 column-td-6">
                                                         <div className="restaurant-item">
                                                             <div className="card-image">
-                                                                <img src={item.photoURL[index]} className="card__img" alt="Card" />
+                                                                <img src={item.photoURL[index]} width="362" height="242" className="card__img" alt="Card" />
                                                             </div>
                                                             <div className="card-content-wrap">
                                                                 <div className="card-content">

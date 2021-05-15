@@ -10,20 +10,6 @@ const states = {
     breadcrumbimg: breadcrumbimg
 }
 function AddListing() {
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        const google = window.google;
-        if (typeof google === 'object' && typeof google.maps === 'object') {
-            setLoaded(true);
-        }
-        else {
-            window.initMap = () => setLoaded(true)
-            const gmapScriptEl = document.createElement(`script`)
-            gmapScriptEl.src =`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&callback=initMap`
-            document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
-        }
-    },[]);
 
     return (
         <main className="add-listing">
@@ -33,9 +19,7 @@ function AddListing() {
             {/* <Breadcrumb CurrentPgTitle="Add Listing" MenuPgTitle="Listings" img={states.breadcrumbimg} /> */}
 
             {/* Banner */}
-            {loaded && (            
-            <Banner6 title="Add restaurants to your lists!" />
-            )}
+            <Banner6 title="Add restaurants to your lists!"/>
 
             {/* Footer */}
             <Footer />

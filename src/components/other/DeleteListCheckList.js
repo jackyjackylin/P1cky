@@ -27,7 +27,7 @@ function DeleteListCheckList({uid}) {
     useEffect(()=> {
         async function fetch() {
             const tmp = [];
-            const doc = firestore.doc(`users/${uid}`).collection('myLists');
+            const doc = firestore.doc(`users/${uid}`).collection('pocketList');
             const listInfo = await doc.get()
             .then (response => {
                 response.forEach(doc => {
@@ -59,7 +59,7 @@ function DeleteListCheckList({uid}) {
 
     const deleteList = async _ => {
         const promises= checked.map(async item => {
-            const res = await firestore.doc(`users/${uid}/myLists/${item}`).delete();
+            const res = await firestore.doc(`users/${uid}/pocketList/${item}`).delete();
             console.log(item)
         })
         const res = await Promise.all(promises)

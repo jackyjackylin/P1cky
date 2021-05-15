@@ -28,7 +28,7 @@ function AddToListCheckList({uid, lists, setLists}) {
     useEffect(()=> {
         async function fetch() {
             const tmp = [];
-            const doc = firestore.doc(`users/${uid}`).collection('myLists');
+            const doc = firestore.doc(`users/${uid}`).collection('pocketList');
             const listInfo = await doc.get()
             .then (response => {
                 response.forEach(doc => {

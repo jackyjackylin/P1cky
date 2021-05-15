@@ -2182,6 +2182,16 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .added-successfully-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
+  .empty-input-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .modal-open .report-modal-box,
   .modal-open .account-delete-modal {
     visibility: visible;
@@ -2255,6 +2265,40 @@ body {
   transform: none;
 }
 .delete-list-modal-open .delete-list-modal {
+  visibility: visible;
+}
+
+/*-----------new modal---------------------*/
+.added-successfully-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.added-successfully-modal-open .modal.added-successfully-modal .fade.show,
+.added-successfully-modal-open .modal.added-successfully-modal .fade:not(.show),
+.added-successfully-modal-open .modal {
+  opacity: 1;
+}
+.added-successfully-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.added-successfully-modal-open .added-successfully-modal {
+  visibility: visible;
+}
+
+/*-----------new modal---------------------*/
+.empty-input-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.empty-input-modal-open .modal.empty-input-modal .fade.show,
+.empty-input-modal-open .modal.empty-input-modal .fade:not(.show),
+.empty-input-modal-open .modal {
+  opacity: 1;
+}
+.empty-input-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.empty-input-modal-open .empty-input-modal {
   visibility: visible;
 }
 

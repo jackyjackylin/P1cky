@@ -15,7 +15,7 @@ function CreateNewList({uid}) {
         console.log("uid:", uid);
         console.log(listName);
         e.preventDefault();
-        firestore.doc(`users/${uid}/myLists/${listName}`).set(data)
+        firestore.doc(`users/${uid}/pocketList/restaurants/${listName}`).set(data)
         .then(()=>console.log("uploaded"))
         .then(()=>window.location.reload(true))
     }
@@ -37,7 +37,7 @@ function CreateNewList({uid}) {
                             console.log("uid:", uid);
                             console.log(listName);
                             e.preventDefault();
-                            firestore.doc(`users/${uid}/myLists/${listName}`).set(data)
+                            firestore.doc(`users/${uid}/pocketList/${listName}`).set(data)
                             .then(()=>console.log("uploaded"))
                             .then(()=>window.location.reload(true))
                         }
