@@ -158,7 +158,7 @@ function Home() {
             <PlacePop showPop={showPop} toggleShowPop = {toggleShowPop} itemList={popItemList} itemId={popItemId}
             nextItemId={nextItemId}/>
 
-            <ShowList/>
+            <ShowList toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
             {/* Footer */}
             <Footer />
 

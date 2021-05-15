@@ -5,14 +5,18 @@ import AddRestaurants from "../../components/common/AddRestaurants";
 import {AuthContext} from "../../components/providers/UserProvider";
 import AddToListCheckList from "../../components/other/AddToListCheckList";
 import {firestore} from "../..//firebase";
+import { GiConsoleController } from 'react-icons/gi';
+// import _ from "lodash"
 
-
-export default function ShowList() {
+export default function ShowList({toggleShowPop,setPopItemList}) {
     const [restaurants, setRestaurants] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [lists, setLists] = useState([]);
     const [restaurantName, setRes] = useState("");
+    const [choice, setChoice] = useState(-1);
+    const [choiceLength, setChoiceLength] = useState(-1);
     const {currentUser} = useContext(AuthContext);
+
     const data = {
         comments: "tmp comments",
         photoURL: "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fuserimg5.jpg?alt=media&token=dd5c08b1-3bfb-42b3-9257-dbb331acd645"
@@ -21,21 +25,39 @@ export default function ShowList() {
         if(currentUser)
             console.log(`${currentUser.uid} Show`)
     },[currentUser])
-    const addToLists = () => {
-        {lists.map((item, i) => {
-            console.log("adding to list " + item)
-            updateList(item)
-        })}
+    useEffect(() => {
+        
+        console.log(`The ${choice}th from all ${choiceLength} choices`)
+    },[choice,choiceLength])
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
     }
-    
-    const updateList = async(docName) => {
-        const userRef = firestore.doc(`users/${currentUser.uid}/myLists/${docName}/restaurantsList/${restaurantName}`).set(data)
-        .then(() => {
-            console.log("update");
-            window.location.reload();
-        }).catch((error)=>{
-            console.error("Error", error);
+
+    const getAllFromList = async(docName) => {
+        const ref = firestore.doc(`users/${currentUser.uid}`).collection('myLists').doc(docName).collection('restaurantsList');
+        const collections = await ref.get();
+        let tmpList = []
+        collections.forEach(collection => {
+            tmpList.push({...collection.data(), id: collection.id})
         })
+        return  [...tmpList]
+    }
+    const randomPick = async() =>{
+        // const listIdx = getRandomInt(0,list.length)
+        // console.log(`choose from list ${listIdx}`)
+        let randomList = []
+        await Promise.all(lists.map(async(item, i) => {
+            let oneList = await getAllFromList(item)
+            oneList.map(restaurant => randomList.push(restaurant))
+            
+            // console.log(randomList)
+        }))
+        setChoice(getRandomInt(0,randomList.length))
+        setChoiceLength(randomList.length)
+
     }
     
 
@@ -54,7 +76,7 @@ export default function ShowList() {
                         {currentUser && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
                         {/* <div className="row padding-top-100px"></div> */}
                         <div className="btn-box">
-                            <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">
+                            <button type="button" className="theme-btn border-0 button-success mr-1" onClick={randomPick}data-dismiss="modal">
                                 Go
                             </button>
                             {/* <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
