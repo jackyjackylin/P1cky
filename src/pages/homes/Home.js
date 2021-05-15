@@ -33,7 +33,6 @@ function Home() {
             e.preventDefault()
         }
         function showAddListModal(e) {
-            console.log("addlisat")
             body.classList.add('list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
@@ -58,7 +57,7 @@ function Home() {
             e.preventDefault()
         }
         function hideAddListModal(e) {
-            console.log("hide pick from pocket list")
+            // console.log("hide pick from pocket list")
             body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
@@ -70,7 +69,7 @@ function Home() {
                     target = target.parentNode
                 ) {
                     if (target.matches('.badge-toggle, .modal-bg')) {
-                        console.log("match hide")
+                        // console.log("match hide")
                         hideDeleteAcntModal.call(target, e)
                         hideAddListModal.call(target,e);
                         // toggleShowPop();
