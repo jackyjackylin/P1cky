@@ -2,18 +2,18 @@ import React, {useEffect, useState,useContext} from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { useLocation, Link } from "react-router-dom";
-import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
+import { useLocation} from "react-router-dom";
+import { BsBookmark } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
-import { FiPhone, FiEdit } from 'react-icons/fi'
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
+import { FiPhone } from 'react-icons/fi'
+import { AiOutlineUser} from 'react-icons/ai'
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
 import FriendList from "../../components/other/FriendList";
 import {AuthContext} from "../../components/providers/UserProvider";
-import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
+import AccordionList from "../../components/other/AccordionList";
 
 
 
@@ -24,16 +24,24 @@ function ViewUserDetails() {
     const [bioData, setBioData] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [location, setLocation] = useState("");
+    const [email, setEmail] = useState("");
+    const [photoURL, setPhotoURL] = useState("");
+    const [listName, setListName] = useState("");
+    const [userList, setUserList] = useState([]);
     const [loaded, setLoaded] = useState(false);
+
     const { state } = useLocation();
     useEffect(()=> {
         if (state) {
             console.log("state:",state.users)
             setDisplayName(state.users.displayName);
-            //setBioData(currentUser.bioData);
-            //setLocation(currentUser.location);
-            //setPhoneNumber(currentUser.phoneNumber);
-            //setLoaded(true)
+            setBioData(state.users.bioData);
+            setLocation(state.users.location);
+            setPhoneNumber(state.users.phoneNumber);
+            setEmail(state.users.email);
+            setPhotoURL(state.users.photoURL);
+            setListName(state.users.listName);
+            setLoaded(true);
         }
     },[state])
 
@@ -63,9 +71,6 @@ function ViewUserDetails() {
                                             </div>
                                         </Tab>
                                     </TabList>
-                                    {/* <div className="btn-box">
-                                        <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
-                                    </div> */}
                                 </div>
                             </div>
                             <div className="col-lg-12">
@@ -75,38 +80,39 @@ function ViewUserDetails() {
                                             <div className="col-lg-4">
                                                 <div className="user-profile-action">
                                                     <div className="user-pro-img mb-4">
-                                                        <img src= {state.users.photoURL}  alt="User Image"  width="331" height="368"/>
+                                                        <img src= {photoURL}  alt="User Image"  width="331" height="368"/>
                                                     </div>
                                                     <div className="user-details">
                                                         <h2 className="user__name widget-title pb-2">
-                                                            {state.users.displayName}
+                                                            {displayName}
                                                         </h2>
                                                         <div className="section-heading">
                                                             <p className="sec__desc font-size-15 line-height-24">
-                                                            {state.users.bioData}
+                                                            {bioData}
                                                             </p>
                                                         </div>
                                                         <ul className="list-items mt-3">
                                                             <li>
-                                                                <span className="la d-inline-block"><GiPositionMarker /></span> {state.users.location}
+                                                                <span className="la d-inline-block"><GiPositionMarker /></span> {location}
                                                             </li>
                                                             <li className="text-lowercase">
-                                                                <span className="la d-inline-block"><FiPhone /></span> {state.users.phoneNumber}
+                                                                <span className="la d-inline-block"><FiPhone /></span> {phoneNumber}
                                                             </li>
                                                             <li className="text-lowercase">
-                                                                <span className="la d-inline-block"><FaRegEnvelope /></span> {state.users.email}
+                                                                <span className="la d-inline-block"><FaRegEnvelope /></span> {email}
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="col-lg-8">
+                                                {loaded && <AccordionList uid={listName} userList={userList} setUserList={setUserList}/>}
                                             </div>
                                         </div>
                                     </TabPanel>
                                     <TabPanel>
                                         <div className="row">
-                                            {<FriendList uid={state.users.listName}/>}
+                                            {<FriendList uid={listName}/>}
                                         </div>
                                     </TabPanel>
                                 </div>
