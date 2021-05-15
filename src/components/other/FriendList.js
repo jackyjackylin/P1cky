@@ -1,16 +1,16 @@
 import {firestore} from '../../firebase';
-import React,{useEffect, useState} from 'react';
-import {FaRegTrashAlt } from 'react-icons/fa'
+import React, {useEffect, useState,useContext} from 'react';
+import {FaRegTrashAlt, FaIdBadge } from 'react-icons/fa'
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
-import { GrView } from "react-icons/gr";
 import { Link } from "react-router-dom";
+import {AuthContext} from "../../components/providers/UserProvider";
 
 function FriendList ({uid}) {
 
     const [fetchedLists, setFetchedLists] = useState([]);
     const [friends, setFriends] = useState([]);
     const [loaded,setLoaded]=useState(false);
-    
+    const {currentUser} = useContext(AuthContext);
     useEffect(() => {
         async function fetchFriend() {
             console.log("fetch")
@@ -86,14 +86,14 @@ function FriendList ({uid}) {
                                 </div>
                                 <div className="rating-row">
                                     <div className="edit-info-box">
-                                    <button type="button" className="theme-btn delete-btn border-0 ml-1" onClick={()=>delFriend(item.listName)}>
-                                        <span className="la"><FaRegTrashAlt /></span> Delete
-                                    </button>
                                     <Link to={{pathname: `/view-contact-details/${item.listName}`, state: { users: item}}}>
                                         <button type="button" className="theme-btn button-success border-0 ml-1">
-                                            <span className="la"><GrView  color="white"/></span> View
+                                            <span className="la"><FaIdBadge /></span> View
                                         </button>
                                     </Link>
+                                    {(currentUser.uid===uid) && <button type="button" className="theme-btn delete-btn border-0 ml-1" onClick={()=>delFriend(item.listName)}>
+                                        <span className="la"><FaRegTrashAlt /></span> Delete
+                                    </button>}
                                     </div>
                                 </div>
                             </div>

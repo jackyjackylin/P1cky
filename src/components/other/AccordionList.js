@@ -1,6 +1,8 @@
 import { FaPlus, FaMinus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import {firestore} from '../../firebase';
-import React,{useState, useEffect} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
+import {AuthContext} from "../../components/providers/UserProvider";
+
 import {
     Accordion,
     AccordionItem,
@@ -11,10 +13,10 @@ import {
 
 function AccordionList ({uid,userList, setUserList}) {
     const [loaded,setLoaded]=useState(false);
-    
+    const {currentUser} = useContext(AuthContext);
+
     var fetchedLists = [];
     var names = [];
-    let flag = false;
 
     useEffect(() => {
         if(userList.length==0 ){
@@ -108,16 +110,18 @@ function AccordionList ({uid,userList, setUserList}) {
                                                                     <h4 className="card-title mt-0">{val}</h4>
                                                                     <p className="card-sub">{item.comments[index]}</p>
                                                                 </div>
-                                                                <div className="rating-row">
-                                                                    <div className="edit-info-box">
-                                                                        <button type="button" className="theme-btn button-success border-0 mr-1">
-                                                                            <span className="la"><FaRegEdit /></span> Edit
-                                                                        </button>
-                                                                        <button type="button" className="theme-btn delete-btn border-0" onClick={()=>delRestaurant(item.listName,val)}>
-                                                                            <span className="la"><FaRegTrashAlt /></span> Delete
-                                                                        </button>
+                                                                {(currentUser.uid===uid) &&
+                                                                    <div className="rating-row">
+                                                                        <div className="edit-info-box">
+                                                                            <button type="button" className="theme-btn button-success border-0 mr-1">
+                                                                                <span className="la"><FaRegEdit /></span> Edit
+                                                                            </button>
+                                                                            <button type="button" className="theme-btn delete-btn border-0" onClick={()=>delRestaurant(item.listName,val)}>
+                                                                                <span className="la"><FaRegTrashAlt /></span> Delete
+                                                                            </button>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                }
                                                             </div>
                                                         </div>
                                                     </div>

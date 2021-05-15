@@ -38,6 +38,7 @@ import SignUp from "./pages/SignUp";
 import Error from "./pages/Error";
 import UserProvider from "./components/providers/UserProvider";
 import ViewUserDetails from "./pages/dashboard/ViewUserDetails";
+import AccordionList from './components/other/AccordionList';
 
 
 const App = () => {
@@ -88,6 +89,7 @@ const App = () => {
               <AppRoute path="/blog-single" component={BlogDetail} />
               <AppRoute path="/login" component={Login} />
               <AppRoute path="/sign-up" component={SignUp} />
+              <AppRoute component={AccordionList} />
               <AppRoute component={Error} />
           </Switch>
         
