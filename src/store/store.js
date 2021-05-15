@@ -197,17 +197,20 @@ const sectiondata = {
                 {
                     path: "#",
                     title: "Pick by Filter",
-                    icon: <GiChickenOven />
+                    icon: <GiChickenOven />,
+                    value: "filter"
                 },
                 {
                     path: "#",
                     title: "Pick from My List",
-                    icon: <GiChickenOven />
+                    icon: <GiChickenOven />,
+                    value: "list"
                 },
                 {
                     path: "#",
                     title: "Pick with Friends",
-                    icon: <GiChickenOven />
+                    icon: <GiChickenOven />,
+                    value: "friend"
                 }
             ]
         },
