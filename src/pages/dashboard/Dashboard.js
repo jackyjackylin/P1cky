@@ -468,7 +468,7 @@ function Dashboard() {
                                     </TabPanel>
                                     <TabPanel>
                                         <div className="row">
-                                            {loaded && <FriendList uid={currentUser.uid} userList={userList} setUserList={setUserList}/>}
+                                            {loaded && <FriendList uid={currentUser.uid}/>}
                                         </div>
                                     </TabPanel>
                                 </div>
@@ -484,7 +484,7 @@ function Dashboard() {
 
 
             {/* Modal */}
-            <div className="modal-form text-center">
+            {/* <div className="modal-form text-center">
                 <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-sm" role="document">
@@ -507,7 +507,7 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             <div className="modal-form text-center">
                 <div className="modal fade add-friend-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>

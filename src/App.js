@@ -37,6 +37,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Error from "./pages/Error";
 import UserProvider from "./components/providers/UserProvider";
+import ViewUserDetails from "./pages/dashboard/ViewUserDetails";
 
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
         
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+              <AppRoute path="/view-contact-details/:id" component={ViewUserDetails}/>
               <AppRoute path="/all-categories" component={AllCategories} />
               <AppRoute path="/all-locations" component={AllLocations} />
               <AppRoute path="/top-place" component={TopPlaces} />
