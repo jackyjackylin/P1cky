@@ -11,11 +11,18 @@ export default function BannerOneCategories({connector, title, items}) {
                 <div className="highlight-lists d-flex justify-content-center mt-4">
                     {items.map((item, index) => {
                         return (
-                            <div className="category-item" key={index}>
-                                <a href={item.path} className="d-block">
-                                    <span className="icon-element">{item.icon}</span>
-                                    {item.title}
-                                </a>
+                            <div className={`category-item ${item.value}`} key={index}>
+                                {item.value=='list'?   
+                                    <div className="d-block">                            
+                                        <span className="icon-element">{item.icon}</span>
+                                        {item.title}
+                                    </div> :
+
+                                    <a href={item.path} className="d-block">
+                                        <span className="icon-element">{item.icon}</span>
+                                        {item.title}
+                                    </a>
+                                }
                             </div>
                         )
                     })}

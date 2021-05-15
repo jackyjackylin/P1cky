@@ -8,7 +8,7 @@ import PlaceOne from "../../components/places/PlaceOne";
 import PlacePop from "../../components/places/PlacePop";
 import sectiondata from "../../store/store";
 import GetRestaurantsFromApi from '../../components/common/GetRestaurantsFromApi';
-
+import ShowList from "../listings/ShowList"
 function Home() {
     const [businesses, setBusinesses] = useState([]);
     const [showPop, setShowPop] = useState(false);
@@ -32,23 +32,34 @@ function Home() {
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
-        // document.addEventListener('click', function (e) {
-        //         for (
-        //             let target = e.target;
-        //             target && target !== this;
-        //             target = target.parentNode
-        //         ) {
-        //             if (target.matches('.button.theme-btn')) {
-        //                 console.log("match")
-        //                 console.log(showPop)
-        //                 showDeleteAcntModal.call(target, e)
-        //                 break
-        //             }
-        //         }
-        //     },false
-        // )
+        function showAddListModal(e) {
+            console.log("addlisat")
+            body.classList.add('list-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+        document.addEventListener('click', function (e) {
+                for (
+                    let target = e.target;
+                    target && target !== this;
+                    target = target.parentNode
+                ) {
+                    if (target.matches('.category-item.list')) {
+                        
+                        showAddListModal.call(target, e)
+                        break
+                    }
+                }
+            },false
+        )
         function hideDeleteAcntModal(e) {
             body.classList.remove('modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+        function hideAddListModal(e) {
+            console.log("hide pick from pocket list")
+            body.classList.remove('list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
@@ -58,9 +69,10 @@ function Home() {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.badge-toggle')) {
+                    if (target.matches('.badge-toggle, .modal-bg')) {
                         console.log("match hide")
                         hideDeleteAcntModal.call(target, e)
+                        hideAddListModal.call(target,e);
                         // toggleShowPop();
                         toggleShowPop({set:true,val:false});
                         // setTimeout(function() { toggleShowPop({set:true,val:false}); }, 0);
@@ -146,6 +158,8 @@ function Home() {
             
             <PlacePop showPop={showPop} toggleShowPop = {toggleShowPop} itemList={popItemList} itemId={popItemId}
             nextItemId={nextItemId}/>
+
+            <ShowList/>
             {/* Footer */}
             <Footer />
 

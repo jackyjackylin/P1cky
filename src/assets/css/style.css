@@ -2224,6 +2224,14 @@ body {
   visibility: visible;
 }
 
+.pick-from-list-text{
+  font-size: 20px;
+  color: #e44343;
+  font-weight: 800;
+  text-transform: capitalize;
+  margin-top: 12px;
+  margin-bottom: 5px; 
+}
 /*-----------new modal---------------------*/
 .friend-modal-open .modal-bg {
   opacity: 0.5;
