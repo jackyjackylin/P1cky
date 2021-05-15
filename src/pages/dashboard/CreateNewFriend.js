@@ -41,7 +41,7 @@ function CreateNewFriend({uid}) {
                     <button type="button" className="theme-btn border-0 button-success mr-1 hide-friend" data-dismiss="modal">
                         Cancel
                     </button>
-                    <button className="theme-btn border-0 button-danger" type='submit'>
+                    <button className="theme-btn border-0 button-danger" onClick={(e)=>onSubmit(e)}>
                         Add!
                     </button>
                 </div>

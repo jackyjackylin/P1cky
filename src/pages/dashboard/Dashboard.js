@@ -8,11 +8,11 @@ import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
-import Button from "../../components/common/Button";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
 import AccordionList from "../../components/other/AccordionList";
+import FriendList from "../../components/other/FriendList";
 import {AuthContext} from "../../components/providers/UserProvider";
 import { auth , firestore,  storage} from "../../firebase";
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
@@ -468,34 +468,7 @@ function Dashboard() {
                                     </TabPanel>
                                     <TabPanel>
                                         <div className="row">
-                                            {sectiondata.dashboard1.cards.map((item, i) => {
-                                                return (
-                                                    <div key={i} className="col-lg-4 column-td-6">
-                                                        <div className="card-item">
-                                                            <Link to={item.cardLink} className="card-image-wrap">
-                                                                <div className="card-image">
-                                                                    <img src={item.img} className="card__img" alt="Card" />
-                                                                </div>
-                                                            </Link>
-                                                            <div className="card-content-wrap">
-                                                                <div className="card-content">
-                                                                    <Link to={item.cardLink}>
-                                                                        <h4 className="card-title mt-0">{item.title}</h4>
-                                                                        <p className="card-sub">{item.subtitle}</p>
-                                                                    </Link>
-                                                                </div>
-                                                                <div className="rating-row">
-                                                                    <div className="edit-info-box">
-                                                                        <button type="button" className="theme-btn delete-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
-                                                                            <span className="la">{item.deleteIcon}</span> {item.deleteTxt}
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })}
+                                            {loaded && <FriendList uid={currentUser.uid} userList={userList} setUserList={setUserList}/>}
                                         </div>
                                     </TabPanel>
                                 </div>
