@@ -1,15 +1,17 @@
-import React,{useState, useEffect} from 'react';
+import React, {useEffect, useState,useContext} from 'react';
 import {firestore} from '../../firebase';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import {AuthContext} from "../../components/providers/UserProvider";
 
 function ForkListCheckList({uid}) {
     const [checked, setChecked] = useState([]);
     const [loaded, setLoaded] = useState([]);
     const [names, setNames] = useState([]);
+    const {currentUser} = useContext(AuthContext);
 
     const handleToggle = (value) => () => {
         const currentIndex = checked.indexOf(value);
@@ -50,18 +52,30 @@ function ForkListCheckList({uid}) {
         forkList();
     }
 
-    const forkList = async _ => {
-        const promises= checked.map(async item => {
-            firestore.doc(`users/${uid}/pocketList/${item}`).get().then((doc)=>{
-                console.log(doc);
-            })
-
-        })
-        const res = await Promise.all(promises)
-        //window.location.reload();
+    const forkList = async() => {
+        checked.map((item) => {
+            forkEachList(item);
+        });
     }
-    
-    
+
+    const data = {
+
+    }
+
+    const forkEachList=async(value)=>{
+        console.log(currentUser)
+
+        const ref = firestore.doc(`users/${uid}/pocketList/${value}`).collection('restaurantsList');
+        const collections = await ref.get()
+        .then(collections=>{
+            collections.forEach(async (collection) => {
+                console.log("current doc:", collection.data())
+                firestore.doc(`users/${currentUser.uid}/pocketList/${value}`).set(data)
+                firestore.doc(`users/${currentUser.uid}/pocketList/${value}`).collection('restaurantsList').doc(`${collection.id}`).set(collection.data())
+                .then(()=>console.log("Add PocketList!!"));
+            });
+        })
+    }
 
     return (
         <>
@@ -88,7 +102,7 @@ function ForkListCheckList({uid}) {
                 <button type="button" className="theme-btn border-0 button-danger mr-1 hide-fork-list" data-dismiss="modal">
                     Cancel
                 </button>
-                <button className="theme-btn border-0 button-success" type='button' onClick={(e)=>{onSubmit(e)}}>
+                <button className="theme-btn border-0 button-success hide-fork-list" type='button' onClick={(e)=>{onSubmit(e)}}>
                     Fork
                 </button>
             </div>
