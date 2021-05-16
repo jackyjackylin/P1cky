@@ -52,10 +52,8 @@ function getDirection(business){
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${parsedAddr}`);
 }
 
-function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,nextItemId}){
-    let item = itemList[itemId];
-    console.log(itemList)
-    console.log(itemId)
+function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
+
     try {
         return(
             <div className="row mt-5">

@@ -67,7 +67,7 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                             setPopItemList(itemList=> res.data.businesses);
                             console.log(res); 
                             //toggleShowPop(set,flag)
-                            toggleShowPop({set:true,val:true});
+                            toggleShowPop(true);
                             showDeleteAcntModal();
                         });
                     }}>

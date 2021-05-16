@@ -6,11 +6,15 @@ import {AuthContext} from "../../components/providers/UserProvider";
 const ListMenu = () => {
   const [listNames, setListNames] = useState([])
   const {currentUser} = useContext(AuthContext);
-
+  const [selectList,setSelectList] = useState("")
 
   useEffect(()=>{
      fetch()
   },[])
+
+  useEffect(()=>{
+    console.log(selectList)
+  },[selectList])
 
   async function fetch() {
     console.log("fetch")
@@ -38,9 +42,9 @@ const ListMenu = () => {
       arrow={true}
     >
       <div className="menu">
-        {listNames.map((name)=> {
+        {listNames.map((name,index)=> {
           return(
-            <div className="menu-item sub-menu"> {name} </div>
+            <div className="menu-item sub-menu" key={index} onClick={()=>setSelectList(name)}> {name} </div>
           )
         })}
       </div>

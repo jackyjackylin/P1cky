@@ -12,7 +12,7 @@ function PlacePop({showPop,toggleShowPop,itemList,itemId,nextItemId,isPocketList
             <div className="modal-form text-center">
             <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                 <div className="modal-bg"></div> 
-                <ResultPage isPocketList={isPocketList} itemList={itemList} itemId={itemId} toggleShowPop={toggleShowPop} showPop={showPop} nextItemId={nextItemId}/>        
+                <ResultPage isPocketList={isPocketList} item={itemList[itemId]} toggleShowPop={toggleShowPop} showPop={showPop} nextItemId={nextItemId}/>        
             </div>
             </div>
         )

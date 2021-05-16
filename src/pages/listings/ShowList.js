@@ -43,6 +43,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         console.log(`The ${choice}th from all ${choiceLength} choices`)
     },[choice,choiceLength])
 
+
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -78,7 +79,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             console.log(randomList.slice(choice,choice+1))
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
             // setPopItemId(choice)
-            toggleShowPop({set:true,val:true})
+            toggleShowPop(true)
             showDeleteAcntModal()
         })
         
