@@ -52,8 +52,10 @@ function getDirection(business){
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${parsedAddr}`);
 }
 
-function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItemId}){
+function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,nextItemId}){
     let item = itemList[itemId];
+    console.log(itemList)
+    console.log(itemId)
     try {
         return(
             <div className="row mt-5">
@@ -108,8 +110,13 @@ function ResultPage({itemList,itemId,places,toggleShowPop,showPop=false,nextItem
                                                     <div>
                                                         
                                                         <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
-                                                        <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
-                                                        <ListMenu/>
+                                                        {!isPocketList &&
+                                                            <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                        }
+                                                        {!isPocketList &&
+                                                            <ListMenu/>
+                                                        }
+                                                        
                                                     </div>
                                                 </div>
     

@@ -22,7 +22,7 @@ function Home() {
     const [lng, setLng] = useState(-117.8265049);
     const [rloaded, setRloaded] = useState(false);
     const [popItem, setPopItem] = useState(null);
-
+    const [isPocketList, setIsPocketList] = useState(false);
     /*=================Control Modal that would display on HomePage===============*/
     useEffect(() => {
         const body = document.querySelector('body')
@@ -89,7 +89,7 @@ function Home() {
         }
     }
     // clean all data before toggle the flag show up
-    function toggleShowPop({set,val} = {set : false, val:false}){
+    function toggleShowPop({set,val}){
         
         let flag = (set==true)? val: showPop;
         if(flag){
@@ -101,6 +101,7 @@ function Home() {
             setTimeout(()=>setPopItemList(null),1000);
             setPopItemId( -1);
             setShowPop(false);
+            setIsPocketList(false);
         }
         
     }
@@ -155,10 +156,10 @@ function Home() {
                 </div>
             </section>
             
-            <PlacePop showPop={showPop} toggleShowPop = {toggleShowPop} itemList={popItemList} itemId={popItemId}
+            <PlacePop isPocketList={isPocketList} showPop={showPop} toggleShowPop = {toggleShowPop} itemList={popItemList} itemId={popItemId}
             nextItemId={nextItemId}/>
 
-            <ShowList toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
+            <ShowList setPopItemId={setPopItemId} setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
             {/* Footer */}
             <Footer />
 
