@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import {AuthContext} from "../../components/providers/UserProvider";
 
 function FriendList ({uid}) {
-
     const [fetchedLists, setFetchedLists] = useState([]);
     const [friends, setFriends] = useState([]);
     const [loaded,setLoaded]=useState(false);
@@ -82,7 +81,7 @@ function FriendList ({uid}) {
                             <div className="card-content-wrap">
                                 <div className="card-content">
                                     <h4 className="card-title mt-0">{item.displayName}</h4>
-                                    <p className="card-sub">{item.bioData}</p>
+                                    <p className="card-sub">{item.email}</p>
                                 </div>
                                 <div className="rating-row">
                                     <div className="edit-info-box">

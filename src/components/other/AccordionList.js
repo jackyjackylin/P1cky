@@ -110,7 +110,7 @@ function AccordionList ({uid,userList, setUserList}) {
                                                                     <h4 className="card-title mt-0">{val}</h4>
                                                                     <p className="card-sub">{item.comments[index]}</p>
                                                                 </div>
-                                                                {(currentUser.uid===uid) &&
+                                                                {(currentUser && currentUser.uid===uid) &&
                                                                     <div className="rating-row">
                                                                         <div className="edit-info-box">
                                                                             <button type="button" className="theme-btn button-success border-0 mr-1">

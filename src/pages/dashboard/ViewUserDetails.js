@@ -7,13 +7,14 @@ import { BsBookmark } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone } from 'react-icons/fi'
-import { AiOutlineUser} from 'react-icons/ai'
+import { AiOutlineUser, AiOutlinePlusCircle} from 'react-icons/ai'
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import sectiondata from "../../store/store";
 import FriendList from "../../components/other/FriendList";
 import {AuthContext} from "../../components/providers/UserProvider";
 import AccordionList from "../../components/other/AccordionList";
+import ForkListCheckList from '../../components/other/ForkListCheckList';
 
 
 
@@ -45,6 +46,50 @@ function ViewUserDetails() {
         }
     },[state])
 
+    
+    useEffect(() => {
+        const body = document.querySelector('body')
+        function showDeleteListModal(e) {
+            body.classList.add('fork-list-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+
+        document.addEventListener('click', function (e) {
+                for (
+                    let target = e.target;
+                    target && target !== this;
+                    target = target.parentNode
+                ) {
+                    if(target.matches('.forkList')){
+                        showDeleteListModal.call(target,e)
+                        break
+                    }
+                }
+            },false
+        )
+        function hideDeleteListModal(e) {
+            body.classList.remove('fork-list-modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+
+        document.addEventListener('click', function (e) {
+                for (
+                    let target = e.target;
+                    target && target !== this;
+                    target = target.parentNode
+                ) {
+                    if (target.matches('.fork-list-modal .modal-bg, .btn-box .hide-fork-list')) {
+                        hideDeleteListModal.call(target, e)
+                        break
+                    }
+                }
+            }, false
+        )
+    })
+
+
     return (
         <main className="dashboard-page">
             {/* Header */}
@@ -71,6 +116,10 @@ function ViewUserDetails() {
                                             </div>
                                         </Tab>
                                     </TabList>
+                                    <div className="btn-box">
+                                        <div  className="theme-btn forkList"><span className="la"><AiOutlinePlusCircle /></span> Fork PocketLists</div>
+                                        
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-lg-12">
@@ -125,6 +174,16 @@ function ViewUserDetails() {
             {/* Footer */}
             <Footer />
             <ScrollTopBtn />
+            <div className="modal-form text-center">
+                <div className="modal fade fork-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                    <div className="modal-bg"></div>
+                    <div className="modal-dialog modal-lg" role="document" >
+                        <div className="modal-content p-4">
+                            {loaded && <ForkListCheckList uid={listName}/>}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }

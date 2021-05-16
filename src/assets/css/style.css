@@ -2182,6 +2182,11 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .fork-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .added-successfully-modal {
     display: block;
     visibility: hidden;
@@ -2275,7 +2280,22 @@ body {
 .delete-list-modal-open .delete-list-modal {
   visibility: visible;
 }
+/*-----------new modal---------------------*/
+.fork-list-modal-open .modal-bg {
+  opacity: 0.5;
+}
 
+.fork-list-modal-open .modal.fork-list-modal .fade.show,
+.fork-list-modal-open .modal.fork-list-modal .fade:not(.show),
+.fork-list-modal-open .modal {
+  opacity: 1;
+}
+.fork-list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.fork-list-modal-open .fork-list-modal {
+  visibility: visible;
+}
 /*-----------new modal---------------------*/
 .added-successfully-modal-open .modal-bg {
   opacity: 0.5;
