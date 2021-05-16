@@ -6,9 +6,22 @@ import {AuthContext} from "../../components/providers/UserProvider";
 import AddToListCheckList from "../../components/other/AddToListCheckList";
 import {firestore} from "../..//firebase";
 import { GiConsoleController } from 'react-icons/gi';
+import GetRestaurantsFromApi from '../../components/common/GetRestaurantsFromApi';
 // import _ from "lodash"
-
-export default function ShowList({toggleShowPop,setPopItemList}) {
+const body = document.querySelector('body')
+    
+function showDeleteAcntModal() {
+    body.classList.add('modal-open')
+    body.style.paddingRight = '17px'
+    // e.preventDefault()
+}
+function hideAddListModal(e) {
+    // console.log("hide pick from pocket list")
+    body.classList.remove('list-modal-open')
+    body.style.paddingRight = '0'
+    // e.preventDefault()
+}
+export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPocketList,setPopItemList}) {
     const [restaurants, setRestaurants] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [lists, setLists] = useState([]);
@@ -37,7 +50,7 @@ export default function ShowList({toggleShowPop,setPopItemList}) {
     }
 
     const getAllFromList = async(docName) => {
-        const ref = firestore.doc(`users/${currentUser.uid}`).collection('myLists').doc(docName).collection('restaurantsList');
+        const ref = firestore.doc(`users/${currentUser.uid}`).collection('pocketList').doc(docName).collection('restaurantsList');
         const collections = await ref.get();
         let tmpList = []
         collections.forEach(collection => {
@@ -49,14 +62,24 @@ export default function ShowList({toggleShowPop,setPopItemList}) {
         // const listIdx = getRandomInt(0,list.length)
         // console.log(`choose from list ${listIdx}`)
         let randomList = []
+
         await Promise.all(lists.map(async(item, i) => {
             let oneList = await getAllFromList(item)
             oneList.map(restaurant => randomList.push(restaurant))
             
             // console.log(randomList)
         }))
-        setChoice(getRandomInt(0,randomList.length))
-        setChoiceLength(randomList.length)
+        // setChoice()
+        let choice = getRandomInt(0,randomList.length);
+        
+        hideAddListModal()
+        let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
+        setIsPocketList(true)
+        setPopItemList(popItemList=>res.data.businesses)
+        // setPopItemId(choice)
+        toggleShowPop({set:true,val:true})
+        showDeleteAcntModal()
+        // setChoiceLength(randomList.length)
 
     }
     
@@ -76,7 +99,7 @@ export default function ShowList({toggleShowPop,setPopItemList}) {
                         {currentUser && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
                         {/* <div className="row padding-top-100px"></div> */}
                         <div className="btn-box">
-                            <button type="button" className="theme-btn border-0 button-success mr-1" onClick={randomPick}data-dismiss="modal">
+                            <button type="button" className="theme-btn border-0 button-success mr-1 pocketList" onClick={randomPick}data-dismiss="modal">
                                 Go
                             </button>
                             {/* <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
