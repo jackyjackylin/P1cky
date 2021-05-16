@@ -49,7 +49,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
     }
 
-    const getAllFromList = async(docName) => {
+    const getAllFromPocketList = async(docName) => {
         const ref = firestore.doc(`users/${currentUser.uid}`).collection('pocketList').doc(docName).collection('restaurantsList');
         const collections = await ref.get();
         let tmpList = []
@@ -64,7 +64,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         let randomList = []
 
         Promise.all(lists.map(async(item, i) => {
-            let oneList = await getAllFromList(item)
+            let oneList = await getAllFromPocketList(item)
             oneList.map(restaurant => randomList.push(restaurant))
             
             // console.log(randomList)

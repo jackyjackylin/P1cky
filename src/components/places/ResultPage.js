@@ -64,7 +64,7 @@ function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,n
                                 <div className="card-area">
                                 <a href="#" className="card-image-wrap">
                                     <div className="card-image">
-                                        <img src={item.image_URL?item.image_URL:item.photoURL} width="362" height="242" className="card__img" alt="Place" />
+                                        <img src={item.image_url?item.image_url:item.photoURL} width="362" height="242" className="card__img" alt="Place" />
                                         {/* { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> } */}
                                         <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
