@@ -23,21 +23,35 @@ function Banner6({title}) {
     const [restaurant, setRes] = useState("");
     const [restaurantName, setName] = useState("");
     const [businesses, setBusinesses] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [photoURL, setPhotoURL] = useState("");
     const [yelpID, setYelpID] = useState("");
-    const [address1, setAddress1] = useState("")
+    const [address, setAddress] = useState([])
     const [city, setCity] = useState("")
+    const [zipCode, setZipCode] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
     const [comment, setComment] = useState("");
+    const [phone, setPhone] = useState("");
+    const [yelpURL, setYelpURL] = useState("");
+    const [rating, setRating] = useState();
+    const [price, setPrice] = useState("");
+
+
     let data = {
         comments: comment,
         photoURL: photoURL,
         yelpID: yelpID,
-        address1: address1,
         city: city,
+        zipCode: zipCode,
         state: state,
-        country, country
+        country: country,
+        address: address,
+        categories: categories,
+        rating: rating,
+        price: price,
+        phone: phone,
+        yelpURL: yelpURL,
     }
 
     useEffect(()=> {
@@ -167,15 +181,27 @@ function Banner6({title}) {
             setName(res.data.businesses[0].name)
             setPhotoURL(res.data.businesses[0].image_url)
             setYelpID(res.data.businesses[0].id)
-            setAddress1(res.data.businesses[0].location.address1)
             setCity(res.data.businesses[0].location.city)
+            setZipCode(res.data.businesses[0].location.zip_code)
             setState(res.data.businesses[0].location.state)
             setCountry(res.data.businesses[0].location.country)
+            setAddress(res.data.businesses[0].location.display_address)
+            setCategories(res.data.businesses[0].categories)
+            setPhone(res.data.businesses[0].display_phone)
+            setRating(res.data.businesses[0].rating)
+            setYelpURL(res.data.businesses[0].url)
+            if (res.data.businesses[0].price) {
+                setPrice(res.data.businesses[0].price)
+            }else{
+                console.log("no price")
+                setPrice("")
+            }
             console.log("===========")
             console.log(businesses)
             console.log("res name:",restaurantName)
             console.log("image:",photoURL)
             console.log("id:",yelpID)
+            console.log(categories, phone, rating, yelpURL, price, address)
         })
         .then(()=>{
             if (businesses.length)
