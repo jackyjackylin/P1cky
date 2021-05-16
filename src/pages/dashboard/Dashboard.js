@@ -20,6 +20,7 @@ import CreateNewList from "./CreateNewList"
 import CreateNewFriend from "./CreateNewFriend"
 import firebase from "firebase/app";
 import DeleteListCheckList from '../../components/other/DeleteListCheckList';
+import Banner6 from "../../components/banner/banner6/Banner6"
 
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
@@ -196,7 +197,7 @@ function Dashboard() {
                     if (target.matches('.delete-account-info .delete-account, .card-item .card-content-wrap .delete-btn')) {
                         showDeleteAcntModal.call(target, e)
                         break
-                    }else if(target.matches('.createNewList')){
+                    }else if(target.matches('.btn-box .createNewList')){
                         showAddListModal.call(target,e)
                         break
                     }else if(target.matches('.createNewFriend')){
@@ -263,8 +264,9 @@ function Dashboard() {
             <GeneralHeader />
 
             {/* Breadcrumb */}
-            <Breadcrumb CurrentPgTitle="Dashboard" MenuPgTitle="pages" img={sectiondata.dashboard.breadcrumbimg} />
-
+            {/* <Breadcrumb CurrentPgTitle="Dashboard" MenuPgTitle="pages" img={sectiondata.dashboard.breadcrumbimg} /> */}
+            
+            <Banner6 title="Add restaurants to your lists!"/>
 
             {/*<TestVanillaJs />*/}
 
@@ -297,7 +299,7 @@ function Dashboard() {
                                         {/* <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
                                         <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
                                         {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
-                                        <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link>
+                                        {/* <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
                                         <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
                                     </div>
                                 </div>

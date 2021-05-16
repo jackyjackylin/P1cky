@@ -2197,6 +2197,11 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .add-to-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .modal-open .report-modal-box,
   .modal-open .account-delete-modal {
     visibility: visible;
@@ -2312,6 +2317,24 @@ body {
 .added-successfully-modal-open .added-successfully-modal {
   visibility: visible;
 }
+
+/*-----------new modal---------------------*/
+.add-to-list-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.add-to-list-modal-open .modal.add-to-list-modal .fade.show,
+.add-to-list-modal-open .modal.add-to-list-modal .fade:not(.show),
+.add-to-list-modal-open .modal {
+  opacity: 1;
+}
+.add-to-list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.add-to-list-modal-open .add-to-list-modal {
+  visibility: visible;
+}
+
 
 /*-----------new modal---------------------*/
 .empty-input-modal-open .modal-bg {

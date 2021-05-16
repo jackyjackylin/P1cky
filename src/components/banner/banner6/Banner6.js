@@ -62,8 +62,9 @@ function Banner6({title}) {
 
     useEffect(()=> {
         if (restaurant) {
-            setEmptyInput(false)
+            // setEmptyInput(false)
             console.log("input change:", restaurant)
+            console.log("empty change:", emptyInput)
             searchRestaurant(restaurant.value.structured_formatting.main_text, restaurant.value.structured_formatting.secondary_text)
             .catch((err)=>console.log(err))
         }
@@ -74,9 +75,10 @@ function Banner6({title}) {
         const body = document.querySelector('body')
 
         function showPocketListModal(e) {
-            body.classList.add('list-modal-open')
+            body.classList.add('add-to-list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
+            console.log(restaurant.length)
         }
 
         function showAddedSuccessfullytModal(e) {
@@ -97,15 +99,15 @@ function Banner6({title}) {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.breadcrumb-wrap .theme-btn') && restaurant) {
+                    if (target.matches('.breadcrumb-wrap .theme-btn')) {
                         showPocketListModal.call(target, e)
                         break
                     }
-                    // }else if (target.matches('.breadcrumb-wrap .theme-btn') && emptyInput) {
+                    // else if (target.matches('.breadcrumb-wrap .theme-btn') && emptyInput) {
                     //     showEmptyInputModal.call(target, e)
                     //     break
                     // }
-                    else if (target.matches('.add-list-modal .btn-box .add-btn') && restaurantName.length && lists.length) {
+                    else if (target.matches('.add-to-list-modal .btn-box .add-btn') && restaurantName.length && lists.length) {
                         showAddedSuccessfullytModal.call(target, e)
                         break
                     }
@@ -113,7 +115,7 @@ function Banner6({title}) {
             },false
         )
         function hidePocketListModal(e) {
-            body.classList.remove('list-modal-open')
+            body.classList.remove('add-to-list-modal-open')
             body.style.paddingRight = '0'
             e.preventDefault()
         }
@@ -136,7 +138,7 @@ function Banner6({title}) {
                     target && target !== this;
                     target = target.parentNode
                 ) {
-                    if (target.matches('.add-list-modal .modal-bg, .btn-box .theme-btn')) {
+                    if (target.matches('.add-to-list-modal .modal-bg, .btn-box .theme-btn')) {
                         hidePocketListModal.call(target, e)
                         break
                     }else if (target.matches('.added-successfully-modal .btn1-box .hide-list')) {
@@ -238,7 +240,7 @@ function Banner6({title}) {
                                                             <div className="main-search-input-item location">
                                                                 {loaded&&<AddRestaurants value={restaurant} setValue={setRes}/>}
                                                             </div>
-                                                            <button type="button" className="theme-btn border-0" data-toggle="modal" data-target=".product-delete-modal">
+                                                            <button type="button" className="theme-btn border-0 addToListBtn" data-toggle="modal" data-target=".product-delete-modal">
                                                                 <span className="d-inline-block"><FiPlusCircle /></span>
                                                             </button>
                                                         </div>
@@ -256,7 +258,7 @@ function Banner6({title}) {
 
             {/* Modal */}
             <div className="modal-form text-center">
-                <div className="modal fade add-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div className="modal fade add-to-list-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
@@ -296,16 +298,16 @@ function Banner6({title}) {
                             <div className="modal-top border-0 mb-4 p-0">
                                 <div className="alert-content">
                                     <span className="la warning-icon"><GrStatusGood /></span>
-                                    <h4 className="modal-title mt-2 mb-1">Added Successfully</h4>
-                                    <p className="modal-sub">Add Another Restaurant or Go Check Your Lists</p>
+                                    <h4 className="modal-title mt-2 mb-1">Added Successfully!</h4>
+                                    {/* <p className="modal-sub">Add Another Restaurant or Go Check Your Lists</p> */}
                                 </div>
                             </div>
                             <div className="btn1-box">
-                                <Link to="/add-listing/new"><button type="button" className="theme-btn border-0 button-success mr-1 hide-list" data-dismiss="modal">
+                                {/* <Link to="/add-listing/new"><button type="button" className="theme-btn border-0 button-success mr-1 hide-list" data-dismiss="modal">
                                     Stay
-                                </button></Link>
+                                </button></Link> */}
                                 <Link to="/dashboard"><button type="button" className="theme-btn border-0 button-danger hide-list">
-                                    Check My Lists
+                                    Got It!
                                 </button></Link>
                             </div>
                         </div>
