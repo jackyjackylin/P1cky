@@ -1,5 +1,4 @@
-import React  from 'react'
-
+import React from 'react';
 export default function BannerOneCategories({connector, title, items}) {
     return (
         <>

@@ -25,22 +25,24 @@ export default function HeaderAuthorAccess() {
         <>
             <div className="logo-right-content">
                 <ul className="author-access-list">
-                    {currentUser? <li>Hi {currentUser.displayName}</li>:
+                    {currentUser ? <li>Hi {currentUser.displayName}</li>:
                     <li>
                         <Link to="/login">login</Link>
                         <span className="or-text">or</span>
                         <Link to="/sign-up">Sign up</Link>
                     </li>
                     }
+                    {currentUser && 
                     <li>
                         <Button text="Add to List" url="/add-listing/new" >
                             <FiPlusCircle />
                         </Button>
                     </li>
+                    }                   
                 </ul>
-                <div className="side-user-menu-open" onClick={() => setAuthorAccessOpen(!AuthorAccessOpen)}>
+                {currentUser && <div className="side-user-menu-open" onClick={() => setAuthorAccessOpen(!AuthorAccessOpen)}>
                     <AiOutlineUser />
-                </div>
+                </div>}
             </div>
 
             {/* Side User panel */}
