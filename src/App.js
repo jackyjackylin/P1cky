@@ -39,6 +39,7 @@ import Error from "./pages/Error";
 import UserProvider from "./components/providers/UserProvider";
 import ViewUserDetails from "./pages/dashboard/ViewUserDetails";
 import AccordionList from './components/other/AccordionList';
+import BannerOne from './components/banner/banner1/BannerOne';
 
 
 const App = () => {
@@ -90,6 +91,7 @@ const App = () => {
               <AppRoute path="/login" component={Login} />
               <AppRoute path="/sign-up" component={SignUp} />
               <AppRoute component={AccordionList} />
+              <AppRoute component={BannerOne} />
               <AppRoute component={Error} />
           </Switch>
         

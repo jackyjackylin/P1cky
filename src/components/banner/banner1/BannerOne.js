@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react';
 import BannerOneHeroHeading from './BannerOneHeroHeading'
 import BannerOneSearchInput from './BannerOneSearchInput'
 import BannerOneCategories from './BannerOneCategories'
 import sectiondata from "../../../store/store";
-
+import {AuthContext} from "../../providers/UserProvider";
 
 
 export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList}) {
+    const {currentUser} = useContext(AuthContext);
+
     return (
         <>
             <section className="hero-wrapper" style={{backgroundImage: 'url('+sectiondata.herobanners.banner1.bgimage+')'}}>
@@ -22,11 +24,11 @@ export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList}
                                 titleHighlight={sectiondata.herobanners.banner1.titleHighlight} />
 
                             {/* Banner One Categories */}
-                            <BannerOneCategories
+                            {currentUser && <BannerOneCategories
                                 title={sectiondata.categories.featuredcategories.title}
                                 items={sectiondata.categories.featuredcategories.items}
                                 connector={sectiondata.categories.featuredcategories.connector}
-                            />
+                            />}
 
                             {/* Banner One Search Input */}
                             {loaded&& 
