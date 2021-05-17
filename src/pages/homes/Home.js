@@ -9,6 +9,8 @@ import PlacePop from "../../components/places/PlacePop";
 import sectiondata from "../../store/store";
 import GetRestaurantsFromApi from '../../components/common/GetRestaurantsFromApi';
 import ShowList from "../listings/ShowList"
+import ShowFriendList from "../listings/ShowFriendList"
+
 function Home() {
     const [businesses, setBusinesses] = useState([]);
     const [showPop, setShowPop] = useState(false);
@@ -26,14 +28,19 @@ function Home() {
     /*=================Control Modal that would display on HomePage===============*/
     useEffect(() => {
         const body = document.querySelector('body')
-    
-        function showDeleteAcntModal(e) {
-            body.classList.add('modal-open')
+
+        function showAddListModal(e) {
+            body.classList.add('list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
-        function showAddListModal(e) {
-            body.classList.add('list-modal-open')
+        function showFriendModal(e) {
+            body.classList.add('friend-list-modal-open')
+            body.style.paddingRight = '17px'
+            e.preventDefault()
+        }
+        function showFriendPocketModal(e) {
+            body.classList.add('friend-pocket-list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
         }
@@ -44,8 +51,13 @@ function Home() {
                     target = target.parentNode
                 ) {
                     if (target.matches('.category-item.list')) {
-                        
                         showAddListModal.call(target, e)
+                        break
+                    } else if(target.matches('.category-item.friend')){
+                        showFriendModal.call(target, e)
+                        break
+                    } else if(target.matches('.friendPocketList')){
+                        showFriendPocketModal.call(target, e)
                         break
                     }
                 }
@@ -62,6 +74,18 @@ function Home() {
             body.style.paddingRight = '0'
             e.preventDefault()
         }
+        function hideFriendListModal(e) {
+            // console.log("hide pick from pocket list")
+            body.classList.remove('friend-list-modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+        function hideFriendPocketListModal(e) {
+            body.classList.remove('friend-pocket-list-modal-open')
+            body.style.paddingRight = '0'
+            e.preventDefault()
+        }
+
         document.addEventListener('click', function (e) {
                 for (
                     let target = e.target;
@@ -69,12 +93,13 @@ function Home() {
                     target = target.parentNode
                 ) {
                     if (target.matches('.badge-toggle, .modal-bg')) {
-                        // console.log("match hide")
                         hideDeleteAcntModal.call(target, e)
                         hideAddListModal.call(target,e);
-                        // toggleShowPop();
+                        hideFriendPocketListModal.call(target, e);
                         toggleShowPop({set:true,val:false});
-                        // setTimeout(function() { toggleShowPop({set:true,val:false}); }, 0);
+                        break
+                    }else if(target.matches('.badge-toggle .modal-bg, .btn-box .hide-friend-list')){
+                        hideFriendListModal.call(target, e);
                         break
                     }
                 }
@@ -85,7 +110,6 @@ function Home() {
     let nextItemId = ()=>{
         if(popItemList != null){
             setPopItemId( (popItemId+1) % popItemList.length);
-            
         }
     }
     // clean all data before toggle the flag show up
@@ -103,11 +127,8 @@ function Home() {
             setShowPop(false);
             setIsPocketList(false);
         }
-        
     }
     
-
-
     useEffect(() => {
         async function showPosition(position){
             setLat(position.coords.latitude);
@@ -160,6 +181,7 @@ function Home() {
             nextItemId={nextItemId}/>
 
             <ShowList setPopItemId={setPopItemId} setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
+            <ShowFriendList setPopItemId={setPopItemId} setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
             {/* Footer */}
             <Footer />
 

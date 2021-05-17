@@ -26,7 +26,7 @@ export default function BannerOneCategories({connector, title, items}) {
                         )
                     })}
                 </div>
-            </div>
+        </div>
         </>
     )
 }

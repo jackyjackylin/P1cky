@@ -2177,6 +2177,16 @@ body {
     visibility: hidden;
     transition: .3s ease-out;
   }
+  .friend-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
+  .friend-pocket-list-modal {
+    display: block;
+    visibility: hidden;
+    transition: .3s ease-out;
+  }
   .delete-list-modal {
     display: block;
     visibility: hidden;
@@ -2252,22 +2262,7 @@ body {
   margin-top: 12px;
   margin-bottom: 5px; 
 }
-/*-----------new modal---------------------*/
-.friend-modal-open .modal-bg {
-  opacity: 0.5;
-}
 
-.friend-modal-open .modal.add-friend-modal .fade.show,
-.friend-modal-open .modal.add-friend-modal .fade:not(.show),
-.friend-modal-open .modal {
-  opacity: 1;
-}
-.friend-modal-open .modal .modal-dialog {
-  transform: none;
-}
-.friend-modal-open .add-friend-modal {
-  visibility: visible;
-}
 
 /*-----------new modal---------------------*/
 .delete-list-modal-open .modal-bg {
@@ -2286,6 +2281,24 @@ body {
   visibility: visible;
 }
 /*-----------new modal---------------------*/
+/*-----------new modal---------------------*/
+.delete-firend-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.delete-firend-modal-open .modal.delete-firend-modal .fade.show,
+.delete-firend-modal-open .modal.delete-firend-modal .fade:not(.show),
+.delete-firend-modal-open .modal {
+  opacity: 1;
+}
+.delete-firend-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.delete-firend-modal-open .delete-firend-modal {
+  visibility: visible;
+}
+/*-----------new modal---------------------*/
+
 .fork-list-modal-open .modal-bg {
   opacity: 0.5;
 }
@@ -2299,6 +2312,40 @@ body {
   transform: none;
 }
 .fork-list-modal-open .fork-list-modal {
+  visibility: visible;
+}
+/*-----------new modal---------------------*/
+
+.friend-list-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.friend-list-modal-open .modal.friend-list-modal .fade.show,
+.friend-list-modal-open .modal.friend-list-modal .fade:not(.show),
+.friend-list-modal-open .modal {
+  opacity: 1;
+}
+.friend-list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.friend-list-modal-open .friend-list-modal {
+  visibility: visible;
+}
+/*-----------new modal---------------------*/
+
+.friend-pocket-list-modal-open .modal-bg {
+  opacity: 0.5;
+}
+
+.friend-pocket-list-modal-open .modal.friend-pocket-list-modal .fade.show,
+.friend-pocket-list-modal-open .modal.friend-pocket-list-modal .fade:not(.show),
+.friend-pocket-list-modal-open .modal {
+  opacity: 1;
+}
+.friend-pocket-list-modal-open .modal .modal-dialog {
+  transform: none;
+}
+.friend-pocket-list-modal-open .friend-pocket-list-modal {
   visibility: visible;
 }
 /*-----------new modal---------------------*/

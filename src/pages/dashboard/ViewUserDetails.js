@@ -118,7 +118,6 @@ function ViewUserDetails() {
                                     </TabList>
                                     <div className="btn-box">
                                         <div  className="theme-btn forkList"><span className="la"><AiOutlinePlusCircle /></span> Fork PocketLists</div>
-                                        
                                     </div>
                                 </div>
                             </div>

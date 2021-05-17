@@ -34,12 +34,14 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         comments: "tmp comments",
         photoURL: "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2FfEyvLKgSSWeRHPf87PUr1OQotHF3%2Fuserimg5.jpg?alt=media&token=dd5c08b1-3bfb-42b3-9257-dbb331acd645"
     }
+    
     useEffect(() => {
         if(currentUser)
             console.log(`${currentUser.uid} Show`)
     },[currentUser])
+
     useEffect(() => {
-        
+
         console.log(`The ${choice}th from all ${choiceLength} choices`)
     },[choice,choiceLength])
 
@@ -81,10 +83,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             toggleShowPop({set:true,val:true})
             showDeleteAcntModal()
         })
-        
-
         // setChoiceLength(randomList.length)
-
     }
     
 

@@ -10,7 +10,6 @@ import { FiPhone, FiEdit } from 'react-icons/fi'
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
-import sectiondata from "../../store/store";
 import AccordionList from "../../components/other/AccordionList";
 import FriendList from "../../components/other/FriendList";
 import {AuthContext} from "../../components/providers/UserProvider";
