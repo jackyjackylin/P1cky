@@ -52,10 +52,8 @@ function getDirection(business){
     window.open(`https://www.google.com/maps/dir/?api=1&destination=${parsedAddr}`);
 }
 
-function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,nextItemId}){
-    let item = itemList[itemId];
-    console.log(itemList)
-    console.log(itemId)
+function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
+
     try {
         return(
             <div className="row mt-5">
@@ -64,8 +62,8 @@ function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,n
                                 <div className="card-area">
                                 <a href="#" className="card-image-wrap">
                                     <div className="card-image">
-                                        <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
-                                        { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
+                                        <img src={item.image_url?item.image_url:item.photoURL} width="362" height="242" className="card__img" alt="Place" />
+                                        {/* { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> } */}
                                         <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
     
@@ -90,7 +88,7 @@ function ResultPage({isPocketList,itemList,itemId,places,toggleShowPop,showPop,n
                                         </a>
                                         <ul className="info-list padding-top-20px">
                                             <li>
-                                                <span className="la d-inline-block"><FiPhone /></span> {item.display_phone}
+                                                <span className="la d-inline-block"><FiPhone /></span> {item.display_phone?item.display_phone:item.phone}
                                             </li>
                                             <li>
                                                 <span className="la d-inline-block"><IoIosLink /></span>  <a href={item.url}>

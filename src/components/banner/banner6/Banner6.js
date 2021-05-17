@@ -40,11 +40,17 @@ function Banner6({title}) {
     let data = {
         photoURL: photoURL,
         yelpID: yelpID,
-        city: city,
-        zipCode: zipCode,
-        state: state,
-        country: country,
-        address: address,
+        location:{
+            address: address,
+            city: city,
+            state: state,
+            country: country,
+            
+            zipCode: zipCode
+        },
+        
+
+        
         categories: categories,
         rating: rating,
         price: price,

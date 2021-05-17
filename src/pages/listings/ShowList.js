@@ -43,13 +43,14 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         console.log(`The ${choice}th from all ${choiceLength} choices`)
     },[choice,choiceLength])
 
+
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
     }
 
-    const getAllFromList = async(docName) => {
+    const getAllFromPocketList = async(docName) => {
         const ref = firestore.doc(`users/${currentUser.uid}`).collection('pocketList').doc(docName).collection('restaurantsList');
         const collections = await ref.get();
         let tmpList = []
@@ -63,22 +64,26 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         // console.log(`choose from list ${listIdx}`)
         let randomList = []
 
-        await Promise.all(lists.map(async(item, i) => {
-            let oneList = await getAllFromList(item)
+        Promise.all(lists.map(async(item, i) => {
+            let oneList = await getAllFromPocketList(item)
             oneList.map(restaurant => randomList.push(restaurant))
             
             // console.log(randomList)
-        }))
-        // setChoice()
-        let choice = getRandomInt(0,randomList.length);
+        })).then(() => {
+            let choice = getRandomInt(0,randomList.length);
+            console.log(randomList.slice(choice,choice+1))
+            hideAddListModal()
+            // let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
+            setIsPocketList(true)
+            // setPopItemList(popItemList=>res.data.businesses)
+            console.log(randomList.slice(choice,choice+1))
+            setPopItemList(popItemList=> randomList.slice(choice,choice+1))
+            // setPopItemId(choice)
+            toggleShowPop(true)
+            showDeleteAcntModal()
+        })
         
-        hideAddListModal()
-        let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
-        setIsPocketList(true)
-        setPopItemList(popItemList=>res.data.businesses)
-        // setPopItemId(choice)
-        toggleShowPop({set:true,val:true})
-        showDeleteAcntModal()
+
         // setChoiceLength(randomList.length)
 
     }
