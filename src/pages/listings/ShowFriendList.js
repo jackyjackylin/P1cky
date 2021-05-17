@@ -21,7 +21,13 @@ export default function ShowFriendList({popItemList,toggleShowPop,setPopItemId,s
     const [choice, setChoice] = useState(-1);
     const [choiceLength, setChoiceLength] = useState(-1);
     const {currentUser} = useContext(AuthContext);
-
+    const body = document.querySelector('body')
+    
+    function showDeleteAcntModal() {
+        body.classList.add('modal-open')
+        body.style.paddingRight = '17px'
+        // e.preventDefault()
+    }
     useEffect(() => {
         if(currentUser)
             console.log(`${currentUser.uid} Show`)
@@ -63,6 +69,7 @@ export default function ShowFriendList({popItemList,toggleShowPop,setPopItemId,s
             console.log(randomList.slice(choice,choice+1))
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
             toggleShowPop(true)
+            showDeleteAcntModal()
         })
     }
     
