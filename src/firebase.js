@@ -34,7 +34,7 @@ export const generateUserDocument = async (user, additionalData) => {
     try {
       await userRef.set({
         "email": email,
-        "photoURL": photoURL,
+        "photoURL": "https://firebasestorage.googleapis.com/v0/b/p1cky-89cb0.appspot.com/o/images%2F0c3b3adb1a7530892e55ef36d3be6cb8.png?alt=media&token=89acf24c-eddc-448f-8614-99bcd44527d7",
         "phoneNumber": phoneNumber,
         "bioData": "",
         ...additionalData
