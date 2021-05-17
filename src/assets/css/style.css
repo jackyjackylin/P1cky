@@ -1376,6 +1376,28 @@ body {
   height: 28px;
   background-color:#eaecee;
 }
+
+.menu-tooltip{
+  cursor: pointer;
+  padding: 10px;
+  height: 40px;
+  margin: 2px;
+  border-radius: 10px;
+  color: rgb(50, 50, 255);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 900;
+  background-color:#f0dada;
+  z-index: 9999999;
+  /* outline: 5px solid rgb(15, 130, 224); */
+}
+.menu-tooltip .popup-arrow {
+  color: #f0dada;
+}
+/* .menu-tooltip:hover {
+  color: #2980b9;
+  background-color:#cbe0ee;
+  
+} */
 .menu-item:hover {
   color: #2980b9;
   background-color:#cbe0ee;
@@ -4653,7 +4675,7 @@ body {
 
 .card-sub {
   font-size: 15px;
-  color: #808996;
+  color: #333f57;
   font-weight: 400; }
 
 .card-image {
@@ -4768,7 +4790,7 @@ body {
     font-size: 13px;
     line-height: 35px;
     padding-right: 12px;
-    padding-left: 12px; }
+    padding-left: 12px;}
     .rating-row .edit-info-box .theme-btn span {
       font-size: 16px; }
 

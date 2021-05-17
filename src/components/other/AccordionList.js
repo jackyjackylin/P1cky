@@ -2,6 +2,7 @@ import { FaPlus, FaMinus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import {firestore} from '../../firebase';
 import React, {useEffect, useState,useContext} from 'react';
 import {AuthContext} from "../../components/providers/UserProvider";
+import {IoIosLink} from 'react-icons/io'
 
 import {
     Accordion,
@@ -45,8 +46,9 @@ function AccordionList ({uid,userList, setUserList}) {
         var tmpList = {
             listName: value,
             restaurants: [],
-            comments: [],
-            photoURL: []
+            yelpURL: [],
+            photoURL: [],
+            address: [],
         }
         const ref = firestore.doc(`users/${uid}/pocketList/${value}`).collection('restaurantsList');
         const collections = await ref.get()
@@ -54,8 +56,9 @@ function AccordionList ({uid,userList, setUserList}) {
             collections.forEach(collection => {
                 // console.log("current doc:", collection.id)
                 tmpList.restaurants.push(collection.id);
-                tmpList.comments.push(collection.data().comments);
+                tmpList.yelpURL.push(collection.data().yelpURL);
                 tmpList.photoURL.push(collection.data().photoURL);
+                tmpList.address.push(collection.data().location.address);
             });
             fetchedLists.push(tmpList)
         }).then(()=>{
@@ -79,6 +82,7 @@ function AccordionList ({uid,userList, setUserList}) {
         const res = await firestore.doc(`users/${uid}/pocketList/${docName}/restaurantsList/${resName}`).delete();
         window.location.reload();
     }
+
 
     return (
         <>
@@ -108,15 +112,18 @@ function AccordionList ({uid,userList, setUserList}) {
                                                             <div className="card-content-wrap">
                                                                 <div className="card-content">
                                                                     <h4 className="card-title mt-0">{val}</h4>
-                                                                    <p className="card-sub">{item.comments[index]}</p>
+                                                                    <p className="card-sub">{item.address[index]}</p>
+                                                                    <ul className="info-list padding-top-20px">
+                                                                        <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={item.yelpURL[index]}>
+                                                                        Link to Yelp
+                                                                    </a>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
                                                                 {(currentUser && currentUser.uid===uid) &&
                                                                     <div className="rating-row">
                                                                         <div className="edit-info-box">
-                                                                            <button type="button" className="theme-btn button-success border-0 mr-1">
-                                                                                <span className="la"><FaRegEdit /></span> Edit
-                                                                            </button>
-                                                                            <button type="button" className="theme-btn delete-btn border-0" onClick={()=>delRestaurant(item.listName,val)}>
+                                                                            <button type="button" className="theme-btn delete-btn border-0 center" onClick={()=>delRestaurant(item.listName,val)}>
                                                                                 <span className="la"><FaRegTrashAlt /></span> Delete
                                                                             </button>
                                                                         </div>

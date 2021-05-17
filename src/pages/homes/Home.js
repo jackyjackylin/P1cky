@@ -100,6 +100,9 @@ function Home() {
                         break
                     }else if(target.matches('.badge-toggle .modal-bg, .btn-box .hide-friend-list')){
                         hideFriendListModal.call(target, e);
+                        // toggleShowPop();
+                        toggleShowPop(false);
+                        // setTimeout(function() { toggleShowPop({set:true,val:false}); }, 0);
                         break
                     }
                 }
@@ -113,9 +116,9 @@ function Home() {
         }
     }
     // clean all data before toggle the flag show up
-    function toggleShowPop({set,val}){
-        
-        let flag = (set==true)? val: showPop;
+    function toggleShowPop(val){
+        console.log(val)
+        let flag = val
         if(flag){
             console.log(flag);
             setPopItemId(0);

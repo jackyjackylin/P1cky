@@ -45,6 +45,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
         console.log(`The ${choice}th from all ${choiceLength} choices`)
     },[choice,choiceLength])
 
+
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -80,7 +81,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             console.log(randomList.slice(choice,choice+1))
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
             // setPopItemId(choice)
-            toggleShowPop({set:true,val:true})
+            toggleShowPop(true)
             showDeleteAcntModal()
         })
         // setChoiceLength(randomList.length)
@@ -102,7 +103,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
                         {currentUser && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
                         {/* <div className="row padding-top-100px"></div> */}
                         <div className="btn-box">
-                            <button type="button" className="theme-btn border-0 button-success mr-1 pocketList" onClick={randomPick}data-dismiss="modal">
+                            <button type="button" className="theme-btn border-0 button-success mr-1" onClick={randomPick}data-dismiss="modal">
                                 Go
                             </button>
                             {/* <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
