@@ -62,7 +62,7 @@ export default function ShowFriendList({popItemList,toggleShowPop,setPopItemId,s
             setIsPocketList(true)
             console.log(randomList.slice(choice,choice+1))
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
-            toggleShowPop({set:true,val:true})
+            toggleShowPop(true)
         })
     }
     
