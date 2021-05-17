@@ -112,7 +112,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                                             <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
                                                         }
                                                         {!isPocketList &&
-                                                            <ListMenu/>
+                                                            <ListMenu item={item}/>
                                                         }
                                                         
                                                     </div>

@@ -3,19 +3,39 @@ import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube
 import React,{ useEffect, useState, useContext } from 'react';
 import {firestore} from '../../firebase';
 import {AuthContext} from "../../components/providers/UserProvider";
-const ListMenu = () => {
+import Tooltip from '@material-ui/core/Tooltip';
+
+const ListMenu = ({item}) => {
   const [listNames, setListNames] = useState([])
   const {currentUser} = useContext(AuthContext);
   const [selectList,setSelectList] = useState("")
+  const [open, setOpen] = React.useState(false);
+
+  const handleTooltipClose = () => {
+    setOpen(false);
+  };
+
+  const handleTooltipOpen = () => {
+    setOpen(true);
+  };
+
 
   useEffect(()=>{
      fetch()
   },[])
 
   useEffect(()=>{
-    console.log(selectList)
-  },[selectList])
+    console.log(open)
+  },[open])
 
+  const addToLists = async (list) => {
+    handleTooltipOpen()
+    console.log(list,item)
+    const userRef = await firestore.doc(`users/${currentUser.uid}/pocketList/${list}/restaurantsList/${item.name}`).set(item)
+    
+    // console.log(item)
+    // e.preventDefault();
+  }
   async function fetch() {
     console.log("fetch")
     const doc = firestore.doc(`users/${currentUser.uid}`).collection('pocketList');
@@ -42,11 +62,26 @@ const ListMenu = () => {
       arrow={true}
     >
       <div className="menu">
+        <Tooltip
+              title="Successfully added to the list"
+              PopperProps={{
+                disablePortal: true,
+              }}
+              placement="top-end"
+              open={open}
+              disableFocusListener
+              disableHoverListener
+              disableTouchListener>
+                <div></div>
+        </Tooltip>
         {listNames.map((name,index)=> {
           return(
-            <div className="menu-item sub-menu" key={index} onClick={()=>setSelectList(name)}> {name} </div>
+              <div className="menu-item sub-menu" onClick={()=>addToLists(name)} onMouseLeave={handleTooltipClose} > 
+                {name}
+              </div>
           )
         })}
+        
       </div>
     </Popup>
   );

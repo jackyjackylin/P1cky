@@ -104,7 +104,7 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
                         {currentUser && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
                         {/* <div className="row padding-top-100px"></div> */}
                         <div className="btn-box">
-                            <button type="button" className="theme-btn border-0 button-success mr-1 pocketList" onClick={randomPick}data-dismiss="modal">
+                            <button type="button" className="theme-btn border-0 button-success mr-1" onClick={randomPick}data-dismiss="modal">
                                 Go
                             </button>
                             {/* <button type="button" className="theme-btn border-0 button-danger" onClick={()=>{
