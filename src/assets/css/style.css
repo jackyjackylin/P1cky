@@ -4606,7 +4606,7 @@ body {
 
 .card-sub {
   font-size: 15px;
-  color: #808996;
+  color: #333f57;
   font-weight: 400; }
 
 .card-image {
@@ -4721,7 +4721,7 @@ body {
     font-size: 13px;
     line-height: 35px;
     padding-right: 12px;
-    padding-left: 12px; }
+    padding-left: 12px;}
     .rating-row .edit-info-box .theme-btn span {
       font-size: 16px; }
 

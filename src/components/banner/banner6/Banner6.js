@@ -31,7 +31,6 @@ function Banner6({title}) {
     const [zipCode, setZipCode] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
-    const [comment, setComment] = useState("");
     const [phone, setPhone] = useState("");
     const [yelpURL, setYelpURL] = useState("");
     const [rating, setRating] = useState();
@@ -39,7 +38,6 @@ function Banner6({title}) {
 
 
     let data = {
-        comments: comment,
         photoURL: photoURL,
         yelpID: yelpID,
         city: city,
@@ -62,7 +60,7 @@ function Banner6({title}) {
 
     useEffect(()=> {
         if (restaurant) {
-            // setEmptyInput(false)
+            setEmptyInput(false)
             console.log("input change:", restaurant)
             console.log("empty change:", emptyInput)
             searchRestaurant(restaurant.value.structured_formatting.main_text, restaurant.value.structured_formatting.secondary_text)
@@ -78,7 +76,7 @@ function Banner6({title}) {
             body.classList.add('add-to-list-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
-            console.log(restaurant.length)
+            console.log("empty?", emptyInput)
         }
 
         function showAddedSuccessfullytModal(e) {
@@ -91,6 +89,7 @@ function Banner6({title}) {
             body.classList.add('empty-input-modal-open')
             body.style.paddingRight = '17px'
             e.preventDefault()
+            console.log("empty???", emptyInput)
         }
 
         document.addEventListener('click', function (e) {
@@ -100,14 +99,17 @@ function Banner6({title}) {
                     target = target.parentNode
                 ) {
                     if (target.matches('.breadcrumb-wrap .theme-btn')) {
-                        showPocketListModal.call(target, e)
-                        break
-                    }
-                    // else if (target.matches('.breadcrumb-wrap .theme-btn') && emptyInput) {
-                    //     showEmptyInputModal.call(target, e)
-                    //     break
-                    // }
-                    else if (target.matches('.add-to-list-modal .btn-box .add-btn') && restaurantName.length && lists.length) {
+                        if (emptyInput) {
+                            showEmptyInputModal.call(target, e)
+                            break
+                        }
+                        else {
+                            showPocketListModal.call(target, e)
+                            hideEmptyInputModal.call(target, e)
+                            break
+                        }
+                        
+                    }else if (target.matches('.add-to-list-modal .btn-box .add-btn') && restaurantName.length && lists.length) {
                         showAddedSuccessfullytModal.call(target, e)
                         break
                     }
@@ -216,10 +218,6 @@ function Banner6({title}) {
         });
     }
 
-    const handleInput = (e) => {
-        setComment(e.target.value);
-    };
-
     return (
         <>
             <section className="breadcrumb-area faq-breadcrumb" style={{backgroundImage: 'url('+sectiondata.herobanners.banner1.bgimage+')'}}>
@@ -263,9 +261,6 @@ function Banner6({title}) {
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
                             {loaded && <AddToListCheckList uid={currentUser.uid} lists={lists} setLists={setLists} />}
-                            <Combobox>
-                                <ComboboxInput className='auto-complete-search-bar' onChange={handleInput} placeholder="Any Comment?" />
-                            </Combobox>
                             <div className="row padding-top-50px"></div>
                             <div className="btn-box">
                                 <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">
