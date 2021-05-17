@@ -68,30 +68,30 @@ function Dashboard() {
     };
   
     const updateProfile = async() => {
-          const userRef = firestore.doc(`users/${currentUser.uid}`);  
-          const snapshot = await userRef.get();
-          if (snapshot.exists) {
-              try {
-                userRef.update({
-                      displayName: displayName,
-                      bioData: bioData,
-                      phoneNumber: phoneNumber,
-                      location: location,
-                  }).then(() => {
-                      auth.currentUser.updateProfile({
-                          displayName: displayName,
-                          bioData: bioData,
-                          phoneNumber: phoneNumber,
-                          location: location,
-                      });
-                  }).then(() => {
-                      setIsOpenForm(false);
-                      window.location.reload();
-                  })
-              } catch (error) {
-                  console.error("Error creating user document", error);
-              }
-          }
+        const userRef = firestore.doc(`users/${currentUser.uid}`);  
+        const snapshot = await userRef.get();
+        if (snapshot.exists) {
+            try {
+            userRef.update({
+                    displayName: displayName,
+                    bioData: bioData,
+                    phoneNumber: phoneNumber,
+                    location: location,
+                }).then(() => {
+                    auth.currentUser.updateProfile({
+                        displayName: displayName,
+                        bioData: bioData,
+                        phoneNumber: phoneNumber,
+                        location: location,
+                    });
+                }).then(() => {
+                    setIsOpenForm(false);
+                    window.location.reload();
+                })
+            } catch (error) {
+                console.error("Error creating user document", error);
+            }
+        }
     }
 
     function handleChange(e) {
