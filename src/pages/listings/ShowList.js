@@ -78,7 +78,9 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             // let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
             setIsPocketList(true)
             // setPopItemList(popItemList=>res.data.businesses)
-            console.log(randomList.slice(choice,choice+1))
+
+            randomList[choice].name = randomList[choice].id;
+
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
             // setPopItemId(choice)
             toggleShowPop(true)
