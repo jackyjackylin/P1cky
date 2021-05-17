@@ -96,6 +96,7 @@ function Home() {
                         hideDeleteAcntModal.call(target, e)
                         hideAddListModal.call(target,e);
                         hideFriendPocketListModal.call(target, e);
+                        hideFriendListModal.call(target,e);
                         toggleShowPop({set:true,val:false});
                         break
                     }else if(target.matches('.badge-toggle .modal-bg, .btn-box .hide-friend-list')){
