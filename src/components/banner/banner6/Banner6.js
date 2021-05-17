@@ -45,9 +45,9 @@ function Banner6({title}) {
             city: city,
             state: state,
             country: country,
-            
             zipCode: zipCode
         },
+        name: restaurantName,
         categories: categories,
         rating: rating,
         price: price,
