@@ -183,8 +183,8 @@ function Home() {
             <PlacePop isPocketList={isPocketList} showPop={showPop} toggleShowPop = {toggleShowPop} itemList={popItemList} itemId={popItemId}
             nextItemId={nextItemId}/>
 
-            <ShowList setPopItemId={setPopItemId} setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
-            <ShowFriendList setPopItemId={setPopItemId} setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
+            <ShowList  setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
+            <ShowFriendList  setIsPocketList={setIsPocketList} popItemList={popItemList} setPopItemId={setPopItemId} toggleShowPop = {toggleShowPop} setPopItemList={setPopItemList} setPopItemId={setPopItemId}/>
             {/* Footer */}
             <Footer />
 
