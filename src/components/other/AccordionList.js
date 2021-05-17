@@ -58,7 +58,7 @@ function AccordionList ({uid,userList, setUserList}) {
                 tmpList.restaurants.push(collection.id);
                 tmpList.yelpURL.push(collection.data().yelpURL);
                 tmpList.photoURL.push(collection.data().photoURL);
-                tmpList.address.push(collection.data().address);
+                tmpList.address.push(collection.data().location.address);
             });
             fetchedLists.push(tmpList)
         }).then(()=>{

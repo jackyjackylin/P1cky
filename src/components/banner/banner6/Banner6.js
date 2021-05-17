@@ -48,9 +48,6 @@ function Banner6({title}) {
             
             zipCode: zipCode
         },
-        
-
-        
         categories: categories,
         rating: rating,
         price: price,
