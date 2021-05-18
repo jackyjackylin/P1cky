@@ -160,8 +160,8 @@ function Banner6({title}) {
 
     const addToLists = async _ => {
         const promises= lists.map(async docName => {
-            const userRef = firestore.doc(`users/${currentUser.uid}/pocketList/${docName}/restaurantsList/${restaurantName}`).set(data)
-            console.log('hehh',docName, restaurantName, photoURL)
+            const userRef = firestore.doc(`users/${currentUser.uid}/pocketList/${docName}/restaurantsList/${yelpID}`).set(data)
+            console.log('store restaurant:', docName, yelpID, restaurantName)
         })
         const res = await Promise.all(promises)
         .then(()=>{

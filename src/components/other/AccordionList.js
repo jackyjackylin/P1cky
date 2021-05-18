@@ -49,6 +49,7 @@ function AccordionList ({uid,userList, setUserList}) {
             yelpURL: [],
             photoURL: [],
             address: [],
+            restaurantName: [],
         }
         const ref = firestore.doc(`users/${uid}/pocketList/${value}`).collection('restaurantsList');
         const collections = await ref.get()
@@ -58,6 +59,7 @@ function AccordionList ({uid,userList, setUserList}) {
                 tmpList.restaurants.push(collection.id);
                 tmpList.yelpURL.push(collection.data().yelpURL);
                 tmpList.photoURL.push(collection.data().photoURL);
+                tmpList.restaurantName.push(collection.data().name);
                 tmpList.address.push(collection.data().location.address);
             });
             fetchedLists.push(tmpList)
@@ -104,14 +106,14 @@ function AccordionList ({uid,userList, setUserList}) {
                                         <div className="row">
                                             {item.restaurants.map((val, index) => {
                                                 return (
-                                                    <div key={`${item.listName}-${index}`} className="col-lg-4 column-td-6">
+                                                    <div key={`${item.restaurantName[index]}-${index}`} className="col-lg-4 column-td-6">
                                                         <div className="restaurant-item">
                                                             <div className="card-image">
                                                                 <img src={item.photoURL[index]} width="362" height="242" className="card__img" alt="Card" />
                                                             </div>
                                                             <div className="card-content-wrap">
                                                                 <div className="card-content">
-                                                                    <h4 className="card-title mt-0">{val}</h4>
+                                                                    <h4 className="card-title mt-0">{item.restaurantName[index]}</h4>
                                                                     <p className="card-sub">{item.address[index]}</p>
                                                                     <ul className="info-list padding-top-20px">
                                                                         <li><span className="la d-inline-block"><IoIosLink /></span>  <a href={item.yelpURL[index]}>
