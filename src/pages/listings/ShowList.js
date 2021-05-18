@@ -79,7 +79,6 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             setIsPocketList(true)
             // setPopItemList(popItemList=>res.data.businesses)
 
-            randomList[choice].name = randomList[choice].id;
 
             setPopItemList(popItemList=> randomList.slice(choice,choice+1))
             // setPopItemId(choice)
