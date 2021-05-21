@@ -55,6 +55,7 @@ function getDirection(business){
 function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
 
     try {
+        console.log(item)
         return(
             <div className="row mt-5">
                 <div className="col-lg-12">
