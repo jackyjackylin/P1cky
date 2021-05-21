@@ -18,14 +18,6 @@ import img1 from "../assets/images/img1.jpg"; // 263*175
 import img2 from "../assets/images/img2.jpg"; // 362*242
 import img3 from "../assets/images/img3.jpg"; // 263*175
 import img4 from "../assets/images/img4.jpg"; // 362*242
-import userimg1 from "../assets/images/userimg1.jpg"; // 362*242
-import userimg2 from "../assets/images/userimg2.jpg"; // 362*242
-import userimg3 from "../assets/images/userimg3.jpg"; // 362*242
-import userimg4 from "../assets/images/userimg4.jpg"; // 362*242
-import userimg5 from "../assets/images/userimg5.jpg"; // 362*242
-import userimg6 from "../assets/images/userimg6.jpg"; // 362*242
-import userDefaultImg from "../assets/images/userDefaultImg.jpg"; // 263*175
-
 import authorimg from "../assets/images/small-team1.jpg"; // 67*60
 import symble1 from "../assets/images/symble1.png";
 import symble2 from "../assets/images/symble2.png";
@@ -82,10 +74,10 @@ import flag6 from "../assets/images/flag3.jpg";
 import flag7 from "../assets/images/flag7.jpg";
 import flag8 from "../assets/images/flag5.png";
 import flag9 from "../assets/images/flag19.png";
-import hiw3videoimg from "../assets/images/video-img2.jpg";
+//import hiw3videoimg from "../assets/images/video-img2.jpg";
 import {FcLineChart} from "react-icons/fc";
 import dreamimg from "../assets/images/img6.jpg"; // 263*165
-import hiw5videoimg from "../assets/images/video-img3.jpg";
+//import hiw5videoimg from "../assets/images/video-img3.jpg";
 import slicevideo from "../assets/video/slice-video.m4v";
 import flag10 from "../assets/images/flag10.png";
 import flag11 from "../assets/images/flag11.png";
@@ -98,13 +90,13 @@ import flag17 from "../assets/images/flag17.jpg";
 import flag18 from "../assets/images/flag18.jpg";
 import flag19 from "../assets/images/flag19.png";
 import flag20 from "../assets/images/flag20.png";
-import listingdetailsvideoimg from "../assets/images/img4.jpg";
+//import listingdetailsvideoimg from "../assets/images/img4.jpg";
 import similarimg from "../assets/images/img8.jpg"; // 90*90
 import breadcrumbimg from "../assets/images/mountain.jpg"; //1920*838
 import userimage from "../assets/images/team1.jpg"; // 368*331
 import imgboximg from "../assets/images/img10.jpg"; // 570*345
 import about2img from "../assets/images/img2.jpg"; //389*259
-import mainimage from "../assets/images/video-img.jpg"; // 750*500
+//import mainimage from "../assets/images/video-img.jpg"; // 750*500
 
 
 
@@ -770,7 +762,7 @@ const sectiondata = {
             seccontent: 'Dirto provides the various ways that help you can earn money from your site. Morbi convallis bibendum urna ut viverra.',
             videobtn: 'watch how it works',
             videoid: 'R2kiP9Qu7Pc',
-            videoImg: hiw3videoimg,
+            //videoImg: hiw3videoimg,
             items: [
                 {
                     id: 1,
@@ -847,7 +839,7 @@ const sectiondata = {
                     desc: 'Proin dapibus nisl ornare diam varius ecos tempus. Aenean a quam',
                 }
             ],
-            videoBg: hiw5videoimg,
+            //videoBg: hiw5videoimg,
             videoBtn: 'watch how it works',
             videoid: 'R2kiP9Qu7Pc'
         },
@@ -1646,7 +1638,7 @@ const sectiondata = {
             }
         ],
         videotitle: 'Video',
-        videoImg: listingdetailsvideoimg,
+        //videoImg: listingdetailsvideoimg,
         videoid: 'R2kiP9Qu7Pc',
         videobtn: 'Watch Video',
         contactinfos: {
@@ -2121,77 +2113,6 @@ const sectiondata = {
         address: '926XX Irvine, California',
         phoneNum: '+1(111)123456789',
         website: 'www.jackylin.com',
-    },
-    dashboard1: {
-        breadcrumbimg: breadcrumbimg,
-        cards: [
-            {
-                img: userimg1,
-                title: 'Jacky Lin',
-                subtitle: 'The Most Handsome Boy in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            },
-            {
-                img: userimg2,
-                title: 'Tim Chen',
-                subtitle: 'The Nicest Boy in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            },
-            {
-                img: userimg3,
-                title: 'Kris Hung',
-                subtitle: 'The Smartest Girl in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            },
-            {
-                img: userimg4,
-                title: 'Jacky Lin',
-                subtitle: 'The Most Handsome Boy in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            },
-            {
-                img: userimg5,
-                title: 'Tim Chen',
-                subtitle: 'The Nicest Boy in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            },
-            {
-                img: userimg6,
-                title: 'Kris Hung',
-                subtitle: 'The Smartest Girl in Irvine',
-                editTxt: 'Edit',
-                editIcon: <FaRegEdit />,
-                deleteTxt: 'Delete',
-                deleteIcon: <FaRegTrashAlt />,
-                cardLink: '/listing-details'
-            }
-        ],
-        userImg: userimage,
-        userName: 'Mark Williamson',
-        userbio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium',
-        address: '101 Parkview, New York',
-        phoneNum: '+7(111)123456789',
-        website: 'www.techydevs.com',
     },
     teamdata: {
         sectitle: 'Our Expert Team Members',
@@ -3435,7 +3356,7 @@ const sectiondata = {
         ]
     },
     blogDetails: {
-        img: mainimage,
+        //img: mainimage,
         author: 'David Wise',
         authorImg: authorimg,
         date: '12 Fab, 2020',
@@ -3449,7 +3370,7 @@ const sectiondata = {
         desc4: 'Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price.',
 
         /* Blockquote */
-        bgimg: mainimage,
+        //bgimg: mainimage,
         quoteIcon: <FaQuoteRight />,
         quoteDesc: 'Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn\'t really do it, they just saw something. It seemed obvious to them after a while. That\'s because they were able to connect experiences they\'ve had and synthesize new things.',
         name: '- Steve Jobs',
