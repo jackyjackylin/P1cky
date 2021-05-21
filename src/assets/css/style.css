@@ -2135,7 +2135,7 @@ body {
 
 .blockquote-item {
   border-left: none;
-  /* background-image: url(../images/video-img.jpg); */
+  background-image: url(../images/video-img.jpg);
   background-size: cover;
   background-position: center;
   -webkit-border-radius: 4px;
@@ -6698,8 +6698,7 @@ body {
   .icon-box.icon-box-hover-effect:before {
     background-size: cover;
     background-position: center;
-  }
-    /* background-image: url("../images/video-img.jpg"); } */
+    background-image: url("../images/video-img.jpg"); }
   .icon-box.icon-box-hover-effect:after {
     background-color: #333f57; }
   .icon-box.icon-box-hover-effect:hover .info__title,
