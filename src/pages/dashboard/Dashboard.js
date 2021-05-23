@@ -55,7 +55,7 @@ function Dashboard() {
     const getIndex = history =>
     (history.location &&
         history.location.state &&
-        history.location.state.index)? history.location.state.index:0; 
+        history.location.state.index)? history.location.state.index: tabIndexMap.listing; 
 
     useEffect(() => {
         setTabIndex(getIndex(history));
