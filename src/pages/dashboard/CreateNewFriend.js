@@ -18,15 +18,21 @@ function CreateNewFriend({uid}) {
         firestore.collection("users").where("email", "==", friend).get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                firestore.doc(`users/${uid}`).collection('myFriends').doc(`${doc.id}`).set({"displayName": doc.data().displayName})
-                .then(()=>console.log("Add Friend!!"))
-                .then(()=>window.location.reload(true))
+                if(uid!==doc.id){
+                    firestore.doc(`users/${uid}`).collection('myFriends').doc(`${doc.id}`).set({"displayName": doc.data().displayName})
+                    .then(()=>console.log("Add Friend!!"))
+                    .then(()=>window.location.reload(true))
+                }else{
+                    console.log("Can not Add self as Friend");
+                    alert("Can not Add self as Friend");
+                    window.location.reload();
+                }
             });
-        })
-        .catch((error) => {
+        }).catch((error) => {
             console.log("Error fetching user data:", error);
             alert("Can not Find The User")
         });
+
     }
 
     return (
