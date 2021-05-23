@@ -37,6 +37,14 @@ function Dashboard() {
     const [userList, setUserList] = useState([]);
     const [tabIndex, setTabIndex] = useState(0);
     const [tabLoaded, setTabLoaded] = useState(false);
+
+    let tabIndexMap = {
+        listing:0,
+        profile:1,
+        friend:2,
+    }
+
+
     let history = useHistory();
     const getIndex = history =>
     (history.location &&
@@ -306,13 +314,19 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                        <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
+                                        {tabIndex == tabIndexMap.listing && 
+                                            <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
+                                        }
                                         {/* <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
                                         {/* <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
-                                        <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
-                                        {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
+                                        {tabIndex == tabIndexMap.friend && 
+                                            <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
+                                        }
+                                            {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
                                         {/* <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
-                                        <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
+                                        {tabIndex == tabIndexMap.listing && 
+                                            <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
+                                        }
                                     </div>
                                 </div>
                             </div>
