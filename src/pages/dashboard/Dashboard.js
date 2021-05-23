@@ -1,13 +1,11 @@
 import React, {useEffect, useState,useContext} from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
-import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {Link} from "react-router-dom";
 import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
 import { FiPhone, FiEdit } from 'react-icons/fi'
-import { AiOutlineUser, AiOutlinePlusCircle, AiOutlineExclamationCircle,AiFillDelete } from 'react-icons/ai'
+import { AiOutlineUser, AiOutlinePlusCircle,AiFillDelete } from 'react-icons/ai'
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import AccordionList from "../../components/other/AccordionList";
@@ -20,6 +18,7 @@ import CreateNewFriend from "./CreateNewFriend"
 import firebase from "firebase/app";
 import DeleteListCheckList from '../../components/other/DeleteListCheckList';
 import Banner6 from "../../components/banner/banner6/Banner6"
+import ImageCropper from './ImageCropper'
 
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
@@ -32,10 +31,15 @@ function Dashboard() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmNewPassword, setConfirmNewPassword] = useState("");
     const [location, setLocation] = useState("");
-    const [file, setFile] = useState(null);
+    const [inputImg, setInputImg] = useState('')
     const [loaded, setLoaded] = useState(false);
     const [userList, setUserList] = useState([]);
-
+    const [blob, setBlob] = useState(null)
+    //const [inputImg, setInputImg] = useState('')
+    const getBlob = (blob) => {
+        // pass blob up from the ImageCropper component
+        setBlob(blob)
+    }
     useEffect(()=> {
         if (currentUser) {
             console.log("uid:",currentUser.uid)
@@ -94,15 +98,25 @@ function Dashboard() {
     }
 
     function handleChange(e) {
-        setFile(e.target.files[0]);
+        // convert image file to base64 string
+        const file = e.target.files[0]
+        const reader = new FileReader()
+
+        reader.addEventListener('load', () => {
+            setInputImg(reader.result)
+        }, false)
+
+        if (file) {
+            reader.readAsDataURL(file)
+        }
     }
 
     const handleFireBaseUpload = async (event) => {
         const userRef = firestore.doc(`users/${currentUser.uid}`);  
         event.preventDefault();
-        const uploadTask = storage.ref(`/images/${currentUser.uid}/${file.name}`).put(file);
+        const uploadTask = storage.ref(`/images/${currentUser.uid}/${inputImg.name}`).put(blob, { contentType: blob.type });
         uploadTask.on("state_changed", console.log, console.error, () => {
-            storage.ref("images").child(`${currentUser.uid}/${file.name}`).getDownloadURL().then((url) => {
+            storage.ref("images").child(`${currentUser.uid}/${inputImg.name}`).getDownloadURL().then((url) => {
                 userRef.update({
                     photoURL: url,
                 }).then(() => {
@@ -294,11 +308,7 @@ function Dashboard() {
                                     </TabList>
                                     <div className="btn-box">
                                         <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
-                                        {/* <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
-                                        {/* <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
                                         <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
-                                        {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
-                                        {/* <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
                                         <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
                                     </div>
                                 </div>
@@ -323,7 +333,7 @@ function Dashboard() {
                                             <div className="col-lg-4">
                                                 <div className="user-profile-action">
                                                     <div className="user-pro-img mb-4">
-                                                        <img src= {currentUser? (currentUser.photoURL===""? userDefaultImg : currentUser.photoURL) : userDefaultImg}  alt="User Image"  width="331" height="368"/>
+                                                        <img src= {currentUser? (currentUser.photoURL===""? userDefaultImg : currentUser.photoURL) : userDefaultImg}  width="331" height="368"/>
                                                         <div className="dropdown edit-btn">
                                                             <button
                                                                 className="theme-btn edit-btn dropdown-toggle border-0 after-none"
@@ -334,16 +344,19 @@ function Dashboard() {
                                                             <div className={isPhotoOpenForm ? 'dropdown-menu show' : 'dropdown-menu'} aria-labelledby="editImageMenu">
                                                                 <div className="upload-btn-box">
                                                                     <form onSubmit={handleFireBaseUpload}>
-                                                                        <input  className="input-file-btn" type="file" name="files[]" id="filer_input" multiple="multiple" onChange={handleChange}/>
-                                                                        <button className="theme-btn border-0 w-100 button-success" type="submit" value="submit">
+                                                                        <div className="upload-img-area">
+                                                                        {!inputImg && (<input  className="input-file-btn" type="file" name="files[]" id="filer_input"  accept='image/*' multiple="multiple" onChange={handleChange}/>)}        
+                                                                        {inputImg && (<ImageCropper getBlob={getBlob} inputImg={inputImg}/>)}
+                                                                        </div>
+                                                                        {inputImg && (<button className="theme-btn border-0 w-100 button-success input-save-change" type="submit" value="submit">
                                                                             Save changes
-                                                                        </button>
+                                                                        </button>)}
                                                                     </form>
                                                                 </div>
                                                                 <div className="btn-box mt-3">
-                                                                    <button className="theme-btn border-0 w-100" onClick={(event) => removePhoto(event)}>Remove
+                                                                    {inputImg &&(<button className="theme-btn border-0 w-100 input-remove-photo" onClick={(event) => removePhoto(event)}>Remove
                                                                         Photo
-                                                                    </button>
+                                                                    </button>)}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -367,9 +380,6 @@ function Dashboard() {
                                                             <li className="text-lowercase">
                                                                 <span className="la d-inline-block"><FaRegEnvelope /></span> {currentUser? currentUser.email:""}
                                                             </li>
-                                                            {/* <li className="text-lowercase">
-                                                                <span className="la d-inline-block"><FaGlobeAmericas /></span> {sectiondata.dashboard.website}
-                                                            </li> */}
                                                         </ul>
                                                         <div className="user-edit-form mt-7">
                                                             <div className={isOpenForm ? 'dropdown show' : 'dropdown'}>
@@ -485,30 +495,6 @@ function Dashboard() {
 
 
             {/* Modal */}
-            {/* <div className="modal-form text-center">
-                <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                    <div className="modal-bg"></div>
-                    <div className="modal-dialog modal-sm" role="document">
-                        <div className="modal-content p-4">
-                            <div className="modal-top border-0 mb-4 p-0">
-                                <div className="alert-content">
-                                    <span className="la warning-icon"><AiOutlineExclamationCircle /></span>
-                                    <h4 className="modal-title mt-2 mb-1">Your account will be deleted permanently!</h4>
-                                    <p className="modal-sub">Are you sure to proceed.</p>
-                                </div>
-                            </div>
-                            <div className="btn-box">
-                                <button type="button" className="theme-btn border-0 button-success mr-1" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <button type="button" className="theme-btn border-0 button-danger">
-                                    delete!
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <div className="modal-form text-center">
                 <div className="modal fade add-friend-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
                     <div className="modal-bg"></div>

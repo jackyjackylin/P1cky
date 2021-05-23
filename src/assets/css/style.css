@@ -463,6 +463,12 @@ body {
 .input-file-btn{
   margin-bottom: 15px;
  }
+ .input-save-change{
+  margin-top: 10px;
+ }
+ .input-remove-photo{
+  margin-top: 1px;
+ }
 
 .theme-btn.green {
   background-color: #40CC6F;
@@ -6111,6 +6117,7 @@ body {
     -moz-box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
     box-shadow: 0 0 40px rgba(82, 85, 90, 0.1);
     padding: 20px;
+    /* position: relative; */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -7553,6 +7560,19 @@ body {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
+  .upload-img-area{
+    position: relative;
+    min-height: 300px;
+  }
+  .crop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+  }
+  
 @media (max-width: 767px) {
   .user-profile .user-profile-area .two-clmn .column-td-6,
   .List-map-view2 .card-area .col-lg-8 .twocol > * {
