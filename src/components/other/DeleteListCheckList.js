@@ -46,19 +46,14 @@ function DeleteListCheckList({uid}) {
         fetch();
     },[])
 
-    const onSubmit= e => {
-        console.log("uid:", uid);
-        console.log("checked:", checked);
-        e.preventDefault();
-        checked.map((item, i) => {
-            deleteList(item);
-        })
-        setTimeout(() => {window.location.reload();}, 500);
-        // window.location.reload();
-    }
 
     const deleteList = async _ => {
         const promises= checked.map(async item => {
+            firestore.collection(`users/${uid}/pocketList/${item}/restaurantsList`).get().then((snapshot) => {
+                snapshot.forEach((doc)=> {
+                    doc.ref.delete();
+                })
+            })
             const res = await firestore.doc(`users/${uid}/pocketList/${item}`).delete();
             console.log(item)
         })
@@ -87,7 +82,6 @@ function DeleteListCheckList({uid}) {
                     );
                 })}
             </List>
-            {/* <form onSubmit={onSubmit}> */}
                 <div className="btn-box">
                     <button type="button" className="theme-btn border-0 button-success mr-1 hide-delete-list" data-dismiss="modal">
                         Cancel
@@ -101,7 +95,6 @@ function DeleteListCheckList({uid}) {
                         Delete
                     </button>
                 </div>
-            {/* </form> */}
         </>
     );
 }
