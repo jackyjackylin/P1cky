@@ -32,10 +32,10 @@ export default function HeaderAuthorAccess() {
                         <Link to="/sign-up">Sign up</Link>
                     </li>
                     }
-                    {currentUser && 
+                    {currentUser && window.location.pathname.split("/").pop()!="" &&
                     <li>
-                        <Button text="Add to List" url="/add-listing/new" >
-                            <FiPlusCircle />
+                        <Button text="Pick by filter" url="/" >
+                            <FiSearch />
                         </Button>
                     </li>
                     }                   

@@ -194,12 +194,12 @@ const sectiondata = {
             connector: ' ',
             title: ' ',
             items: [
-                {
-                    path: "#",
-                    title: "Pick by Filter",
-                    icon: <GiChickenOven />,
-                    value: "filter"
-                },
+                // {
+                //     path: "#",
+                //     title: "Pick by Filter",
+                //     icon: <GiChickenOven />,
+                //     value: "filter"
+                // },
                 {
                     path: "#",
                     title: "Pick from My List",

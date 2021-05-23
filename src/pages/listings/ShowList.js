@@ -72,18 +72,23 @@ export default function ShowList({popItemList,toggleShowPop,setPopItemId,setIsPo
             
             // console.log(randomList)
         })).then(() => {
-            let choice = getRandomInt(0,randomList.length);
-            console.log(randomList.slice(choice,choice+1))
-            hideAddListModal()
-            // let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
-            setIsPocketList(true)
-            // setPopItemList(popItemList=>res.data.businesses)
+            if(!randomList || randomList.length==0){
+                alert("Try using another list! This list is empty.")
+            }else{
+                let choice = getRandomInt(0,randomList.length);
+                console.log(randomList.slice(choice,choice+1))
+                hideAddListModal()
+                // let res = await GetRestaurantsFromApi({name: randomList[choice].id, ...randomList[choice]})
+                setIsPocketList(true)
+                // setPopItemList(popItemList=>res.data.businesses)
+    
+    
+                setPopItemList(popItemList=> randomList.slice(choice,choice+1))
+                // setPopItemId(choice)
+                toggleShowPop(true)
+                showDeleteAcntModal()
+            }
 
-
-            setPopItemList(popItemList=> randomList.slice(choice,choice+1))
-            // setPopItemId(choice)
-            toggleShowPop(true)
-            showDeleteAcntModal()
         })
         // setChoiceLength(randomList.length)
     }
