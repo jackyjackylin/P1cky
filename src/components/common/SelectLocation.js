@@ -45,11 +45,11 @@ export default function SelectLocation({lat,setLat,lng,setLng}) {
                 console.log(error);
               }
               console.log(address);
-            }}>
+            }} style={{zIndex:999}}>
 
             <ComboboxInput className='auto-complete-search-bar' value={value} onChange={handleInput} disabled={!ready} placeholder="Where are you?" />
-            <ComboboxPopover>
-            <ComboboxList>
+            <ComboboxPopover style={{zIndex:999}}>
+            <ComboboxList style={{zIndex:999}}>
                 {status === "OK" &&
                 data.map(({ place_id, description }) => (
                     <ComboboxOption key={place_id} value={description} />
