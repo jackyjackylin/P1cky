@@ -64,11 +64,17 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                     <button className="button theme-btn" type="submit" onClick={()=>{
                         GetRestaurantsFromApi({lat,lng,foodType,rating,price})
                         .then((res) => {
-                            setPopItemList(itemList=> res.data.businesses);
-                            console.log(res); 
-                            //toggleShowPop(set,flag)
-                            toggleShowPop(true);
-                            showDeleteAcntModal();
+
+                            if(itemList && itemList.length >0){
+                                setPopItemList(itemList=> res.data.businesses);
+                                console.log(res); 
+                                //toggleShowPop(set,flag)
+                                toggleShowPop(true);
+                                showDeleteAcntModal();
+                            }else{
+                                alert("No restaurant matches! Try again with different keywords!")
+                            }
+                                
                         });
                     }}>
                         Search</button>

@@ -1,6 +1,7 @@
 import React, {useEffect, useState,useContext} from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {useHistory } from "react-router-dom";
 import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
@@ -40,6 +41,27 @@ function Dashboard() {
         // pass blob up from the ImageCropper component
         setBlob(blob)
     }
+    const [tabIndex, setTabIndex] = useState(0);
+    const [tabLoaded, setTabLoaded] = useState(false);
+
+    let tabIndexMap = {
+        listing:0,
+        profile:1,
+        friend:2,
+    }
+
+
+    let history = useHistory();
+    const getIndex = history =>
+    (history.location &&
+        history.location.state &&
+        history.location.state.index)? history.location.state.index:0; 
+
+    useEffect(() => {
+        setTabIndex(getIndex(history));
+        setTabLoaded(true);
+        console.log(history.location.state)
+    },[])
     useEffect(()=> {
         if (currentUser) {
             console.log("uid:",currentUser.uid)
@@ -285,7 +307,8 @@ function Dashboard() {
 
             <section className="dashboard-area padding-top-40px padding-bottom-90px">
                 <div className="container">
-                    <Tabs>
+                    {tabLoaded &&
+                    <Tabs selectedIndex={tabIndex} onSelect={index => {console.log(index); setTabIndex(index)}}>
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="dashboard-nav d-flex justify-content-between align-items-center mb-4">
@@ -307,9 +330,19 @@ function Dashboard() {
                                         </Tab>
                                     </TabList>
                                     <div className="btn-box">
-                                        <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
-                                        <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
-                                        <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
+                                        {tabIndex == tabIndexMap.listing && 
+                                            <div  className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</div>
+                                        }
+                                        {/* <Link to="/dashboard" className="theme-btn createNewList"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
+                                        {/* <Link to="/add-listing/new" className="theme-btn"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
+                                        {tabIndex == tabIndexMap.friend && 
+                                            <div  className="theme-btn createNewFriend ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add Friend</div>
+                                        }
+                                            {/* <Link to="/dashboard" className="theme-btn createNewList ml-1"><span className="la"><AiOutlinePlusCircle /></span> create new list</Link> */}
+                                        {/* <Link to="/add-listing/new" className="theme-btn ml-1"><span className="la"><AiOutlinePlusCircle /></span> Add to List</Link> */}
+                                        {tabIndex == tabIndexMap.listing && 
+                                            <div  className="theme-btn deleteList ml-1"><span className="la"><AiFillDelete /></span> delete List</div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -486,6 +519,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </Tabs>
+                    }
                 </div>
             </section>
 

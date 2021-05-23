@@ -10,6 +10,43 @@ const ListMenu = ({item}) => {
   const {currentUser} = useContext(AuthContext);
   const [selectList,setSelectList] = useState("")
   const [open, setOpen] = React.useState(false);
+  const [restaurant, setRes] = useState("");
+  const [restaurantName, setName] = useState("");
+  const [businesses, setBusinesses] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [photoURL, setPhotoURL] = useState("");
+  const [yelpID, setYelpID] = useState("");
+  const [address, setAddress] = useState([])
+  const [city, setCity] = useState("")
+  const [zipCode, setZipCode] = useState("")
+  const [state, setState] = useState("")
+  const [country, setCountry] = useState("")
+  const [phone, setPhone] = useState("");
+  const [yelpURL, setYelpURL] = useState("");
+  const [rating, setRating] = useState();
+  const [price, setPrice] = useState("");
+
+
+  // useEffect(() => {
+  //   setName(item.name)
+  //   setPhotoURL(item.image_url)
+  //   setYelpID(item.id)
+  //   setCity(item.location.city)
+  //   setZipCode(item.location.zip_code)
+  //   setState(item.location.state)
+  //   setCountry(item.location.country)
+  //   setAddress(item.location.display_address)
+  //   setCategories(item.categories)
+  //   setPhone(item.display_phone)
+  //   setRating(item.rating)
+  //   setYelpURL(item.url)
+  //   if (item.price) {
+  //       setPrice(item.price)
+  //   }else{
+  //       console.log("no price")
+  //       setPrice("")
+  //   }
+  // },[])
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -31,7 +68,24 @@ const ListMenu = ({item}) => {
   const addToLists = async (list) => {
     handleTooltipOpen()
     console.log(list,item)
-    const userRef = await firestore.doc(`users/${currentUser.uid}/pocketList/${list}/restaurantsList/${item.name}`).set(item)
+    let data = {
+      photoURL: item.image_url,
+      yelpID: item.id,
+      location:{
+          address: item.location.display_address,
+          city: item.location.city,
+          state: item.location.state,
+          country: item.location.country,
+          zipCode: item.location.zip_code
+      },
+      name: item.name,
+      categories: item.categories,
+      rating: item.rating? item.rating: "",
+      price: item.price? price: "",
+      phone: item.display_phone,
+      yelpURL: item.url,
+  }
+    const userRef = await firestore.doc(`users/${currentUser.uid}/pocketList/${list}/restaurantsList/${data.yelpID}`).set(data)
     
     // console.log(item)
     // e.preventDefault();
