@@ -18,7 +18,7 @@ function Home() {
     const [popItemId, setPopItemId] = useState(-1);
     const [loaded, setLoaded] = useState(false);
     const [foodType, setFoodType] = useState("");
-    const [rating, setRating] = useState(1);
+    const [rating, setRating] = useState("best_match");
     const [price, setPrice] = useState(1);
     const [lat, setLat] = useState(33.6846);
     const [lng, setLng] = useState(-117.8265049);

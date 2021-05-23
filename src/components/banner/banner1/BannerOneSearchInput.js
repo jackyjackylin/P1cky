@@ -14,7 +14,7 @@ import ResultPage from '../../places/ResultPage';
 
 export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop}) {
     const [foodType, setFoodType] = useState("");
-    const [rating, setRating] = useState(1);
+    const [rating, setRating] = useState("");
     const [price, setPrice] = useState(1);
     const [lat, setLat] = useState(33.6846);
     const [lng, setLng] = useState(-117.8265049);
@@ -64,8 +64,8 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                     <button className="button theme-btn" type="submit" onClick={()=>{
                         GetRestaurantsFromApi({lat,lng,foodType,rating,price})
                         .then((res) => {
-
-                            if(itemList && itemList.length >0){
+                            console.log(res.data.businesses)
+                            if(res.data && res.data.businesses){
                                 setPopItemList(itemList=> res.data.businesses);
                                 console.log(res); 
                                 //toggleShowPop(set,flag)

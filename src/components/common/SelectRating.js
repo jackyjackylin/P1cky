@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import Select from "react-select";
 
 
@@ -7,29 +7,27 @@ export default function SelectRating({rating, setRating}){
         selectedOption: null,
         rating: [
             {
-                value: '1',
-                label: '1'
+                value: 'best_match',
+                label: 'Best Match'
             },
             {
-                value: '2',
-                label: '2'
+                value: 'rating',
+                label: 'Rating'
             },
             {
-                value: '3',
-                label: '3'
+                value: 'review_count',
+                label: 'Review Count'
             },
             {
-                value: '4',
-                label: '4'
-            },
-            {
-                value: '5',
-                label: '5'
+                value: 'distance',
+                label: 'Distance'
             },
         ],
     }
 
-
+    useEffect(()=>{
+        console.log(rating)
+    },[rating])
     let handleChange = (event)=>{
         setRating(event.value);
     }
@@ -37,7 +35,7 @@ export default function SelectRating({rating, setRating}){
     return (
             <>
                 <Select
-                    placeholder="Above ratings"
+                    placeholder="Priority"
                     options={state.rating}
                     onChange={handleChange}
                 />

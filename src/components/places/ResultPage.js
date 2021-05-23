@@ -13,7 +13,7 @@ import {
     IoMdStar,
     IoMdStarHalf
 } from "react-icons/io";
-
+import noImage from "../../assets/images/noImage.png"; 
 const rating_to_star = [[],[ <IoMdStarHalf />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
 [ <IoMdStar />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
 [ <IoMdStar />, <IoMdStarHalf />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />, <IoMdStar className="last-star" />],
@@ -63,7 +63,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                 <div className="card-area">
                                 <a href="#" className="card-image-wrap">
                                     <div className="card-image">
-                                        <img src={item.image_url?item.image_url:item.photoURL} width="362" height="242" className="card__img" alt="Place" />
+                                        <img src={item.image_url?item.image_url: item.photoURL? item.photoURL: noImage} width="362" height="242" className="card__img" alt="Place" />
                                         {/* { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> } */}
                                         <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
                                             {showPop ? <FiX/> : <FiHeart/>}
