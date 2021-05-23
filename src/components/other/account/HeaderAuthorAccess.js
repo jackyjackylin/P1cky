@@ -62,9 +62,24 @@ export default function HeaderAuthorAccess() {
                     </div>
 
                     <ul className="side-menu-ul">
-                        <li><Link to="/dashboard"><AiOutlineUser className="user-icon" /> My Profile</Link></li>
-                        <li><Link to="/dashboard"><BsListCheck className="user-icon" /> My Listings</Link></li>
-                        <li><Link to="/dashboard"><FiBookmark className="user-icon" /> My Friends</Link></li>
+                        <li><Link to={{
+                            pathname: "/dashboard",
+                            state: {
+                              index: 1, // save the current location and pass with route push
+                            }
+                        }}><AiOutlineUser className="user-icon" /> My Profile</Link></li>
+                        <li><Link to={{
+                            pathname: "/dashboard",
+                            state: {
+                                index: 0, // save the current location and pass with route push
+                            }
+                        }}><BsListCheck className="user-icon" /> My Listings</Link></li>
+                        <li><Link to={{
+                            pathname: "/dashboard",
+                            state: {
+                                index: 2, // save the current location and pass with route push
+                            }
+                        }}><FiBookmark className="user-icon" /> My Friends</Link></li>
                         {/* <li><Link to="/dashboard"><FiPlusCircle className="user-icon" /> Add to List</Link></li> */}
                         <li><div className="dropdown-divider"></div></li>
                         <li><Link to="#"><BsQuestion className="user-icon" /> help</Link></li>

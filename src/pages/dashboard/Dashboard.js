@@ -2,7 +2,7 @@ import React, {useEffect, useState,useContext} from 'react';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import {Link} from "react-router-dom";
+import {Link,useHistory } from "react-router-dom";
 import { BsListCheck, BsBookmark, BsPencil } from 'react-icons/bs'
 import { FaRegEnvelope } from 'react-icons/fa'
 import { GiPositionMarker } from 'react-icons/gi'
@@ -35,7 +35,19 @@ function Dashboard() {
     const [file, setFile] = useState(null);
     const [loaded, setLoaded] = useState(false);
     const [userList, setUserList] = useState([]);
+    const [tabIndex, setTabIndex] = useState(0);
+    const [tabLoaded, setTabLoaded] = useState(false);
+    let history = useHistory();
+    const getIndex = history =>
+    (history.location &&
+        history.location.state &&
+        history.location.state.index)? history.location.state.index:0; 
 
+    useEffect(() => {
+        setTabIndex(getIndex(history));
+        setTabLoaded(true);
+        console.log(history.location.state)
+    },[])
     useEffect(()=> {
         if (currentUser) {
             console.log("uid:",currentUser.uid)
@@ -271,7 +283,8 @@ function Dashboard() {
 
             <section className="dashboard-area padding-top-40px padding-bottom-90px">
                 <div className="container">
-                    <Tabs>
+                    {tabLoaded &&
+                    <Tabs selectedIndex={tabIndex} onSelect={index => {console.log(index); setTabIndex(index)}}>
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="dashboard-nav d-flex justify-content-between align-items-center mb-4">
@@ -476,6 +489,7 @@ function Dashboard() {
                             </div>
                         </div>
                     </Tabs>
+                    }
                 </div>
             </section>
 
