@@ -12,12 +12,12 @@ import ResultPage from '../../places/ResultPage';
 // this.handleSubmit = this.handleSubmit.bind(this);
 
 
-export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop, lat, lng}) {
+export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop, userLat, userLng}) {
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState("");
     const [price, setPrice] = useState(1);
-    const [curLat, setCurLat] = useState(lat);
-    const [curLng, setCurLng] = useState(lng);
+    const [lat, setLat] = useState(userLat);
+    const [lng, setLng] = useState(userLng);
 
     const body = document.querySelector('body')
     
@@ -41,7 +41,7 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                     <div className="contact-form-action">
                         <form action="#">
                             <div className="form-group mb-0">
-                                    <SelectLocation lat={curLat} setLat={setCurLat} lng={curLng} setLng={setCurLng}  />
+                                    <SelectLocation lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
                             </div>
                         </form>
                         
@@ -62,11 +62,11 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                 <div className="main-search-input-btn">
                     {/* <ResultPage text="search"/> */}
                     <button className="button theme-btn" type="submit" onClick={()=>{
-                        console.log("search:", curLat, curLng)
+                        console.log("search:", lat, lng)
                         if (rating == "") {
                             alert("Please choose the Priority!")
                         }
-                        GetRestaurantsFromApi({curLat,curLng,foodType,rating,price})
+                        GetRestaurantsFromApi({lat,lng,foodType,rating,price})
                         .then((res) => {
                             console.log(res.data.businesses)
                             if(res.data && res.data.businesses){

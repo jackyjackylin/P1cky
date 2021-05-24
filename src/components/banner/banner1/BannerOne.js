@@ -32,7 +32,7 @@ export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList,
 
                             {/* Banner One Search Input */}
                             {loaded&& 
-                            <BannerOneSearchInput toggleShowPop={toggleShowPop} itemList={itemList} setPopItemList={setPopItemList} lat={lat} lng={lng} />}
+                            <BannerOneSearchInput toggleShowPop={toggleShowPop} itemList={itemList} setPopItemList={setPopItemList} userLat={lat} userLng={lng} />}
                             
 
                         </div>

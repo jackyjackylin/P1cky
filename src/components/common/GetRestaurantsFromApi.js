@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 
-export default async function GetRestaurantsFromApi({curLat,curLng,foodType,rating,price,yelpID,address1,name,city,state,country}) {
+export default async function GetRestaurantsFromApi({lat,lng,foodType,rating,price,yelpID,address1,name,city,state,country}) {
     
     // if(yelpID){
     //     return (
@@ -41,8 +41,8 @@ export default async function GetRestaurantsFromApi({curLat,curLng,foodType,rati
             //term: keyword,
             categories: foodType,
             price: price,
-            latitude: curLat, 
-            longitude: curLng,
+            latitude: lat, 
+            longitude: lng,
             sort_by:  rating
         }
         }).catch((err)=>console.log(err))
