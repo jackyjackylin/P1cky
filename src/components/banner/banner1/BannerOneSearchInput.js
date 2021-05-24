@@ -12,12 +12,12 @@ import ResultPage from '../../places/ResultPage';
 // this.handleSubmit = this.handleSubmit.bind(this);
 
 
-export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop}) {
+export default function BannerOneSearchInput({itemList,setPopItemList,toggleShowPop, lat, lng}) {
     const [foodType, setFoodType] = useState("");
     const [rating, setRating] = useState("");
     const [price, setPrice] = useState(1);
-    const [lat, setLat] = useState(33.6846);
-    const [lng, setLng] = useState(-117.8265049);
+    const [curLat, setCurLat] = useState(lat);
+    const [curLng, setCurLng] = useState(lng);
 
     const body = document.querySelector('body')
     
@@ -41,7 +41,7 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                     <div className="contact-form-action">
                         <form action="#">
                             <div className="form-group mb-0">
-                                    <SelectLocation lat={lat} setLat={setLat} lng={lng} setLng={setLng}  />
+                                    <SelectLocation lat={curLat} setLat={setCurLat} lng={curLng} setLng={setCurLng}  />
                             </div>
                         </form>
                         
@@ -62,7 +62,11 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                 <div className="main-search-input-btn">
                     {/* <ResultPage text="search"/> */}
                     <button className="button theme-btn" type="submit" onClick={()=>{
-                        GetRestaurantsFromApi({lat,lng,foodType,rating,price})
+                        console.log("search:", curLat, curLng)
+                        if (rating == "") {
+                            alert("Please choose the Priority!")
+                        }
+                        GetRestaurantsFromApi({curLat,curLng,foodType,rating,price})
                         .then((res) => {
                             console.log(res.data.businesses)
                             if(res.data && res.data.businesses){
@@ -75,10 +79,10 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                                 alert("No restaurant matches! Try again with different keywords!")
                             }
                                 
-                        });
+                        })
+                        .catch((err)=>{console.log(err)});
                     }}>
                         Search</button>
-
                 </div>
 
             </div>

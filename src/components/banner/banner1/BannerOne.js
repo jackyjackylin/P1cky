@@ -6,7 +6,7 @@ import sectiondata from "../../../store/store";
 import {AuthContext} from "../../providers/UserProvider";
 
 
-export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList}) {
+export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList,lat,lng}) {
     const {currentUser} = useContext(AuthContext);
 
     return (
@@ -32,7 +32,7 @@ export default function BannerOne({loaded,toggleShowPop,itemList,setPopItemList}
 
                             {/* Banner One Search Input */}
                             {loaded&& 
-                            <BannerOneSearchInput toggleShowPop={toggleShowPop} itemList={itemList} setPopItemList={setPopItemList}/>}
+                            <BannerOneSearchInput toggleShowPop={toggleShowPop} itemList={itemList} setPopItemList={setPopItemList} lat={lat} lng={lng} />}
                             
 
                         </div>

@@ -168,7 +168,7 @@ function Home() {
 
             {/* Hero Banner */}
             {(            
-            <BannerOne loaded={loaded} toggleShowPop={toggleShowPop} itemList={popItemList} setPopItemList={setPopItemList}/>
+            <BannerOne loaded={loaded} toggleShowPop={toggleShowPop} itemList={popItemList} setPopItemList={setPopItemList} lat={lat} lng={lng} />
             )}
             {/* Most Visited Place */}
             <section className="card-area text-center padding-bottom-100px">
