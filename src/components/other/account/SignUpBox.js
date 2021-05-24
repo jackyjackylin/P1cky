@@ -65,20 +65,20 @@ function SignUpBox({title, subtitle}) {
                     <h3 className="widget-title font-size-28 pb-0">
                         {title}
                     </h3>
-                    <p className="font-size-16 font-weight-medium">
+                    {/* <p className="font-size-16 font-weight-medium">
                         {subtitle}
-                    </p>
+                    </p> */}
                 </div>
                 <div className="billing-content">
                     <div className="contact-form-action">
                         <form method="post">
                             <div className="row">
-                                <SignInOptions />
-                                <div className="col-lg-12">
+                                {/* <SignInOptions /> */}
+                                {/* <div className="col-lg-12">
                                     <div className="account-assist mt-4 mb-4 text-center">
                                         <p className="account__desc">or</p>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-12">
                                     <div className="input-box">
                                         <label className="label-text">Display Name:</label>
@@ -145,7 +145,7 @@ function SignUpBox({title, subtitle}) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-lg-12">
+                                {/* <div className="col-lg-12">
                                     <div className="form-group">
                                         <div className="custom-checkbox d-block mr-0">
                                             <input type="checkbox" id="chb13" />
@@ -156,7 +156,7 @@ function SignUpBox({title, subtitle}) {
                                             <label htmlFor="chb14">I Agree to P1cky's <Link to="#" className="color-text">Terms of Services</Link></label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-12">
                                     <div className="btn-box margin-top-20px margin-bottom-20px">
                                         <button className="theme-btn border-0" type="submit" onClick={event => {createUserWithEmailAndPasswordHandler(event, email, password, displayName, confirmpassword);}}>

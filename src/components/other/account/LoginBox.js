@@ -42,19 +42,19 @@ function LoginBox({title, subtitle}) {
                     <p className="font-size-16 font-weight-medium">
                         {subtitle}
                     </p>
-                </div>
+                </div> ㄙㄛ
                 <div className="billing-content">
                     <div className="contact-form-action">
                         <form method="post">
                             <div className="row">
 
-                                <SignInOptions />
+                                {/* <SignInOptions /> */}
 
-                                <div className="col-lg-12">
+                                {/* <div className="col-lg-12">
                                     <div className="account-assist mt-4 mb-4 text-center">
                                         <p className="account__desc">or</p>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="col-lg-12">
                                     <div className="input-box">
                                         <label className="label-text">Username, or email</label>
@@ -80,10 +80,10 @@ function LoginBox({title, subtitle}) {
                                 <div className="col-lg-12">
                                     <div className="form-group">
                                         <div className="custom-checkbox mr-0 d-flex align-items-center justify-content-between">
-                                            <div>
+                                            {/* <div>
                                                 <input type="checkbox" id="chb1" />
                                                 <label htmlFor="chb1">Remember Me</label>
-                                            </div>
+                                            </div> */}
                                             <div>
                                                 <Link to="/recover" className="color-text font-weight-medium">
                                                     Forgot password?
