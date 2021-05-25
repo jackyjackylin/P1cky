@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState,useContext} from 'react';
 import { FiChevronDown } from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import sectiondata from "../../store/store";
+import {AuthContext} from "../providers/UserProvider";
 
 export default function Navbar() {
     const [navOpen, setNavOpen] = useState(false)
+    const {currentUser} = useContext(AuthContext);
 
 
     useEffect(() => {
@@ -53,12 +55,13 @@ export default function Navbar() {
                     </ul>
                 </nav>
             </div>
-            <div className="side-menu-open" onClick={() => setNavOpen(!navOpen)}>
+            {!currentUser &&<div className="side-menu-open" onClick={() => setNavOpen(!navOpen)}>
                 <span className="menu__bar"></span>
                 <span className="menu__bar"></span>
                 <span className="menu__bar"></span>
             </div>
-            <div className={navOpen ? 'side-nav-container active' : 'side-nav-container'}>
+            }
+            {!currentUser && <div className={navOpen ? 'side-nav-container active' : 'side-nav-container'}>
                 <div className="humburger-menu">
                     <div className="humburger-menu-lines side-menu-close" onClick={() => setNavOpen(!navOpen)}></div>
                 </div>
@@ -91,7 +94,7 @@ export default function Navbar() {
                         <Link to="/sign-up" className="theme-btn">Sign up</Link>
                     </div>
                 </div>
-            </div>
+            </div>}
         </>
     )
 }
