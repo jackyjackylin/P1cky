@@ -106,12 +106,20 @@
 .popup-window-content{
   background-color: white;
 }
-@media (max-width:500px){
+.card-item.popup-window .card-area{
+  width: 400px;
+  margin-top: 1%;
+}
+@media (max-width:600px){
   .card-item.popup-window{
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 30px;
+  }
+  .card-item.popup-window .card-area{
+    width: 80%;
+    margin-top: 1%;
   }
   .card__img{
     width:280px;
@@ -126,6 +134,7 @@
   }
   .popup-content> li > .la.d-inline-block{
     font-size: 12px;
+    height:20px;
   }
   .card-content-wrap.popup-window-content > .rating-row{
     padding: 5px 10px 5px 10px;
@@ -133,10 +142,7 @@
 }
 
 
-.card-item.popup-window .card-area{
-  width: 400px;
-  margin-top: 1%;
-}
+
 .info-list .info-button-row{
   display: flex;
   justify-content: space-between;

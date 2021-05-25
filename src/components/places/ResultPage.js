@@ -87,12 +87,12 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                                 <i>{item.location.city}, {item.location.state} {item.location.zip_code}</i>
                                             </p>
                                         </a>
-                                        <ul className="info-list padding-top-10px popup-content">
+                                        <ul className="info-list popup-content">
                                             <li>
                                                 <span className="la d-inline-block"><FiPhone /></span> {item.display_phone?item.display_phone:item.phone}
                                             </li>
                                             <li>
-                                                <span className="la d-inline-block"><IoIosLink /></span>  <a href={item.url}>
+                                                <span className="la d-inline-block"><IoIosLink style={{fontSize: "0.73em"}}/></span>  <a href={item.url}>
                                                     Link to Yelp
                                                 </a>
                                             </li>
