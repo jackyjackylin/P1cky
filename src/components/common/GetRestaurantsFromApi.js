@@ -43,7 +43,7 @@ export default async function GetRestaurantsFromApi({lat,lng,foodType,rating,pri
             price: price,
             latitude: lat, 
             longitude: lng,
-            sort_by:  rating
+            sort_by:  rating? rating: "best_match"
         }
         }).catch((err)=>console.log(err))
     )

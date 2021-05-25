@@ -94,6 +94,11 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.75);
 }
+.card-item.popup-window{
+  display: flex;
+  justify-content: center;
+}
+
 .popup-window .card-area{
   width: 80%;
   margin-top: 10%;
@@ -128,10 +133,10 @@
 }
 
 
-/* .card-item.popup-window .card-area{
+.card-item.popup-window .card-area{
   width: 400px;
   margin-top: 1%;
-} */
+}
 .info-list .info-button-row{
   display: flex;
   justify-content: space-between;

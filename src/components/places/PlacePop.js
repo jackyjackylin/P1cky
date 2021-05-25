@@ -8,6 +8,7 @@ function PlacePop({showPop,toggleShowPop,itemList,itemId,nextItemId,isPocketList
 
 
     if( itemList  && showPop){
+        console.log(itemList)
         return (
             <div className="modal-form text-center">
             <div className="modal fade account-delete-modal" tabIndex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
