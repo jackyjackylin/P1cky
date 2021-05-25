@@ -4,12 +4,16 @@ import {FaRegTrashAlt, FaIdBadge } from 'react-icons/fa'
 import userDefaultImg from "../../assets/images/userDefaultImg.jpg"; 
 import { Link } from "react-router-dom";
 import {AuthContext} from "../../components/providers/UserProvider";
-
+import {useHistory } from "react-router-dom";
+import {tabIndexMap} from "../../pages/dashboard/Dashboard";
 function FriendList ({uid}) {
     const [fetchedLists, setFetchedLists] = useState([]);
     const [friends, setFriends] = useState([]);
     const [loaded,setLoaded]=useState(false);
     const {currentUser} = useContext(AuthContext);
+    let history = useHistory();
+
+
     useEffect(() => {
         async function fetchFriend() {
             console.log("fetch")
@@ -63,8 +67,9 @@ function FriendList ({uid}) {
 
     const delFriend=async(docName)=>{
         console.log(docName)
-        const res = await firestore.doc(`users/${uid}/myFriends/${docName}/`).delete();
-        window.location.reload();
+        const res = await firestore.doc(`users/${uid}/myFriends/${docName}/`).delete()
+        .then(()=>history.push('/dashboard',{index: tabIndexMap.friend}))
+        // window.location.reload();
     }
 
     return (

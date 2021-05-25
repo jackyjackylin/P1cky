@@ -6,12 +6,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Scrollbars } from 'react-custom-scrollbars';
-
+import {useHistory } from "react-router-dom";
+import {tabIndexMap} from "../../pages/dashboard/Dashboard";
 function DeleteListCheckList({uid}) {
     const [checked, setChecked] = useState([]);
     const [loaded, setLoaded] = useState([]);
     const [names, setNames] = useState([]);
-
+    let history = useHistory();
+    
     const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -57,8 +59,9 @@ function DeleteListCheckList({uid}) {
             const res = await firestore.doc(`users/${uid}/pocketList/${item}`).delete();
             console.log(item)
         })
-        const res = await Promise.all(promises)
-        window.location.reload();
+        const res = await Promise.all(promises).then(()=>history.push('/dashboard',{index: tabIndexMap.listing}))
+
+        // window.location.reload();
     }
     
     return (
@@ -88,7 +91,7 @@ function DeleteListCheckList({uid}) {
                 <button type="button" className="theme-btn border-0 button-success mr-1 hide-delete-list" data-dismiss="modal">
                     Cancel
                 </button>
-                <button className="theme-btn border-0 button-danger" type='button' onClick={(e)=>{
+                <button className="theme-btn border-0 button-danger hide-delete-list" type='button' onClick={(e)=>{
                     console.log("uid:", uid);
                     console.log("checked:", checked);
                     e.preventDefault();

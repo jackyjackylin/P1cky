@@ -1,9 +1,10 @@
 import {firestore} from '../../firebase';
 import React,{useState} from 'react';
-
-function CreateNewFriend({uid}) {
+import {useHistory } from "react-router-dom";
+import {tabIndexMap} from "./Dashboard";
+function CreateNewFriend({uid,setTabLoaded}) {
     const [friend, setFriend]=useState('')
-
+    let history = useHistory();
     const data = {
     }
 
@@ -21,10 +22,12 @@ function CreateNewFriend({uid}) {
                 if(uid!==doc.id){
                     firestore.doc(`users/${uid}`).collection('myFriends').doc(`${doc.id}`).set({"displayName": doc.data().displayName})
                     .then(()=>console.log("Add Friend!!"))
-                    .then(()=>window.location.reload(true))
+                    .then(()=>history.push('/dashboard',{index: tabIndexMap.friend}))
+                    // window.location.reload()
                 }else{
                     console.log("Can not Add self as Friend");
                     alert("Can not Add self as Friend");
+
                     window.location.reload();
                 }
             });
@@ -46,7 +49,7 @@ function CreateNewFriend({uid}) {
                 <button type="button" className="theme-btn border-0 button-success mr-1 hide-friend" data-dismiss="modal">
                         Cancel
                 </button>
-                <button className="theme-btn border-0 button-danger" onClick={(e)=>onSubmit(e)}>
+                <button className="theme-btn border-0 button-danger hide-friend" onClick={(e)=>onSubmit(e)}>
                         Add!
                 </button>
             </div>            

@@ -21,6 +21,12 @@ import DeleteListCheckList from '../../components/other/DeleteListCheckList';
 import Banner6 from "../../components/banner/banner6/Banner6"
 import ImageCropper from './ImageCropper'
 
+let tabIndexMap = {
+    listing:0,
+    profile:1,
+    friend:2,
+}
+
 function Dashboard() {
     const {currentUser} = useContext(AuthContext);
     const [isOpenForm, setIsOpenForm] = useState(false)
@@ -44,11 +50,7 @@ function Dashboard() {
     const [tabIndex, setTabIndex] = useState(0);
     const [tabLoaded, setTabLoaded] = useState(false);
 
-    let tabIndexMap = {
-        listing:0,
-        profile:1,
-        friend:2,
-    }
+
 
 
     let history = useHistory();
@@ -61,7 +63,7 @@ function Dashboard() {
         setTabIndex(getIndex(history));
         setTabLoaded(true);
         console.log(history.location.state)
-    },[])
+    },[tabLoaded])
     useEffect(()=> {
         if (currentUser) {
             console.log("uid:",currentUser.uid)
@@ -534,7 +536,7 @@ function Dashboard() {
                     <div className="modal-bg"></div>
                     <div className="modal-dialog modal-lg" role="document" >
                         <div className="modal-content p-4">
-                            {loaded && <CreateNewFriend uid={currentUser.uid}/>}
+                            {loaded && <CreateNewFriend uid={currentUser.uid}  setTabLoaded={setTabLoaded}/>}
                         </div>
                     </div>
                 </div>
@@ -564,3 +566,4 @@ function Dashboard() {
 }
 
 export default Dashboard;
+export {tabIndexMap};

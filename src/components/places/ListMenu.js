@@ -130,7 +130,7 @@ const ListMenu = ({item}) => {
         </Tooltip>
         {listNames.map((name,index)=> {
           return(
-              <div className="menu-item sub-menu" onClick={()=>addToLists(name)} onMouseLeave={handleTooltipClose} > 
+              <div className="menu-item sub-menu" key={index} onClick={()=>addToLists(name)} onMouseLeave={handleTooltipClose} > 
                 {name}
               </div>
           )

@@ -62,25 +62,26 @@ export default function BannerOneSearchInput({itemList,setPopItemList,toggleShow
                 <div className="main-search-input-btn">
                     {/* <ResultPage text="search"/> */}
                     <button className="button theme-btn" type="submit" onClick={()=>{
-                        console.log("search:", lat, lng)
                         if (rating == "") {
                             alert("Please choose the Priority!")
-                        }
-                        GetRestaurantsFromApi({lat,lng,foodType,rating,price})
-                        .then((res) => {
-                            console.log(res.data.businesses)
-                            if(res.data && res.data.businesses){
-                                setPopItemList(itemList=> res.data.businesses);
-                                console.log(res); 
-                                //toggleShowPop(set,flag)
-                                toggleShowPop(true);
-                                showDeleteAcntModal();
-                            }else{
-                                alert("No restaurant matches! Try again with different keywords!")
-                            }
+                        }else{
+                            GetRestaurantsFromApi({lat,lng,foodType,rating,price})
+                            .then((res) => {
                                 
-                        })
-                        .catch((err)=>{console.log(err)});
+                                if(res.data && res.data.businesses.length>0){
+                                    setPopItemList(itemList=> res.data.businesses);
+                                    console.log(res); 
+                                    //toggleShowPop(set,flag)
+                                    toggleShowPop(true);
+                                    showDeleteAcntModal();
+                                }else{
+                                    alert("No restaurant matches! Try again with different keywords!")
+                                }
+                                    
+                            })
+                            .catch((err)=>{console.log(err)});
+                        }
+
                     }}>
                         Search</button>
                 </div>
