@@ -49,7 +49,7 @@ function ForkListCheckList({uid}) {
         console.log("uid:", uid);
         console.log("checked:", checked);
         e.preventDefault();
-        forkList();
+        forkList().then(()=>alert("Fork Successfully"));
     }
 
     const forkList = async() => {
