@@ -42,7 +42,7 @@ function LoginBox({title, subtitle}) {
                     <p className="font-size-16 font-weight-medium">
                         {subtitle}
                     </p>
-                </div> ㄙㄛ
+                </div>
                 <div className="billing-content">
                     <div className="contact-form-action">
                         <form method="post">
