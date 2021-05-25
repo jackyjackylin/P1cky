@@ -107,7 +107,7 @@ const ListMenu = ({item}) => {
   // <div className="menu">
     <Popup
       trigger={<div className="menu-item"> <AiOutlinePlusCircle/>To pocket list </div>}
-      position="left center"
+      position="left bottom"
       on="hover"
       closeOnDocumentClick
       mouseLeaveDelay={300}

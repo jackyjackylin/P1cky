@@ -74,7 +74,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                 
                                 <div className={`card-content-wrap  popup-window-content`}>
                                     <div className="card-content popup-card">
-                                        <a href="#">
+                                        <a href="#" className="card-title-wrapper">
                                             <h5 className="card-meta">
                                                 <span>{<GiChickenOven />}</span> 
                                                 <i key={nanoid()}>{item.categories[0].title.trim()}</i>
@@ -87,7 +87,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                                 <i>{item.location.city}, {item.location.state} {item.location.zip_code}</i>
                                             </p>
                                         </a>
-                                        <ul className="info-list padding-top-20px">
+                                        <ul className="info-list padding-top-10px popup-content">
                                             <li>
                                                 <span className="la d-inline-block"><FiPhone /></span> {item.display_phone?item.display_phone:item.phone}
                                             </li>
@@ -108,9 +108,9 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                                     </div>
                                                     <div>
                                                         
-                                                        <button className="button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
+                                                        <button className="result button theme-btn green" type="submit" onClick={()=>getDirection(item)}> Get Direction</button>
                                                         {!isPocketList &&
-                                                            <button className="button theme-btn" type="submit" onClick={nextItemId}> Next</button>
+                                                            <button className="result button theme-btn" type="submit" onClick={nextItemId}> Next</button>
                                                         }
                                                         {!isPocketList &&
                                                             <ListMenu item={item}/>

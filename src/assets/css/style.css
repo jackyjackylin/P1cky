@@ -94,24 +94,50 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.75);
 }
+.popup-window .card-area{
+  width: 80%;
+  margin-top: 10%;
+}
 .popup-window-content{
   background-color: white;
 }
-.card-item.popup-window{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 30px;
-
+@media (max-width:500px){
+  .card-item.popup-window{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .card__img{
+    width:280px;
+    height: 193px;
+  }
+  .card-content-wrap.popup-window-content > .card-content.popup-card{
+    padding: 15px 20px 5px 10px;
+  }
+  .card-title-wrapper > .card-title{
+    font-size: 16px;
+    margin-top: 16px;
+  }
+  .popup-content> li > .la.d-inline-block{
+    font-size: 12px;
+  }
+  .card-content-wrap.popup-window-content > .rating-row{
+    padding: 5px 10px 5px 10px;
+  }
 }
-.card-item.popup-window .card-area{
+
+
+/* .card-item.popup-window .card-area{
   width: 400px;
   margin-top: 1%;
-}
+} */
 .info-list .info-button-row{
   display: flex;
   justify-content: space-between;
 }
+
+
 /*============== loader-ripple ==============*/
 @keyframes loader-ripple {
   0% {
@@ -502,6 +528,12 @@ body {
   .theme-btn:hover {
     background-color: #ea5555;
     color: #fff; }
+
+@media (max-width: 600px) {
+  .result.theme-btn {
+    padding: 0px 12px 0px 12px;
+    font-size: 12px} 
+}
 
 .download-btn {
   line-height: 55px;
@@ -1411,6 +1443,15 @@ body {
 }
 .popup-arrow {
   color: #eaecee;
+}
+
+@media (max-width:500px){
+  .menu{
+    width: auto
+  }
+  .menu-item.sub-menu{
+    font-size:12px;
+  }
 }
 /*======= social-profile ========*/
 .social-profile li {
@@ -2914,7 +2955,8 @@ body {
   position: relative;
   padding-top: 20px;
   z-index: 1;
-  padding-right: 55px; }
+  /* padding-right: 10px; } */
+}
   @media (max-width: 1199px) {
     .logo-right-content {
       width: 100%; } }
@@ -3007,7 +3049,9 @@ body {
     @media (max-width: 1199px) {
       .logo-right-content .side-user-menu-open {
         display: block;
-        top: -13px; } }
+        top: -13px;
+        right: 0px;
+        position:absolute } }
 
 .header-menu-wrapper.header-fixed {
   position: fixed;
