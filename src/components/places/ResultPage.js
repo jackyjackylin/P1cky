@@ -1,6 +1,6 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import Popup from 'reactjs-popup';
-
+import {AuthContext} from "../providers/UserProvider";
 import ListMenu from "./ListMenu";
 import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
@@ -53,6 +53,7 @@ function getDirection(business){
 }
 
 function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
+    const {currentUser} = useContext(AuthContext);
 
     try {
         console.log(item)
@@ -112,7 +113,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                                         {!isPocketList &&
                                                             <button className="result button theme-btn" type="submit" onClick={nextItemId}> Next</button>
                                                         }
-                                                        {!isPocketList &&
+                                                        {!isPocketList && currentUser &&
                                                             <ListMenu item={item}/>
                                                         }
                                                         

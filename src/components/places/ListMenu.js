@@ -2,7 +2,7 @@ import Popup from 'reactjs-popup';
 import { AiOutlineUser, AiOutlinePlusCircle, AiOutlinePoweroff, AiOutlineYoutube, AiOutlineExclamationCircle } from 'react-icons/ai'
 import React,{ useEffect, useState, useContext } from 'react';
 import {firestore} from '../../firebase';
-import {AuthContext} from "../../components/providers/UserProvider";
+import {AuthContext} from "../providers/UserProvider";
 import Tooltip from '@material-ui/core/Tooltip';
 import {Scrollbars} from 'react-custom-scrollbars';
 
