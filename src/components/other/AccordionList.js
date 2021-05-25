@@ -132,6 +132,7 @@ function AccordionList ({uid,userList, setUserList}) {
                                                                     </div>
                                                                 }
                                                             </div>
+                                                            <div className="row padding-top-50px"></div>
                                                         </div>
                                                     </div>
                                                 )
