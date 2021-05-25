@@ -20,7 +20,6 @@ import ListRightSidebar from "./pages/listings/ListRightSidebar";
 import ListingDetails from "./pages/listings/ListingDetails";
 import AddListing from "./pages/listings/AddListing";
 import UserProfile from "./components/other/account/UserProfile";
-import TopAuthors from "./pages/TopAuthors";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Booking from "./pages/dashboard/Booking";
 import BookingConfirmation from "./pages/dashboard/BookingConfirmation";
@@ -75,7 +74,6 @@ const App = () => {
               <AppRoute path="/listing-details" component={ListingDetails} />
               <AppRoute path="/add-listing/" component={AddListing} />
               <AppRoute path="/user-profile" component={UserProfile} />
-              <AppRoute path="/top-author" component={TopAuthors} />
               <AppRoute path="/dashboard" component={Dashboard} />
               <AppRoute path="/booking" component={Booking} />
               <AppRoute path="/booking-confirmation" component={BookingConfirmation} />

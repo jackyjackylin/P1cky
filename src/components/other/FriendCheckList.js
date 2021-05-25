@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import {AuthContext} from "../../components/providers/UserProvider";
+import {Scrollbars} from 'react-custom-scrollbars';
 
 function FriendCheckList({friendList, setFriendList}) {
     const [checked, setChecked] = useState([]);
@@ -50,26 +51,27 @@ function FriendCheckList({friendList, setFriendList}) {
     
     return (
         <>
-            {/* <List className={classes.root}> */}
-            <List className=".friend-list-item">
-                {loaded && friendNames.map((item, i) => {
-                    const labelId = `checkbox-list-label-${item.uid}`;
-                    return (
-                        <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.uid)}>
-                            <ListItemIcon>
-                                <Checkbox
-                                    edge="start"
-                                    checked={checked.indexOf(item.uid) !== -1}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{ 'aria-labelledby': labelId }}
-                                />
-                            </ListItemIcon>
-                            <ListItemText id={labelId} primary={item.displayName} />
-                        </ListItem>
-                    );
-                })}
-            </List>
+            <Scrollbars style={{ width: 500, height: 300 }}>
+                <List className=".friend-list-item">
+                    {loaded && friendNames.map((item, i) => {
+                        const labelId = `checkbox-list-label-${item.uid}`;
+                        return (
+                            <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.uid)}>
+                                <ListItemIcon>
+                                    <Checkbox
+                                        edge="start"
+                                        checked={checked.indexOf(item.uid) !== -1}
+                                        tabIndex={-1}
+                                        disableRipple
+                                        inputProps={{ 'aria-labelledby': labelId }}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText id={labelId} primary={item.displayName} />
+                            </ListItem>
+                        );
+                    })}
+                </List>
+            </Scrollbars>
         </>
     );
 }

@@ -5,9 +5,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {Scrollbars} from 'react-custom-scrollbars';
 import {useHistory } from "react-router-dom";
 import {tabIndexMap} from "../../pages/dashboard/Dashboard";
+
 function DeleteListCheckList({uid}) {
     const [checked, setChecked] = useState([]);
     const [loaded, setLoaded] = useState([]);

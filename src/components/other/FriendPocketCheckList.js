@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import {Scrollbars} from 'react-custom-scrollbars';
 
 function FriendPocketCheckList({friendList, setFriendList, lists, setLists}) {
     const [checked, setChecked] = useState([]);
@@ -54,25 +55,27 @@ function FriendPocketCheckList({friendList, setFriendList, lists, setLists}) {
 
     return (
         <>
-            <List className=".friend-pocket-list-item">
-                {loaded && pocketsList.map((item, i) => {
-                    const labelId = `checkbox-list-label-${item}`;
-                    return (
-                        <ListItem key={i} role={undefined} dense button onClick={handleToggle(item)}>
-                            <ListItemIcon>
-                                <Checkbox
-                                    edge="start"
-                                    checked={checked.indexOf(item) !== -1}
-                                    tabIndex={-1}
-                                    disableRipple
-                                    inputProps={{'aria-labelledby': labelId }}
-                                />
-                            </ListItemIcon>
-                            <ListItemText id={labelId} primary={item.listName} />
-                        </ListItem>
-                    );
-                })}
-            </List>
+            <Scrollbars style={{ width: 500, height: 300 }}>
+                <List className=".friend-pocket-list-item">
+                    {loaded && pocketsList.map((item, i) => {
+                        const labelId = `checkbox-list-label-${item}`;
+                        return (
+                            <ListItem key={i} role={undefined} dense button onClick={handleToggle(item)}>
+                                <ListItemIcon>
+                                    <Checkbox
+                                        edge="start"
+                                        checked={checked.indexOf(item) !== -1}
+                                        tabIndex={-1}
+                                        disableRipple
+                                        inputProps={{'aria-labelledby': labelId }}
+                                    />
+                                </ListItemIcon>
+                                <ListItemText id={labelId} primary={item.listName} />
+                            </ListItem>
+                        );
+                    })}
+                </List>
+            </Scrollbars>
         </>
     );
 }

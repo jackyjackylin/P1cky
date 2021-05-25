@@ -4,6 +4,7 @@ import React,{ useEffect, useState, useContext } from 'react';
 import {firestore} from '../../firebase';
 import {AuthContext} from "../../components/providers/UserProvider";
 import Tooltip from '@material-ui/core/Tooltip';
+import {Scrollbars} from 'react-custom-scrollbars';
 
 const ListMenu = ({item}) => {
   const [listNames, setListNames] = useState([])
@@ -128,6 +129,7 @@ const ListMenu = ({item}) => {
               disableTouchListener>
                 <div></div>
         </Tooltip>
+        <Scrollbars style={{ width: 200, height: 150 }}>
         {listNames.map((name,index)=> {
           return(
               <div className="menu-item sub-menu" key={index} onClick={()=>addToLists(name)} onMouseLeave={handleTooltipClose} > 
@@ -135,6 +137,7 @@ const ListMenu = ({item}) => {
               </div>
           )
         })}
+         </Scrollbars>
         
       </div>
     </Popup>

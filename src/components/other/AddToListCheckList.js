@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Scrollbars } from 'react-custom-scrollbars';
+import {Scrollbars} from 'react-custom-scrollbars';
 
 function AddToListCheckList({uid, lists, setLists}) {
     const [checked, setChecked] = useState([]);
@@ -50,7 +50,7 @@ function AddToListCheckList({uid, lists, setLists}) {
     
     return (
         <>
-            <Scrollbars style={{ width: 500, height: 300}} >
+            <Scrollbars style={{ width: 500, height: 300}}>
                 <List className=".add-to-lists-list-item">
                     {names.map((item, i) => {
                         const labelId = `checkbox-list-label-${item}`;

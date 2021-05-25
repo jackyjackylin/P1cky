@@ -26,6 +26,7 @@ export default function AddRestaurants({value, setValue}) {
                     color: 'grey',
                   }),
                 },
+                placeholder: 'Search',
               }}
             />
         </>
