@@ -6161,7 +6161,8 @@ body {
 .user-profile-action .user-pro-img {
   position: relative; }
   .user-profile-action .user-pro-img img {
-    width: 100%; }
+    width: 100%;
+    height: 100%}
   .user-profile-action .user-pro-img .edit-btn {
     position: absolute;
     left: 10px;
