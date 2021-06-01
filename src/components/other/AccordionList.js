@@ -27,10 +27,16 @@ function AccordionList ({uid,userList, setUserList}) {
         }
     },[loaded])
 
-    useEffect(()=>{
+    function adjustBorder(){
         var anchor = document.querySelector(".card-image .card__img");
-
-    },[])
+        if(anchor){
+            console.log(anchor.parentElement)
+            var awidth = window.getComputedStyle(anchor, null).width
+            var parent = anchor.parentElement;
+            var pwidth = window.getComputedStyle(parent, null).getPropertyValue("width");
+            console.log(parent,pwidth)
+        }
+    }
     async function fetch() {
         console.log("fetch")
         const doc = firestore.doc(`users/${uid}`).collection('pocketList');
@@ -150,7 +156,6 @@ function AccordionList ({uid,userList, setUserList}) {
                         </div>
                     )
                 })}
-
             </Accordion>}
         </>
     );
