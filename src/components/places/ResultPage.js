@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import {AuthContext} from "../providers/UserProvider";
 import ListMenu from "./ListMenu";
 import {IoIosLink} from 'react-icons/io'
-import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
+import { AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
 import { FaMoneyBillWave } from 'react-icons/fa'
 import { nanoid } from 'nanoid';

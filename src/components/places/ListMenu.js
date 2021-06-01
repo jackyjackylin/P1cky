@@ -5,49 +5,12 @@ import {firestore} from '../../firebase';
 import {AuthContext} from "../providers/UserProvider";
 import Tooltip from '@material-ui/core/Tooltip';
 import {Scrollbars} from 'react-custom-scrollbars';
-
-const ListMenu = ({item}) => {
+import { FiHeart } from 'react-icons/fi'
+const ListMenu = ({item, isNearby}) => {
   const [listNames, setListNames] = useState([])
   const {currentUser} = useContext(AuthContext);
-  const [selectList,setSelectList] = useState("")
   const [open, setOpen] = React.useState(false);
-  const [restaurant, setRes] = useState("");
-  const [restaurantName, setName] = useState("");
-  const [businesses, setBusinesses] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [photoURL, setPhotoURL] = useState("");
-  const [yelpID, setYelpID] = useState("");
-  const [address, setAddress] = useState([])
-  const [city, setCity] = useState("")
-  const [zipCode, setZipCode] = useState("")
-  const [state, setState] = useState("")
-  const [country, setCountry] = useState("")
-  const [phone, setPhone] = useState("");
-  const [yelpURL, setYelpURL] = useState("");
-  const [rating, setRating] = useState();
   const [price, setPrice] = useState("");
-
-
-  // useEffect(() => {
-  //   setName(item.name)
-  //   setPhotoURL(item.image_url)
-  //   setYelpID(item.id)
-  //   setCity(item.location.city)
-  //   setZipCode(item.location.zip_code)
-  //   setState(item.location.state)
-  //   setCountry(item.location.country)
-  //   setAddress(item.location.display_address)
-  //   setCategories(item.categories)
-  //   setPhone(item.display_phone)
-  //   setRating(item.rating)
-  //   setYelpURL(item.url)
-  //   if (item.price) {
-  //       setPrice(item.price)
-  //   }else{
-  //       console.log("no price")
-  //       setPrice("")
-  //   }
-  // },[])
 
   const handleTooltipClose = () => {
     setOpen(false);
@@ -107,7 +70,7 @@ const ListMenu = ({item}) => {
   return (
   // <div className="menu">
     <Popup
-      trigger={<div className="menu-item"> <AiOutlinePlusCircle/>To pocket list </div>}
+      trigger={isNearby? <div className="menu-item-love"><FiHeart/></div> : (<div className="menu-item"><AiOutlinePlusCircle/>To pocket list</div>)}
       position="left bottom"
       on="hover"
       closeOnDocumentClick

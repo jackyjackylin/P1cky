@@ -1419,6 +1419,11 @@ body {
   height: 28px;
   border-bottom: 1px solid rgb(187, 187, 187);
 }
+
+.menu-item-love {
+  cursor: pointer;
+}
+
 .menu-item.sub-menu{
   cursor: pointer;
   padding: 5px;

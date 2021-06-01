@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext}  from 'react'
 import {IoIosLink} from 'react-icons/io'
 import { AiOutlineEye, AiFillDollarCircle} from 'react-icons/ai'
 import { FiPhone, FiHeart, FiX } from 'react-icons/fi'
@@ -6,6 +6,9 @@ import { FaMoneyBillWave } from 'react-icons/fa'
 import { nanoid } from 'nanoid';
 import Slider from "react-slick";
 import {GiChickenOven} from 'react-icons/gi';
+import ListMenu from './ListMenu';
+import {AuthContext} from "../providers/UserProvider";
+
 import {
     IoMdStar,
     IoMdStarHalf
@@ -90,6 +93,7 @@ function getDirection(business){
 }
 
 function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
+    const {currentUser} = useContext(AuthContext);
 
     return (
         <div className="row mt-5">
@@ -103,12 +107,11 @@ function PlaceOne({places,toggleShowPop,showPop=false,nextItemId}) {
                                         <img src={item.image_url} width="362" height="242" className="card__img" alt="Place" />
                                         { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> }
                                         <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
-                                            {showPop ? <FiX/> : <FiHeart/>}
-
+                                            {showPop ? <FiX/> : currentUser ? (<ListMenu item={item} isNearby={true}/>):(<FiHeart/>) }
+                                            
                                         </span>  
                                     </div>
                                 </a>
-                                
                                 <div className={`card-content-wrap  ${showPop ? "popup-window-content": ""}`}>
                                     <div className="card-content ">
                                         <a href="#">
