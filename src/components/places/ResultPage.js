@@ -66,7 +66,7 @@ function ResultPage({isPocketList,item,toggleShowPop,showPop,nextItemId}){
                                     <div className="card-image">
                                         <img src={item.image_url?item.image_url: item.photoURL? item.photoURL: noImage} width="362" height="242" className="card__img" alt="Place" />
                                         {/* { <span className={item.is_close ? 'badge badge-closed': 'badge' }>{item.is_close ? "Close" : "Open"}</span> } */}
-                                        <span className="badge-toggle"  data-toggle="tooltip" data-placement="bottom" title="22 Likes">
+                                        <span className="badge-toggle"   data-placement="bottom">
                                             {showPop ? <FiX/> : <FiHeart/>}
     
                                         </span>  
