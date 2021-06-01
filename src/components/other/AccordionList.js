@@ -20,11 +20,17 @@ function AccordionList ({uid,userList, setUserList}) {
     var names = [];
 
     useEffect(() => {
+
+
         if(userList.length==0 ){
             fetch()
         }
     },[loaded])
 
+    useEffect(()=>{
+        var anchor = document.querySelector(".card-image .card__img");
+
+    },[])
     async function fetch() {
         console.log("fetch")
         const doc = firestore.doc(`users/${uid}`).collection('pocketList');
@@ -109,7 +115,7 @@ function AccordionList ({uid,userList, setUserList}) {
                                                     <div key={`${item.restaurantName[index]}-${index}`} className="col-lg-4 column-td-6">
                                                         <div className="restaurant-item">
                                                             <div className="card-image">
-                                                                <img src={item.photoURL[index]} width="362" height="242" className="card__img" alt="Card" />
+                                                                <img src={item.photoURL[index]}  className="card__img" alt="Card" />
                                                             </div>
                                                             <div className="card-content-wrap">
                                                                 <div className="card-content">
