@@ -76,7 +76,7 @@ function FriendList ({uid}) {
         <>
             {loaded && fetchedLists.map((item, i) => {
                 return(
-                    <div key={i} className="col-lg-4 column-td-6">
+                    <div key={i} className="col-lg-4 column-td-6 accordionList">
                         <div className="card-item">
                             <div className="card-image-wrap"> 
                                 <div className="card-image">

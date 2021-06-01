@@ -4772,13 +4772,13 @@ body {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0; }
-  .card-image .card__img {
+  .accordionList .card-image .card__img {
     width: 100%;
     height: auto;
     -webkit-border-radius: 4px 4px 0 0;
     -moz-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0; }
-  .places-carousel   .card-image .card__img {
+ .card-image .card__img {
     width: 100%;
     height: 200px;
     -webkit-border-radius: 4px 4px 0 0;

@@ -114,7 +114,7 @@ function AccordionList ({uid,userList, setUserList}) {
                                     </AccordionItemButton>
                                 </AccordionItemHeading>
                                 <AccordionItemPanel>
-                                    <div className="card-body">
+                                    <div className="card-body accordionList">
                                         <div className="row">
                                             {item.restaurants.map((val, index) => {
                                                 return (
