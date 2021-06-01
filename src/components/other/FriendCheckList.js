@@ -57,11 +57,11 @@ function FriendCheckList({friendList, setFriendList}) {
                     {loaded && friendNames.map((item, i) => {
                         const labelId = `checkbox-list-label-${item.uid}`;
                         return (
-                            <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.uid)}>
+                            <ListItem key={i} role={undefined} dense button onClick={handleToggle(item)}>
                                 <ListItemIcon>
                                     <Checkbox
                                         edge="start"
-                                        checked={checked.indexOf(item.uid) !== -1}
+                                        checked={checked.indexOf(item) !== -1}
                                         tabIndex={-1}
                                         disableRipple
                                         inputProps={{ 'aria-labelledby': labelId }}

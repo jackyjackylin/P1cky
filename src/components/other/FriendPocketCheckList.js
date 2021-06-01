@@ -28,11 +28,12 @@ function FriendPocketCheckList({friendList, setFriendList, lists, setLists}) {
 
     const getAllPocketList = async(f) => {
         let tmpList = [];
-        const ref = firestore.doc(`users/${f}`).collection('pocketList');
+        const ref = firestore.doc(`users/${f.uid}`).collection('pocketList');
         const response = await ref.get();
         response.forEach(doc => {
             console.log(doc.id);
-            tmpList.push({userid : f, listName: doc.id});
+            console.log(f)
+            tmpList.push({userid : f.uid, listName: doc.id + " (" +f.displayName + ")"});
         });
         return tmpList
     }
