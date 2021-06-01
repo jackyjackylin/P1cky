@@ -25,6 +25,8 @@ function Home() {
     const [rloaded, setRloaded] = useState(false);
     const [popItem, setPopItem] = useState(null);
     const [isPocketList, setIsPocketList] = useState(false);
+    const [userload, setUserload] = useState(false);
+
     /*=================Control Modal that would display on HomePage===============*/
     useEffect(() => {
         const body = document.querySelector('body')

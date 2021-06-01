@@ -31,6 +31,7 @@ function FriendCheckList({friendList, setFriendList}) {
     useEffect(()=> {
         async function fetch() {
             const tmpList = [];
+            tmpList.push({"uid": currentUser.uid, "displayName": currentUser.displayName})
             const doc = firestore.doc(`users/${currentUser.uid}`).collection('myFriends');
             const listInfo = await doc.get().then (friends => {
                 friends.forEach(doc => {

@@ -12,15 +12,14 @@ import userDefaultImg from "../../../assets/images/userDefaultImg.jpg";
 export default function HeaderAuthorAccess() {
     const [AuthorAccessOpen, setAuthorAccessOpen] = useState(false)
     const { currentUser } = useContext(AuthContext);
-    if (currentUser) {
-      console.log(currentUser)
-    }
+
     const signOutUser = (event) => {
         auth.signOut().then(() => {
             // Sign-out successful.
         }).catch((error) => {
         });
     }
+
     return (
         <>
             <div className="logo-right-content">
