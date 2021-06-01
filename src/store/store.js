@@ -102,11 +102,11 @@ const sectiondata = {
                 },
                 {
                     icon: <FiHeadphones />,
-                    text: '(949) 824-5011'
+                    text: '(949) 617-4457'
                 },
                 {
                     icon: <FaRegEnvelope />,
-                    text: 'P1cky@gmail.com'
+                    text: 'p1ckyyou2021@gmail.com'
                 }
             ]
         },
