@@ -34,12 +34,7 @@ function SignUpBox({title, subtitle}) {
               catch(error){
                 alert('Error Signing up with email and password');
               }
-              setEmail("");
-              setPassword("");
-              setDisplayName("");
-              setConfirmpassword("");
         }
-
     };
     const onChangeHandler = event => {
         const { name, value } = event.currentTarget;
