@@ -20,7 +20,6 @@ function Footer() {
                     <div className="row">
                         <FooterLeftWidget footerleftcnts={sectiondata.footerdata}/>
                         <FooterQuickLinkWidget footerquicklink={sectiondata.footerdata.footerquicklinks} />
-                        {/* <FooterCategoryWidget footercategory={sectiondata.footerdata.footercategories} /> */}
                         <FooterContactWidget footercontact={sectiondata.footerdata.footercontact} />
                     </div>
 

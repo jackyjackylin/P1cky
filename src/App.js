@@ -8,30 +8,8 @@ import LayoutDefault from './layouts/LayoutDefault';
 
 // Pages
 import Home from "./pages/homes/Home";
-import AllCategories from './pages/categories/AllCategories';
-import AllLocations from './pages/categories/AllLocations';
-import TopPlaces from "./pages/categories/TopPlaces";
-import ListingGrid from "./pages/listings/ListingGrid";
-import ListingList from "./pages/listings/ListingList";
-import ListMapView from "./pages/listings/ListMapView";
-import ListMapView2 from "./pages/listings/ListMapView2";
-import ListLeftSidebar from "./pages/listings/ListLeftSidebar";
-import ListRightSidebar from "./pages/listings/ListRightSidebar";
-import ListingDetails from "./pages/listings/ListingDetails";
-import AddListing from "./pages/listings/AddListing";
-import UserProfile from "./components/other/account/UserProfile";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Booking from "./pages/dashboard/Booking";
-import BookingConfirmation from "./pages/dashboard/BookingConfirmation";
-import Invoice from "./pages/dashboard/Invoice";
-import PricingPlan from "./pages/PricingPlan";
-import Contact from "./pages/Contact";
 import RecoverPassword from "./pages/RecoverPassword";
-import BlogFullWidth from "./pages/blogs/BlogFullWidth";
-import BlogGrid from "./pages/blogs/BlogGrid";
-import BlogLeftSidebar from "./pages/blogs/BlogLeftSidebar";
-import BlogRightSidebar from "./pages/blogs/BlogRightSidebar";
-import BlogDetail from "./pages/blogs/BlogDetail";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Error from "./pages/Error";
@@ -62,30 +40,8 @@ const App = () => {
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
               <AppRoute path="/view-contact-details/:id" component={ViewUserDetails}/>
-              <AppRoute path="/all-categories" component={AllCategories} />
-              <AppRoute path="/all-locations" component={AllLocations} />
-              <AppRoute path="/top-place" component={TopPlaces} />
-              <AppRoute path="/listing-grid" component={ListingGrid} />
-              <AppRoute path="/listing-list" component={ListingList} />
-              <AppRoute path="/list-map-view" component={ListMapView} />
-              <AppRoute path="/list-map-view2" component={ListMapView2} />
-              <AppRoute path="/list-left-sidebar" component={ListLeftSidebar} />
-              <AppRoute path="/list-right-sidebar" component={ListRightSidebar} />
-              <AppRoute path="/listing-details" component={ListingDetails} />
-              <AppRoute path="/add-listing/" component={AddListing} />
-              <AppRoute path="/user-profile" component={UserProfile} />
               <AppRoute path="/dashboard" component={Dashboard} />
-              <AppRoute path="/booking" component={Booking} />
-              <AppRoute path="/booking-confirmation" component={BookingConfirmation} />
-              <AppRoute path="/invoice" component={Invoice} />
-              <AppRoute path="/pricing" component={PricingPlan} />
-              <AppRoute path="/contact" component={Contact} />
               <AppRoute path="/recover" component={RecoverPassword} />
-              <AppRoute path="/blog-full-width" component={BlogFullWidth} />
-              <AppRoute path="/blog-grid" component={BlogGrid} />
-              <AppRoute path="/blog-left-sidebar" component={BlogLeftSidebar} />
-              <AppRoute path="/blog-right-sidebar" component={BlogRightSidebar} />
-              <AppRoute path="/blog-single" component={BlogDetail} />
               <AppRoute path="/login" component={Login} />
               <AppRoute path="/sign-up" component={SignUp} />
               <AppRoute component={AccordionList} />

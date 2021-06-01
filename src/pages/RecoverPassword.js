@@ -5,7 +5,7 @@ import Breadcrumb from "../components/common/Breadcrumb";
 import RecoverPassBox from "../components/other/account/RecoverPassBox";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
-import breadcrumbimg from '../assets/images/bread-bg.jpg'
+import breadcrumbimg from '../assets/images/mountain.jpg'
 
 const state = {
     breadcrumbimg: breadcrumbimg,
@@ -20,7 +20,7 @@ function RecoverPassword() {
             <GeneralHeader />
 
             {/* Breadcrumb */}
-            <Breadcrumb CurrentPgTitle="Recover Password" MenuPgTitle="Pages" img={state.breadcrumbimg} />
+            <Breadcrumb CurrentPgTitle="Recover Password" img={state.breadcrumbimg} />
 
             <RecoverPassBox />
 

@@ -2,11 +2,9 @@ import React from 'react';
 import SignUpBox from "../components/other/account/SignUpBox";
 import GeneralHeader from "../components/common/GeneralHeader";
 import Breadcrumb from "../components/common/Breadcrumb";
-import NewsLetter from "../components/other/cta/NewsLetter";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
 import breadcrumbimg from '../assets/images/mountain.jpg'
-import sectiondata from "../store/store";
 
 const state = {
     breadcrumbimg: breadcrumbimg,
