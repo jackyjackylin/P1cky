@@ -33,7 +33,7 @@ function FriendPocketCheckList({friendList, setFriendList, lists, setLists}) {
         response.forEach(doc => {
             console.log(doc.id);
             console.log(f)
-            tmpList.push({userid : f.uid, listName: doc.id + " (" +f.displayName + ")"});
+            tmpList.push({userid : f.uid, name:f.displayName, listName: doc.id});
         });
         return tmpList
     }
@@ -71,7 +71,7 @@ function FriendPocketCheckList({friendList, setFriendList, lists, setLists}) {
                                         inputProps={{'aria-labelledby': labelId }}
                                     />
                                 </ListItemIcon>
-                                <ListItemText id={labelId} primary={item.listName} />
+                                <ListItemText id={labelId} primary={item.listName + " (" +item.name+")"} />
                             </ListItem>
                         );
                     })}
