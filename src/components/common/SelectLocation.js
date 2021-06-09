@@ -1,5 +1,5 @@
 import usePlacesAutocomplete, {getGeocode, getLatLng,} from "use-places-autocomplete";
-import React, {useState} from 'react'
+import React from 'react'
 import {
   Combobox,
   ComboboxInput,
@@ -9,7 +9,6 @@ import {
 } from "@reach/combobox";
 
 import "@reach/combobox/styles.css";
-import { set } from "lodash-es";
 
 
 export default function SelectLocation({lat,setLat,lng,setLng}) {
